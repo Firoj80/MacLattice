@@ -17,7 +17,9 @@ export const Route = createRootRoute({
       { name: "robots", content: "index, follow" },
     ],
     links: [
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", href: "/favicon.png", sizes: "64x64" },
+      { rel: "icon", type: "image/png", href: "/favicon-32.png", sizes: "32x32" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/png", href: "/icon.png", sizes: "512x512" },
       { rel: "apple-touch-icon", href: "/apple-icon.png" },
       { rel: "stylesheet", href: appCss },

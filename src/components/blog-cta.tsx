@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
 import { SITE } from "@/data/site";
+import { BUY_HREF } from "@/lib/buy";
 
 export function BlogCta() {
   return (
@@ -14,13 +14,12 @@ export function BlogCta() {
               {SITE.name} visualizes your entire drive, making it obvious where these
               hidden caches are hiding.
             </p>
-            <Link
-              to="/"
-              hash="create"
+            <a
+              href={BUY_HREF}
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-medium text-primary-fg shadow-lg transition-all hover:brightness-110 md:w-auto"
             >
               Buy licence · {SITE.lifetimePrice}
-            </Link>
+            </a>
           </div>
           <div className="relative aspect-video w-full flex-1 overflow-hidden rounded-xl border border-border shadow-xl md:aspect-auto md:h-[240px]">
             <img

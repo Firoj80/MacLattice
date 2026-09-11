@@ -1,5 +1,6 @@
 export type NavItem = {
-  to: "/" | "/blog" | "/contact" | "/privacy" | "/terms" | "/refund-policy" | "/license";
+  to?: "/" | "/blog" | "/contact" | "/privacy" | "/terms" | "/refund-policy" | "/license";
+  href?: string;
   hash?: string;
   label: string;
 };
@@ -15,7 +16,7 @@ export const MAIN_NAV: NavItem[] = [
 export const FOOTER_PRODUCT: NavItem[] = [
   { to: "/", hash: "views", label: "Features" },
   { to: "/", hash: "pricing", label: "Pricing" },
-  { to: "/", hash: "create", label: "Buy licence" },
+  { href: "/buy", label: "Buy licence" },
   { to: "/blog", label: "Blog" },
   { to: "/license", label: "Already Have Licence?" },
 ];

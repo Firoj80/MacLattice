@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import { BUY_HREF } from "@/lib/buy";
 
-/** Local account CTA — no third-party downloads. */
 export function DownloadButton({
   label = "Buy licence",
   className,
@@ -13,21 +12,20 @@ export function DownloadButton({
   className?: string;
 }) {
   return (
-    <Link
-      to="/"
-      hash="create"
+    <a
+      href={BUY_HREF}
       className={cn(
         "inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-medium whitespace-nowrap text-bg bg-fg transition-all hover:bg-fg/90",
         className,
       )}
     >
       {label}
-    </Link>
+    </a>
   );
 }
 
 export function startDownloadThenRedirect(_fileUrl?: string) {
-  window.location.href = "/#create";
+  window.location.href = BUY_HREF;
 }
 
 export function AccountCta({
@@ -38,8 +36,8 @@ export function AccountCta({
   className?: string;
 }) {
   return (
-    <Link to="/" hash="create" className={className}>
+    <a href={BUY_HREF} className={className}>
       {children ?? "Buy licence"}
-    </Link>
+    </a>
   );
 }

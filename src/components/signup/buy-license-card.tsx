@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { Check } from "lucide-react";
 import { SITE } from "@/data/site";
+import { buyHref } from "@/lib/buy";
 
 type Chip = "silicon" | "intel";
 
@@ -15,27 +16,6 @@ const FEATURES = [
 
 export function BuyLicenseCard() {
   const [chip, setChip] = useState<Chip>("silicon");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function onSubmit(event: FormEvent) {
-    event.preventDefault();
-    setError(null);
-    setBusy(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chip, origin: window.location.origin }),
-      });
-      const data = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok || !data.url) throw new Error(data.error || "Checkout failed.");
-      window.location.href = data.url;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Checkout failed.");
-      setBusy(false);
-    }
-  }
 
   return (
     <div
@@ -72,7 +52,7 @@ export function BuyLicenseCard() {
           </p>
         </div>
 
-        <form onSubmit={onSubmit} className="mt-6 space-y-3">
+        <div className="mt-6 space-y-3">
           <fieldset>
             <legend className="mb-1.5 block text-xs font-medium tracking-wide text-muted">
               Your Mac
@@ -105,19 +85,13 @@ export function BuyLicenseCard() {
               ))}
             </div>
           </fieldset>
-          {error ? (
-            <p className="text-sm text-red-800" role="alert">
-              {error}
-            </p>
-          ) : null}
-          <button
-            type="submit"
-            disabled={busy}
-            className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98] disabled:opacity-60"
+          <a
+            href={buyHref(chip)}
+            className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
-            {busy ? "Redirecting…" : `Buy Lifetime Licence in ${SITE.lifetimePrice}`}
-          </button>
-        </form>
+            Buy Lifetime Licence in {SITE.lifetimePrice}
+          </a>
+        </div>
         <p className="mt-3 text-center text-xs text-muted">15-day refund · one Mac at a time</p>
       </div>
     </div>

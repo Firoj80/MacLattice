@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { HeaderBuy } from "@/components/header-buy";
+import { BrandMark } from "@/components/brand";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, MAIN_NAV, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
 
@@ -16,8 +17,15 @@ export function JoinShell({ children }: { children: ReactNode; compact?: boolean
 }
 
 function NavLink({ item, className, onClick }: { item: NavItem; className: string; onClick?: () => void }) {
+  if (item.href) {
+    return (
+      <a href={item.href} className={className} onClick={onClick}>
+        {item.label}
+      </a>
+    );
+  }
   return (
-    <Link to={item.to} hash={item.hash} className={className} onClick={onClick}>
+    <Link to={item.to ?? "/"} hash={item.hash} className={className} onClick={onClick}>
       {item.label}
     </Link>
   );
@@ -28,9 +36,7 @@ function JoinHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <Link to="/" className="font-display shrink-0 text-lg font-semibold tracking-tight text-fg">
-          {SITE.name}
-        </Link>
+        <BrandMark />
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-x-3 overflow-hidden text-[13px] font-medium whitespace-nowrap text-muted md:flex lg:gap-x-4">
           {MAIN_NAV.map((item) => (
             <NavLink key={item.label} item={item} className="hover:text-fg" />
@@ -73,7 +79,7 @@ function JoinFooter() {
     <footer className="border-t border-border px-5 py-12 sm:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-lg font-medium text-fg">{SITE.name}</p>
+          <BrandMark size="sm" />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">{SITE.tagline}</p>
         </div>
         <div>

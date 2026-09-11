@@ -12,8 +12,9 @@ export function dodoConfigured() {
 }
 
 export function dodoProductLink() {
-  if (!PRODUCT_ID) return null;
-  return `https://checkout.dodopayments.com/buy/${PRODUCT_ID}`;
+  const id = PRODUCT_ID || process.env.VITE_DODO_PRODUCT_ID?.trim();
+  if (!id) return null;
+  return `https://checkout.dodopayments.com/buy/${id}`;
 }
 
 function dodoApiHost() {

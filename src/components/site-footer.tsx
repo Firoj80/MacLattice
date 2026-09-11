@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { BrandMark } from "@/components/brand";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
 
@@ -7,9 +8,15 @@ const linkClass = "text-sm text-muted transition-colors hover:text-fg";
 function Item({ item }: { item: NavItem }) {
   return (
     <li>
-      <Link to={item.to} hash={item.hash} className={linkClass}>
-        {item.label}
-      </Link>
+      {item.href ? (
+        <a href={item.href} className={linkClass}>
+          {item.label}
+        </a>
+      ) : (
+        <Link to={item.to ?? "/"} hash={item.hash} className={linkClass}>
+          {item.label}
+        </Link>
+      )}
     </li>
   );
 }
@@ -20,9 +27,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="font-display text-base font-semibold text-fg">
-              {SITE.name}
-            </Link>
+            <BrandMark size="sm" />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
               {SITE.tagline}
             </p>

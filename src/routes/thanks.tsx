@@ -25,7 +25,7 @@ function ThanksPage() {
     const fromUrl = q.get("license_key") ?? "";
     const paymentId = q.get("payment_id") ?? "";
     setEmail(q.get("email") ?? "");
-    setPreview(q.get("status") === "preview");
+    setPreview(q.get("status") === "preview" || q.get("status") === "test");
     if (fromUrl) {
       setKey(fromUrl);
       return;
@@ -50,7 +50,7 @@ function ThanksPage() {
     <JoinShell compact>
       <section className="mx-auto max-w-xl px-5 py-20 sm:px-8">
         <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-          {preview ? "Preview licence" : "Payment received"}
+          {preview ? "Test licence" : "Payment received"}
         </p>
         <h1 className="font-display mt-3 text-4xl leading-tight font-medium tracking-tight text-fg">
           Your lifetime key is ready.

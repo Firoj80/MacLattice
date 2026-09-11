@@ -5,6 +5,7 @@ import { JoinShell } from "@/components/signup/join-shell";
 import { JsonLd } from "@/components/json-ld";
 import { JOIN_FAQ, JOIN_SIGNATURE, JOIN_TOOLKIT, JOIN_VIEWS } from "@/data/join";
 import { SITE } from "@/data/site";
+import { BUY_HREF } from "@/lib/buy";
 import { HOME_DESCRIPTION, HOME_TITLE, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -138,7 +139,7 @@ function PriceStrip() {
           <p className="mt-2 text-sm opacity-85">CleanMyMac-class tools. One payment. No renewal mail.</p>
         </div>
         <a
-          href="#create"
+          href={BUY_HREF}
           className="inline-flex h-12 shrink-0 items-center rounded-xl bg-primary-fg px-7 text-sm font-semibold text-primary"
         >
           Buy licence — {SITE.lifetimePrice}
@@ -238,7 +239,7 @@ function Pricing() {
               screen. We email the Mac app when it ships.
             </p>
             <a
-              href="#create"
+              href={BUY_HREF}
               className="mt-8 inline-flex h-14 items-center rounded-xl bg-primary-fg px-8 text-base font-semibold text-primary"
             >
               Buy licence — {SITE.lifetimePrice}
