@@ -25,6 +25,10 @@ export function BlogCta() {
             <img
               src="/app-screenshot.webp"
               alt={`${SITE.name} Interface`}
+              width={1200}
+              height={673}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>

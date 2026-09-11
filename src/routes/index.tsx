@@ -72,8 +72,12 @@ function Hero() {
         </ul>
         <div className="mt-8 min-h-0 flex-1 overflow-hidden rounded-[28px] border border-border">
           <img
-            src="/join-disk.jpg"
-            alt="Editorial map of a Mac disk as nested rooms"
+            src="/join-disk.webp"
+            alt="Scan My Disk treemap of a Mac disk"
+            width={1400}
+            height={788}
+            fetchPriority="high"
+            decoding="async"
             className="h-full min-h-[220px] w-full object-cover"
           />
         </div>
@@ -116,9 +120,20 @@ function Views() {
       </h2>
       <div className="mt-12 grid gap-px overflow-hidden rounded-[28px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {JOIN_VIEWS.map((view) => (
-          <article key={view.name} className="bg-card p-6">
-            <h3 className="font-display text-xl font-medium text-fg">{view.name}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">{view.body}</p>
+          <article key={view.name} className="bg-card">
+            <img
+              src={view.image}
+              alt={`${view.name} view in Scan My Disk`}
+              width={700}
+              height={394}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/9] w-full object-cover object-top"
+            />
+            <div className="p-6">
+              <h3 className="font-display text-xl font-medium text-fg">{view.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{view.body}</p>
+            </div>
           </article>
         ))}
       </div>
@@ -160,6 +175,17 @@ function Toolkit() {
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {JOIN_TOOLKIT.map((item) => (
             <article key={item.name}>
+              {"image" in item && item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  width={700}
+                  height={394}
+                  loading="lazy"
+                  decoding="async"
+                  className="mb-4 aspect-[16/9] w-full rounded-2xl border border-border object-cover object-top"
+                />
+              ) : null}
               <h3 className="text-[15px] font-semibold text-fg">{item.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
             </article>
@@ -200,6 +226,10 @@ function Signature() {
             <img
               src={feature.image}
               alt={feature.imageAlt}
+              width={1400}
+              height={788}
+              loading="lazy"
+              decoding="async"
               className="aspect-[16/10] w-full rounded-[28px] border border-border object-cover"
             />
           </div>
