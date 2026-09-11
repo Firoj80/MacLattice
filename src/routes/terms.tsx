@@ -7,9 +7,9 @@ export const Route = createFileRoute("/terms")({
   component: TermsPage,
   head: () =>
     pageHead({
-      title: "Terms of Service | MacLattice",
+      title: "Terms of Service | Scan My Disk",
       description:
-        "MacLattice terms of service. One-time purchase, lifetime access, 15-day money-back guarantee.",
+        "Scan My Disk terms of service. One-time purchase, lifetime access, 15-day money-back guarantee.",
       path: "/terms",
     }),
 });

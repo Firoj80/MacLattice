@@ -1,60 +1,44 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { DownloadButton } from "@/components/download-button";
+import { HeaderBuy } from "@/components/header-buy";
+import { MAIN_NAV } from "@/data/nav";
 import { SITE } from "@/data/site";
-
-const NAV = [
-  { to: "/", hash: "features", label: "Features" },
-  { to: "/pricing", label: "Pricing" },
-  { to: "/blog", label: "Blog" },
-  { to: "/", hash: "faq", label: "FAQ" },
-] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl">
+    <nav className="fixed top-0 z-50 w-full border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-center justify-between gap-4">
           <Link
             to="/"
-            className="text-lg font-semibold tracking-tight text-white transition-opacity hover:opacity-80"
+            className="font-display shrink-0 text-lg font-semibold tracking-tight text-fg transition-opacity hover:opacity-80"
           >
             {SITE.name}
           </Link>
 
-          <div className="hidden items-center space-x-8 md:flex">
-            {NAV.map((item) =>
-              "hash" in item ? (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  hash={item.hash}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
+          <div className="hidden min-w-0 flex-1 items-center justify-center gap-x-3 overflow-hidden lg:gap-x-4 md:flex">
+            {MAIN_NAV.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                hash={item.hash}
+                className="text-[13px] font-medium whitespace-nowrap text-muted transition-colors hover:text-fg"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           <div className="hidden items-center md:flex">
-            <DownloadButton variant="nav" />
+            <HeaderBuy />
           </div>
 
           <button
             type="button"
-            className="rounded-lg p-2 text-white transition-colors hover:bg-white/5 md:hidden"
+            className="rounded-lg p-2 text-fg transition-colors hover:bg-fg/5 md:hidden"
             aria-label={open ? "Close menu" : "Toggle menu"}
             onClick={() => setOpen((v) => !v)}
           >
@@ -64,31 +48,20 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/5 bg-black/95 px-6 py-4 backdrop-blur-xl md:hidden">
+        <div className="border-t border-border bg-bg px-6 py-4 md:hidden">
           <div className="flex flex-col space-y-1">
-            {NAV.map((item) =>
-              "hash" in item ? (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  hash={item.hash}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-white/5 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-white/5 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-            <DownloadButton className="mt-3 w-full" variant="nav" />
+            {MAIN_NAV.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                hash={item.hash}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-3 text-sm font-medium text-muted hover:bg-fg/5 hover:text-fg"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <HeaderBuy className="mt-3 w-full justify-center" />
           </div>
         </div>
       ) : null}

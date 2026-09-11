@@ -2,19 +2,19 @@ import { SITE } from "@/data/site";
 import { FAQS } from "@/data/faq";
 
 export const KEYWORDS =
-  "mac storage analyzer,mac disk space visualizer,clean xcode derived data,shrink docker.raw mac,delete node_modules recursively,android studio cache cleaner,mac system data cleaner,remove app leftovers mac,treemap mac,disk usage map,DaisyDisk alternative,macOS sequential read speed,visualize large files,MacLattice";
+  "mac storage analyzer,mac disk space visualizer,clean xcode derived data,shrink docker.raw mac,delete node_modules recursively,android studio cache cleaner,mac system data cleaner,remove app leftovers mac,treemap mac,disk usage map,DaisyDisk alternative,macOS sequential read speed,visualize large files,Scan My Disk";
 
-export const HOME_TITLE = "MacLattice - Free Mac Storage Analyzer | See What's Taking Up Space";
+export const HOME_TITLE = "Scan My Disk — See what's taking up space | $7 lifetime";
 
 export const HOME_DESCRIPTION =
-  "MacLattice is a free Mac storage analyzer that shows exactly what's taking up space on your Mac. Visualize disk usage with an interactive treemap. Download free for macOS Sonoma, Sequoia & Apple Silicon.";
+  "Scan My Disk is a Mac storage analyzer that shows exactly what's taking up space. Eight views, duplicate detection, saved scan comparison, and cleanup presets. $7 lifetime.";
 
-export const TWITTER_TITLE = "MacLattice - Free Mac Storage Analyzer";
+export const TWITTER_TITLE = "Scan My Disk — Mac storage analyzer";
 
 export const TWITTER_DESCRIPTION =
-  "See exactly what's taking up space on your Mac. Free storage analyzer with interactive treemap visualization.";
+  "See exactly what's taking up space on your Mac. $7 lifetime. No subscription.";
 
-export const OG_IMAGE_ALT = "MacLattice - Mac Storage Analyzer Interface";
+export const OG_IMAGE_ALT = "Scan My Disk — Mac storage analyzer";
 
 export function absUrl(path = "/") {
   if (path.startsWith("http")) return path;
@@ -85,15 +85,14 @@ export function softwareJsonLd() {
         operatingSystem: "macOS",
         offers: {
           "@type": "Offer",
-          price: "0",
+          price: "7",
           priceCurrency: "USD",
-          description: "Free download with optional Pro upgrade for $12.99",
+          description: "One-time lifetime licence for $7",
         },
         description:
-          "MacLattice is a free Mac storage analyzer that shows exactly what's taking up space on your Mac with an interactive treemap visualization.",
+          "Scan My Disk is a Mac storage analyzer that shows exactly what's taking up space on your Mac with interactive visualisations.",
         screenshot: ogImage(),
         softwareVersion: "1.0",
-        downloadUrl: SITE.siliconDmg,
         featureList: [
           "Interactive treemap visualization",
           "Fast full-disk scanning",
@@ -109,7 +108,6 @@ export function softwareJsonLd() {
         url: absUrl("/"),
         logo: absUrl("/icon.png"),
         email: SITE.email,
-        sameAs: [SITE.reddit],
       },
       {
         "@type": "WebSite",

@@ -7,9 +7,9 @@ export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
   head: () =>
     pageHead({
-      title: "Privacy Policy | MacLattice",
+      title: "Privacy Policy | Scan My Disk",
       description:
-        "MacLattice privacy policy. Your files never leave your Mac — all scanning happens 100% locally.",
+        "Scan My Disk privacy policy. Your files never leave your Mac — all scanning happens 100% locally.",
       path: "/privacy",
     }),
 });
@@ -73,7 +73,7 @@ function PrivacyPage() {
           <li>
             <strong>Path Anonymization:</strong> We automatically redact folder names and
             usernames in file paths (e.g.,{" "}
-            <code className="rounded bg-white/5 px-1 text-primary">
+            <code className="rounded bg-primary/8 px-1 text-primary">
               /Users/[redacted]/...
             </code>
             ) so your private folder structure remains anonymous.

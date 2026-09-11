@@ -7,8 +7,8 @@ export const Route = createFileRoute("/refund-policy")({
   component: RefundPage,
   head: () =>
     pageHead({
-      title: "Refund Policy | MacLattice",
-      description: "MacLattice refund policy. 15-day money-back guarantee, no questions asked.",
+      title: "Refund Policy | Scan My Disk",
+      description: "Scan My Disk refund policy. 15-day money-back guarantee, no questions asked.",
       path: "/refund-policy",
     }),
 });

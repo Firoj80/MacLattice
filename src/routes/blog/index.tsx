@@ -10,7 +10,7 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
   head: () =>
     pageHead({
-      title: "Blog - Mac Storage Tips & Guides | MacLattice",
+      title: "Blog - Mac Storage Tips & Guides | Scan My Disk",
       description:
         "Learn how to free up space, manage system data, and optimize your Mac storage with our expert guides and tips.",
       path: "/blog",
@@ -40,7 +40,7 @@ function BlogIndex() {
     <SiteShell>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-16 text-center">
-          <h1 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          <h1 className="font-display mb-6 text-4xl font-medium tracking-tight text-fg md:text-5xl">
             Mac Storage <span className="text-primary">Guides</span>
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-muted">
@@ -62,7 +62,7 @@ function BlogIndex() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Find a guide..."
-                  className="block w-full rounded-xl border border-white/10 bg-white/5 py-3 pr-3 pl-9 text-sm text-white transition-all placeholder:text-muted/50 outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                  className="block w-full rounded-xl border border-border bg-card py-3 pr-3 pl-9 text-sm text-fg transition-all placeholder:text-muted/50 outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
             </div>
@@ -76,8 +76,8 @@ function BlogIndex() {
                   onClick={() => setTag(null)}
                   className={`rounded-lg border px-3 py-2 text-left text-sm transition-all ${
                     tag === null
-                      ? "border-white/20 bg-white/10 font-medium text-white"
-                      : "border-transparent text-muted hover:bg-white/5 hover:text-white"
+                      ? "border-primary/30 bg-primary/10 font-medium text-primary"
+                      : "border-transparent text-muted hover:bg-fg/5 hover:text-fg"
                   }`}
                 >
                   All Guides
@@ -89,8 +89,8 @@ function BlogIndex() {
                     onClick={() => setTag(t === tag ? null : t)}
                     className={`rounded-lg border px-3 py-2 text-left text-sm transition-all ${
                       tag === t
-                        ? "border-white/20 bg-white/10 font-medium text-white"
-                        : "border-transparent text-muted hover:bg-white/5 hover:text-white"
+                        ? "border-primary/30 bg-primary/10 font-medium text-primary"
+                        : "border-transparent text-muted hover:bg-fg/5 hover:text-fg"
                     }`}
                   >
                     {t}
@@ -107,7 +107,7 @@ function BlogIndex() {
               filtered.map((post) => (
                 <article
                   key={post.slug}
-                  className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10 hover:bg-white/[0.04] md:p-8"
+                  className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/25 md:p-8"
                 >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ function BlogIndex() {
                         ))}
                       </div>
                     </div>
-                    <h2 className="text-2xl font-bold tracking-tight text-white">
+                    <h2 className="font-display text-2xl font-medium tracking-tight text-fg">
                       <Link
                         to="/blog/$slug"
                         params={{ slug: post.slug }}

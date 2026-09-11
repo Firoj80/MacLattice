@@ -12,11 +12,11 @@ export function LegalPage({
 }) {
   return (
     <SiteShell>
-      <section className="min-h-screen bg-black py-24">
-        <div className="mx-auto max-w-4xl px-4 text-gray-300 sm:px-6 lg:px-8">
-          <h1 className="mb-8 text-4xl font-bold text-white">{title}</h1>
-          <p className="mb-8 text-sm text-gray-500">Last Updated: {updated}</p>
-          <div className="space-y-8">{children}</div>
+      <section className="py-24">
+        <div className="mx-auto max-w-4xl px-4 text-muted sm:px-6 lg:px-8">
+          <h1 className="font-display mb-8 text-4xl font-medium tracking-tight text-fg">{title}</h1>
+          <p className="mb-8 text-sm text-muted">Last Updated: {updated}</p>
+          <div className="space-y-8 leading-relaxed">{children}</div>
         </div>
       </section>
     </SiteShell>
@@ -32,7 +32,7 @@ export function LegalSection({
 }) {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-semibold text-white">{title}</h2>
+      <h2 className="font-display mb-4 text-2xl font-medium text-fg">{title}</h2>
       {children}
     </section>
   );

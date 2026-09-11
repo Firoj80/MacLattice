@@ -1,12 +1,8 @@
 import type { ReactNode } from "react";
 
 function localizeHref(href: string) {
-  if (href === "https://dissectmac.com" || href === "https://www.dissectmac.com") {
-    return "/";
-  }
-  return href
-    .replace("https://dissectmac.com", "")
-    .replace("https://www.dissectmac.com", "");
+  if (!href || href === "#") return "/";
+  return href;
 }
 
 function renderInline(text: string): ReactNode[] {
@@ -24,7 +20,7 @@ function renderInline(text: string): ReactNode[] {
           key={key++}
           src={match[3]}
           alt={match[2]}
-          className="my-6 w-full rounded-2xl border border-white/10 shadow-2xl"
+          className="my-6 w-full rounded-2xl border border-border shadow-xl"
         />,
       );
     } else if (match[4]) {
@@ -49,7 +45,7 @@ function renderInline(text: string): ReactNode[] {
       tokens.push(
         <code
           key={key++}
-          className="rounded bg-white/5 px-1 font-mono text-[0.9em] text-primary"
+          className="rounded bg-primary/8 px-1 font-mono text-[0.9em] text-primary"
         >
           {match[10]}
         </code>,
@@ -171,7 +167,7 @@ export function MarkdownBody({ markdown }: { markdown: string }) {
       nodes.push(
         <pre
           key={i}
-          className="my-4 overflow-x-auto rounded-xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-fg"
+          className="my-4 overflow-x-auto rounded-xl border border-border bg-card p-4 font-mono text-sm text-fg"
         >
           <code>{code}</code>
         </pre>,
@@ -193,7 +189,7 @@ export function MarkdownBody({ markdown }: { markdown: string }) {
     }
     if (first.startsWith("## ")) {
       nodes.push(
-        <h2 key={`${i}-h`} className="mt-10 mb-4 text-2xl font-semibold text-white">
+        <h2 key={`${i}-h`} className="font-display mt-10 mb-4 text-2xl font-medium text-fg">
           {renderInline(first.slice(3))}
         </h2>,
       );

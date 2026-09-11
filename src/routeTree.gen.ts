@@ -11,13 +11,24 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as LicenseRouteImport } from './routes/license'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThanksRouteImport } from './routes/thanks'
+import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiDodoWebhookRouteImport } from './routes/api/dodo/webhook'
+import { Route as ApiLicenseActivateRouteImport } from './routes/api/license/activate'
+import { Route as ApiLicenseDeactivateRouteImport } from './routes/api/license/deactivate'
+import { Route as ApiLicenseOrderRouteImport } from './routes/api/license/order'
+import { Route as ApiLicenseRecoverRouteImport } from './routes/api/license/recover'
+import { Route as ApiLicenseValidateRouteImport } from './routes/api/license/validate'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -27,6 +38,16 @@ const IndexRoute = IndexRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LicenseRoute = LicenseRouteImport.update({
+  id: '/license',
+  path: '/license',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -44,6 +65,11 @@ const RefundPolicyRoute = RefundPolicyRouteImport.update({
   path: '/refund-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -52,6 +78,11 @@ const TermsRoute = TermsRouteImport.update({
 const ThanksRoute = ThanksRouteImport.update({
   id: '/thanks',
   path: '/thanks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
+  id: '/api/checkout',
+  path: '/api/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -64,87 +95,199 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDodoWebhookRoute = ApiDodoWebhookRouteImport.update({
+  id: '/api/dodo/webhook',
+  path: '/api/dodo/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLicenseActivateRoute = ApiLicenseActivateRouteImport.update({
+  id: '/api/license/activate',
+  path: '/api/license/activate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLicenseDeactivateRoute = ApiLicenseDeactivateRouteImport.update({
+  id: '/api/license/deactivate',
+  path: '/api/license/deactivate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLicenseOrderRoute = ApiLicenseOrderRouteImport.update({
+  id: '/api/license/order',
+  path: '/api/license/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLicenseRecoverRoute = ApiLicenseRecoverRouteImport.update({
+  id: '/api/license/recover',
+  path: '/api/license/recover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLicenseValidateRoute = ApiLicenseValidateRouteImport.update({
+  id: '/api/license/validate',
+  path: '/api/license/validate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/license': typeof LicenseRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/api/checkout': typeof ApiCheckoutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/dodo/webhook': typeof ApiDodoWebhookRoute
+  '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
+  '/api/license/order': typeof ApiLicenseOrderRoute
+  '/api/license/recover': typeof ApiLicenseRecoverRoute
+  '/api/license/validate': typeof ApiLicenseValidateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/license': typeof LicenseRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/api/checkout': typeof ApiCheckoutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/dodo/webhook': typeof ApiDodoWebhookRoute
+  '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
+  '/api/license/order': typeof ApiLicenseOrderRoute
+  '/api/license/recover': typeof ApiLicenseRecoverRoute
+  '/api/license/validate': typeof ApiLicenseValidateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/license': typeof LicenseRoute
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/api/checkout': typeof ApiCheckoutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/dodo/webhook': typeof ApiDodoWebhookRoute
+  '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
+  '/api/license/order': typeof ApiLicenseOrderRoute
+  '/api/license/recover': typeof ApiLicenseRecoverRoute
+  '/api/license/validate': typeof ApiLicenseValidateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/contact'
+    | '/license'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
+    | '/signup'
     | '/terms'
     | '/thanks'
+    | '/api/checkout'
     | '/blog/$slug'
     | '/blog/'
+    | '/api/auth/$'
+    | '/api/dodo/webhook'
+    | '/api/license/activate'
+    | '/api/license/deactivate'
+    | '/api/license/order'
+    | '/api/license/recover'
+    | '/api/license/validate'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
+    | '/license'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
+    | '/signup'
     | '/terms'
     | '/thanks'
+    | '/api/checkout'
     | '/blog/$slug'
     | '/blog'
+    | '/api/auth/$'
+    | '/api/dodo/webhook'
+    | '/api/license/activate'
+    | '/api/license/deactivate'
+    | '/api/license/order'
+    | '/api/license/recover'
+    | '/api/license/validate'
   id:
     | '__root__'
     | '/'
     | '/contact'
+    | '/license'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
+    | '/signup'
     | '/terms'
     | '/thanks'
+    | '/api/checkout'
     | '/blog/$slug'
     | '/blog/'
+    | '/api/auth/$'
+    | '/api/dodo/webhook'
+    | '/api/license/activate'
+    | '/api/license/deactivate'
+    | '/api/license/order'
+    | '/api/license/recover'
+    | '/api/license/validate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  LicenseRoute: typeof LicenseRoute
+  LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
+  SignupRoute: typeof SignupRoute
   TermsRoute: typeof TermsRoute
   ThanksRoute: typeof ThanksRoute
+  ApiCheckoutRoute: typeof ApiCheckoutRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiDodoWebhookRoute: typeof ApiDodoWebhookRoute
+  ApiLicenseActivateRoute: typeof ApiLicenseActivateRoute
+  ApiLicenseDeactivateRoute: typeof ApiLicenseDeactivateRoute
+  ApiLicenseOrderRoute: typeof ApiLicenseOrderRoute
+  ApiLicenseRecoverRoute: typeof ApiLicenseRecoverRoute
+  ApiLicenseValidateRoute: typeof ApiLicenseValidateRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -161,6 +304,20 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/license': {
+      id: '/license'
+      path: '/license'
+      fullPath: '/license'
+      preLoaderRoute: typeof LicenseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -184,6 +341,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RefundPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -196,6 +360,13 @@ declare module '@tanstack/react-router' {
       path: '/thanks'
       fullPath: '/thanks'
       preLoaderRoute: typeof ThanksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/checkout': {
+      id: '/api/checkout'
+      path: '/api/checkout'
+      fullPath: '/api/checkout'
+      preLoaderRoute: typeof ApiCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -212,19 +383,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/dodo/webhook': {
+      id: '/api/dodo/webhook'
+      path: '/api/dodo/webhook'
+      fullPath: '/api/dodo/webhook'
+      preLoaderRoute: typeof ApiDodoWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/license/activate': {
+      id: '/api/license/activate'
+      path: '/api/license/activate'
+      fullPath: '/api/license/activate'
+      preLoaderRoute: typeof ApiLicenseActivateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/license/deactivate': {
+      id: '/api/license/deactivate'
+      path: '/api/license/deactivate'
+      fullPath: '/api/license/deactivate'
+      preLoaderRoute: typeof ApiLicenseDeactivateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/license/order': {
+      id: '/api/license/order'
+      path: '/api/license/order'
+      fullPath: '/api/license/order'
+      preLoaderRoute: typeof ApiLicenseOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/license/recover': {
+      id: '/api/license/recover'
+      path: '/api/license/recover'
+      fullPath: '/api/license/recover'
+      preLoaderRoute: typeof ApiLicenseRecoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/license/validate': {
+      id: '/api/license/validate'
+      path: '/api/license/validate'
+      fullPath: '/api/license/validate'
+      preLoaderRoute: typeof ApiLicenseValidateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  LicenseRoute: LicenseRoute,
+  LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
+  SignupRoute: SignupRoute,
   TermsRoute: TermsRoute,
   ThanksRoute: ThanksRoute,
+  ApiCheckoutRoute: ApiCheckoutRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiDodoWebhookRoute: ApiDodoWebhookRoute,
+  ApiLicenseActivateRoute: ApiLicenseActivateRoute,
+  ApiLicenseDeactivateRoute: ApiLicenseDeactivateRoute,
+  ApiLicenseOrderRoute: ApiLicenseOrderRoute,
+  ApiLicenseRecoverRoute: ApiLicenseRecoverRoute,
+  ApiLicenseValidateRoute: ApiLicenseValidateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

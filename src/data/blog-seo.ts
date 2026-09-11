@@ -1,7 +1,7 @@
 export const BLOG_SEO: Record<string, { description: string }> = {
   "daisydisk-alternatives": {
     description:
-      "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, MacLattice & more on M1/M2/M3. See which disk analyzer wins →",
+      "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, Scan My Disk & more on M1/M2/M3. See which disk analyzer wins →",
   },
   "grandperspective-vs-dissectmac": {
     description:
@@ -45,7 +45,7 @@ export const BLOG_SEO: Record<string, { description: string }> = {
   },
   "cleanmymac-alternative": {
     description:
-      "Not everyone wants to pay a recurring fee to clean their hard drive. Here's why we built MacLattice as a one-time purchase alternative to CleanMyMac X.",
+      "Not everyone wants to pay a recurring fee to clean their hard drive. Here's why we built Scan My Disk as a one-time purchase alternative to CleanMyMac X.",
   },
   "delete-duplicates-mac": {
     description:

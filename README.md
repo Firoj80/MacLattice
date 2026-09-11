@@ -1,8 +1,8 @@
-# MacLattice
+# Scan My Disk
 
 Free Mac storage analyzer. Visualize disk usage with an interactive treemap.
 
-Site: [maclattice.com](https://maclattice.com)
+Site: [scanmydisk.com](https://scanmydisk.com)
 
 ## Pages
 

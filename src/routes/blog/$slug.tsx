@@ -19,8 +19,8 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return pageHead({
-        title: "MacLattice Blog",
-        description: "Mac storage tips and guides from MacLattice.",
+        title: "Scan My Disk Blog",
+        description: "Mac storage tips and guides from Scan My Disk.",
         path: "/blog",
       });
     }
@@ -66,18 +66,18 @@ function BlogPostPage() {
       <article className="mx-auto max-w-3xl px-6 py-12">
         <Link
           to="/blog"
-          className="mb-8 inline-flex items-center text-sm text-muted transition-colors hover:text-white"
+          className="mb-8 inline-flex items-center text-sm text-muted transition-colors hover:text-fg"
         >
           <ArrowLeft className="mr-2 size-4" />
           Back to blog
         </Link>
         <header className="mb-8">
-          <h1 className="mb-6 text-4xl leading-tight font-bold text-white md:text-5xl">
+          <h1 className="font-display mb-6 text-4xl leading-tight font-medium tracking-tight text-fg md:text-5xl">
             {post.title}
           </h1>
-          <div className="mb-8 flex items-center gap-4 border-b border-white/5 pb-8 text-muted">
-            <span className="font-medium text-white">{post.author}</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
+          <div className="mb-8 flex items-center gap-4 border-b border-border pb-8 text-muted">
+            <span className="font-medium text-fg">{post.author}</span>
+            <span className="h-1 w-1 rounded-full bg-fg/20" />
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </div>
         </header>
@@ -87,18 +87,18 @@ function BlogPostPage() {
 
         <BlogCta />
 
-        <section className="mt-12 border-t border-white/10 pt-8">
-          <h2 className="mb-4 text-xl font-bold text-white">Continue Reading</h2>
+        <section className="mt-12 border-t border-border pt-8">
+          <h2 className="font-display mb-4 text-xl font-medium text-fg">Continue Reading</h2>
           <div className="grid gap-3">
             {related.map((r) => (
               <Link
                 key={r.slug}
                 to="/blog/$slug"
                 params={{ slug: r.slug }}
-                className="group flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
+                className="group flex items-start gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30"
               >
                 <div className="flex-1">
-                  <h3 className="font-semibold text-white transition-colors group-hover:text-primary">
+                  <h3 className="font-semibold text-fg transition-colors group-hover:text-primary">
                     {r.title}
                   </h3>
                   <p className="mt-1 line-clamp-1 text-sm text-muted">{r.excerpt}</p>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maclattice.com/sitemap.xml
+Sitemap: https://scanmydisk.com/sitemap.xml
