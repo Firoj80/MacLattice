@@ -1,9 +1,6 @@
 import { SITE } from "@/data/site";
 import { FAQS } from "@/data/faq";
 
-export const KEYWORDS =
-  "mac storage analyzer,mac disk space visualizer,clean xcode derived data,shrink docker.raw mac,delete node_modules recursively,android studio cache cleaner,mac system data cleaner,remove app leftovers mac,treemap mac,disk usage map,DaisyDisk alternative,macOS sequential read speed,visualize large files,Scan My Disk";
-
 export const HOME_TITLE = "Scan My Disk — See what's taking up space | $7 lifetime";
 
 export const HOME_DESCRIPTION =
@@ -51,7 +48,6 @@ export function pageHead({
       { title },
       { name: "description", content: description },
       { name: "author", content: SITE.name },
-      { name: "keywords", content: KEYWORDS },
       { name: "robots", content: "index, follow" },
       { name: "googlebot", content: "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" },
       { property: "og:title", content: socialTitle },

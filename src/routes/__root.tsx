@@ -1,7 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
-import { HOME_DESCRIPTION, HOME_TITLE, KEYWORDS } from "@/lib/seo";
+import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -12,7 +12,6 @@ export const Route = createRootRoute({
       { title: HOME_TITLE },
       { name: "theme-color", content: "#f3f0ea" },
       { name: "description", content: HOME_DESCRIPTION },
-      { name: "keywords", content: KEYWORDS },
       { name: "author", content: "Scan My Disk" },
       { name: "robots", content: "index, follow" },
     ],
