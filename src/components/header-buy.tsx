@@ -5,13 +5,9 @@ export function HeaderBuy({ className = "" }: { className?: string }) {
   return (
     <a
       href={BUY_HREF}
-      className={`group inline-flex h-10 items-center gap-2 rounded-full bg-primary pl-4 pr-1.5 text-[13px] font-semibold text-primary-fg shadow-[0_8px_20px_rgb(33_86_74/0.28)] ring-1 ring-primary/20 transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_12px_28px_rgb(33_86_74/0.35)] ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-black transition-all hover:scale-[1.02] hover:bg-white/90 ${className}`}
     >
-      <span className="hidden sm:inline">Buy Lifetime Licence in</span>
-      <span className="sm:hidden">Lifetime in</span>
-      <span className="inline-flex h-7 items-center rounded-full bg-primary-fg px-2.5 font-display text-sm font-medium tracking-tight text-primary">
-        {SITE.lifetimePrice}
-      </span>
+      Get Pro · {SITE.lifetimePrice}
     </a>
   );
 }

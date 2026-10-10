@@ -10,7 +10,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: HOME_TITLE },
-      { name: "theme-color", content: "#f3f0ea" },
+      { name: "theme-color", content: "#000000" },
       { name: "description", content: HOME_DESCRIPTION },
       { name: "author", content: "Scan My Disk" },
       { name: "robots", content: "index, follow" },

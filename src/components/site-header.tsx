@@ -9,7 +9,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-border bg-bg/85 backdrop-blur-md">
+    <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex h-16 items-center justify-between gap-4">
           <BrandMark />

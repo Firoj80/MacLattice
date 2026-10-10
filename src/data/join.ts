@@ -22,7 +22,7 @@ export const JOIN_VIEWS = [
   {
     name: "Mind Map",
     body: "Branches from the root, weighted by size, for people who think in trees.",
-    image: "/view-sunburst.webp",
+    image: "/view-mind.webp",
   },
   {
     name: "Top Sizes",

@@ -10,7 +10,7 @@ export function JoinShell({ children }: { children: ReactNode; compact?: boolean
   return (
     <div className="min-h-screen bg-bg text-fg">
       <JoinHeader />
-      <main>{children}</main>
+      <main className="min-h-screen pt-16">{children}</main>
       <JoinFooter />
     </div>
   );
@@ -34,7 +34,7 @@ function NavLink({ item, className, onClick }: { item: NavItem; className: strin
 function JoinHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 backdrop-blur-md">
+    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <BrandMark />
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-x-3 overflow-hidden text-[13px] font-medium whitespace-nowrap text-muted md:flex lg:gap-x-4">
