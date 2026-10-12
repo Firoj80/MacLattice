@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { rateLimit } from "@/lib/license-rate-limit";
 import { createDodoCheckout } from "@/lib/dodo";
+import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export const Route = createFileRoute("/buy")({
   server: {
     handlers: {
@@ -19,7 +20,8 @@ export const Route = createFileRoute("/buy")({
             status: 302,
             headers: { Location: s.url, "Set-Cookie": s.cookie, "Cache-Control": "no-store" },
           });
-        } catch {
+        } catch (error) {
+          logCheckoutFailure(error);
           return new Response("Checkout is temporarily unavailable. Please try again later.", {
             status: 503,
           });
