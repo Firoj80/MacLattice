@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {fileURLToPath} from 'node:url';
 import { mkdirSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { chromium } from "playwright";
@@ -20,6 +21,7 @@ import {
   parseSmokeArgs,
 } from "./browser-smoke-verdict.mjs";
 
+const QA_ROOT = process.platform === "win32" ? dirname(dirname(fileURLToPath(import.meta.url))) : "/workspace";
 const args = parseSmokeArgs(process.argv.slice(2), process.env);
 if (args.error) {
   console.error(JSON.stringify({ ok: false, error: args.error }, null, 2));
@@ -27,10 +29,10 @@ if (args.error) {
 }
 
 const url = checkedUrl(args.url);
-const outPng = checkedOutputPath(args.outPng, ["/workspace"]);
+const outPng = checkedOutputPath(args.outPng, [QA_ROOT]);
 const derived = derivedPaths(outPng);
-const mobilePng = checkedOutputPath(derived.mobilePng, ["/workspace"]);
-const outJson = checkedOutputPath(derived.verdictJson, ["/workspace"], "verdict JSON");
+const mobilePng = checkedOutputPath(derived.mobilePng, [QA_ROOT]);
+const outJson = checkedOutputPath(derived.verdictJson, [QA_ROOT], "verdict JSON");
 
 const MAX_BASELINE_BYTES = 1024 * 1024;
 const baselineRequested = Boolean(args.baseline);
@@ -38,7 +40,7 @@ let baselinePath = null;
 let baselineResolveError = null;
 if (baselineRequested) {
   try {
-    baselinePath = checkedOutputPath(realpathSync(args.baseline), ["/workspace"], "baseline");
+    baselinePath = checkedOutputPath(realpathSync(args.baseline), [QA_ROOT], "baseline");
   } catch (err) {
     baselineResolveError = err?.code ?? "unresolvable path";
   }
