@@ -46,9 +46,9 @@ export function BuyLicenseCard() {
         </ul>
 
         <div className="mt-6 rounded-2xl border border-primary/25 bg-primary/8 px-4 py-3.5">
-          <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">After we ship</p>
+          <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">Windows app</p>
           <p className="mt-1 text-[15px] leading-snug font-medium text-fg">
-            We email the Mac app to you. Keep your licence key from checkout — that’s how you unlock it.
+            Install Scan My Disk for Windows and paste the licence key from checkout to unlock it.
           </p>
         </div>
 

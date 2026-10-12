@@ -1,17 +1,17 @@
 import { SITE } from "@/data/site";
 import { FAQS } from "@/data/faq";
 
-export const HOME_TITLE = "Scan My Disk — See what's taking up space | $7 lifetime";
+export const HOME_TITLE = "Scan My Disk — See what's taking up space | $5 lifetime";
 
 export const HOME_DESCRIPTION =
-  "Scan My Disk is a Mac storage analyzer that shows exactly what's taking up space. Eight views, duplicate detection, saved scan comparison, and cleanup presets. $7 lifetime.";
+  "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space. Eight views, duplicate detection, saved scan comparison, and cleanup presets. $5 lifetime.";
 
-export const TWITTER_TITLE = "Scan My Disk — Mac storage analyzer";
+export const TWITTER_TITLE = "Scan My Disk — Windows disk analyzer";
 
 export const TWITTER_DESCRIPTION =
-  "See exactly what's taking up space on your Mac. $7 lifetime. No subscription.";
+  "See exactly what's taking up space on your PC. $5 lifetime. No subscription.";
 
-export const OG_IMAGE_ALT = "Scan My Disk — Mac storage analyzer";
+export const OG_IMAGE_ALT = "Scan My Disk logo — Windows disk analyzer, $5 lifetime";
 
 export function absUrl(path = "/") {
   if (path.startsWith("http")) return path;
@@ -21,7 +21,7 @@ export function absUrl(path = "/") {
 }
 
 export function ogImage() {
-  return absUrl("/app-screenshot.webp");
+  return absUrl("/og.jpg");
 }
 
 export function pageHead({
@@ -57,7 +57,8 @@ export function pageHead({
       { property: "og:locale", content: "en_US" },
       { property: "og:image", content: image },
       { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "800" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:alt", content: OG_IMAGE_ALT },
       { property: "og:type", content: type },
       { name: "twitter:card", content: "summary_large_image" },
@@ -78,23 +79,22 @@ export function softwareJsonLd() {
         "@type": "SoftwareApplication",
         name: SITE.name,
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "macOS",
+        operatingSystem: "Windows",
         offers: {
           "@type": "Offer",
-          price: "7",
+          price: "5",
           priceCurrency: "USD",
-          description: "One-time lifetime licence for $7",
+          description: "One-time lifetime licence for $5",
         },
         description:
-          "Scan My Disk is a Mac storage analyzer that shows exactly what's taking up space on your Mac with interactive visualisations.",
+          "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space, with interactive visualisations.",
         screenshot: ogImage(),
         softwareVersion: "1.0",
         featureList: [
           "Interactive treemap visualization",
-          "Fast full-disk scanning",
+          "Fast disk scanning",
           "Privacy-focused (100% local)",
-          "Apple Silicon optimized",
-          "macOS Sonoma and Sequoia support",
+          "Windows app",
         ],
         url: absUrl("/"),
       },

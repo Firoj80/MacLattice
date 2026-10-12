@@ -56,17 +56,13 @@ function ThanksPage() {
           Your lifetime key is ready.
         </h1>
         <p className="mt-4 text-[16px] leading-relaxed text-muted">
+          Your Windows licence is ready. Install Scan My Disk and paste this key on first launch.
           {email ? (
             <>
-              Dodo has <span className="text-fg">{email}</span>. When the app
-              ships we send the build there. Keep this key — paste it on first launch.
+              {" "}
+              A copy of the receipt is on <span className="text-fg">{email}</span>.
             </>
-          ) : (
-            <>
-              Keep this key. When the Mac app ships we email the download to the
-              address you used at Dodo checkout.
-            </>
-          )}
+          ) : null}
         </p>
 
         <div className="mt-8 rounded-[28px] border border-border bg-card p-6">
@@ -86,7 +82,7 @@ function ThanksPage() {
         </div>
 
         <ul className="mt-8 space-y-2 text-sm leading-relaxed text-muted">
-          <li>One Mac at a time. Deactivate in Settings to move it.</li>
+          <li>One Windows PC at a time. Deactivate in Settings to move it.</li>
           <li>Offline grace is 14 days after the last successful check.</li>
           <li>
             Lost the key?{" "}

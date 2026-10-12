@@ -99,9 +99,9 @@ function LicensePage() {
           <ol className="mt-4 list-decimal space-y-3 pl-5">
             <li>You pay {SITE.lifetimePrice} on Dodo. Dodo sends us your name, email, and payment id.</li>
             <li>We issue a key like SMD-XXXX-XXXX-XXXX-XXXX. It also appears on the thank-you page.</li>
-            <li>The Mac app stores a random install id in the Keychain. First launch: paste the key, we bind that id.</li>
-            <li>One Mac at a time. Activate on a second Mac is refused until you deactivate the first.</li>
-            <li>The app re-checks when online. If the Mac is offline, it keeps working for 14 days.</li>
+            <li>The Windows app stores a random install id. First launch: paste the key, we bind that PC.</li>
+            <li>One PC at a time. Activate on a second PC is refused until you deactivate the first.</li>
+            <li>The app re-checks when online. If the PC is offline, it keeps working for 14 days.</li>
           </ol>
         </div>
       </section>

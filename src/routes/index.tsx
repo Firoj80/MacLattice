@@ -49,10 +49,10 @@ function Hero() {
     <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-10 lg:py-24 xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] xl:gap-14">
       <div>
         <p className="mb-4 text-sm font-medium text-white/50">
-          Mac disk space analyzer · {SITE.lifetimePrice} once
+          Windows disk space analyzer · {SITE.lifetimePrice} once
         </p>
         <h1 className="mb-6 text-[2.6rem] leading-[1.04] font-bold tracking-[-0.03em] text-balance text-white sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]">
-          The disk space analyzer that clears your Mac
+          The disk space analyzer that clears your PC
         </h1>
         <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/60">
           See every folder on your drive drawn to scale, find what is taking up space, and clear it
@@ -63,7 +63,7 @@ function Hero() {
         </a>
         <p className="mt-3 text-sm text-white/40">One-time payment · Lifetime licence, no subscription</p>
         <ul className="mt-8 space-y-2 text-sm text-white/70">
-          {["Notarized-style local scan", "Licence key sent by email", "Files never leave your Mac"].map(
+          {["Windows app, ready now", "Licence key on this site after checkout", "Files never leave your PC"].map(
             (item) => (
               <li key={item} className="flex items-center gap-2">
                 <Check className="size-4 text-white/70" />
@@ -91,9 +91,9 @@ function Hero() {
 function Proof() {
   const items = [
     ["Lifetime", `${SITE.lifetimePrice} once`],
-    ["Notarized", "Checked and signed by Apple"],
+    ["Notarized", "Checked before you install"],
     ["100% local", "No uploads, no account"],
-    ["Native", "Apple Silicon and Intel"],
+    ["Windows", "Windows 10 and 11"],
   ];
   return (
     <div className="border-y border-white/5 bg-white/[0.015] px-6">
@@ -115,21 +115,21 @@ function Proof() {
 function Hogs() {
   const items = [
     ["System Data", "caches, logs, snapshots, app containers", "The grey bar in Settings that won't explain itself."],
-    ["Xcode build files", "~/Library/Developer/Xcode/DerivedData", "Every build and simulator leaves files behind. Safe to clear."],
-    ["Docker disk image", "~/Library/Containers/com.docker.docker", "One file that can quietly grow to tens of gigabytes."],
+    ["Build caches", "Visual Studio, Gradle, and old installers", "Every build leaves files behind. Safe to clear once you review them."],
+    ["Docker disk image", "Docker Desktop VHDX", "One file that can quietly grow to tens of gigabytes."],
     ["node_modules", "one in every project you've cloned", "Hundreds of copies across old projects. Find them in one scan."],
     ["Duplicates", "photos, videos, documents", "Same file, multiple copies. Keep one and delete the rest."],
-    ["Leftovers", "~/Library/Application Support", "Dragging an app to the Bin leaves its support files."],
+    ["Leftovers", "AppData and ProgramData", "Uninstalling an app often leaves its support files."],
   ];
   return (
     <section id="features" className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 text-sm font-medium text-white/40">Where the space goes</p>
         <h2 className="mb-4 max-w-3xl text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl md:text-5xl">
-          Six things that fill a Mac. None of them is your photos.
+          Six things that fill a PC. None of them is your photos.
         </h2>
         <p className="mb-10 max-w-2xl text-lg text-white/55">
-          macOS hides the biggest space hogs in folders Finder never shows you. {SITE.name} finds them in one scan.
+          Windows hides the biggest space hogs in folders you never open. {SITE.name} finds them in one scan.
         </p>
         <div className="grid gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(([title, path, body]) => (
@@ -181,7 +181,7 @@ const FEATURE_TABS = [
   {
     id: "monitor",
     label: "Live monitor",
-    title: "See what is using the Mac right now",
+    title: "See what is using the PC right now",
     body: "Watch CPU load, memory pressure, and network activity while a heavy build is running, so you can tell what is actually slowing the machine down.",
     image: "/monitoring.webp",
     alt: "Scan My Disk live monitor",
@@ -259,7 +259,7 @@ function ScanSeeClear() {
 
 function How() {
   const steps = [
-    ["1", "Scan your Mac", "Read every folder, including the hidden Library folders where caches, leftovers and developer files pile up."],
+    ["1", "Scan your PC", "Read every folder, including the hidden ones where caches, leftovers and developer files pile up."],
     ["2", "See what's taking up space", "Every folder is a block sized by the space it uses. Click in, search by name, or switch to sunburst, flame, bubbles, or a mind map."],
     ["3", "Clear it", "Move junk to the Trash, uninstall leftovers, drop duplicate copies, or run a cleanup preset. Nothing is gone until you say so."],
   ];
@@ -268,7 +268,7 @@ function How() {
       <div className="mx-auto max-w-6xl">
         <p className="mb-3 text-sm text-white/40">How it works</p>
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-          How {SITE.name} cleans a Mac
+          How {SITE.name} cleans a PC
         </h2>
         <p className="mb-10 max-w-2xl text-lg text-white/55">
           There's no button that deletes things you haven't seen. You look first, then you decide.
@@ -295,7 +295,7 @@ function Pricing() {
     "Saved scan comparison",
     "Cleanup presets",
     "Eight visualisations",
-    "Fast search across your Mac",
+    "Fast search across your PC",
     "Live CPU, memory and battery stats",
   ];
   return (
@@ -421,7 +421,7 @@ function Close() {
           Get your gigabytes back for {SITE.lifetimePrice}.
         </h2>
         <p className="mx-auto mb-8 max-w-xl text-white/60">
-          One payment, yours for good. No subscription, no account, and your files never leave your Mac.
+          One payment, yours for good. No subscription, no account, and your files never leave your PC.
         </p>
         <a href={BUY_HREF} className={btn}>
           Get {SITE.name} Pro · {SITE.lifetimePrice}

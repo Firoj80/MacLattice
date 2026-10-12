@@ -33,8 +33,8 @@ function TermsPage() {
       <LegalSection title="3. Pro License">
         <ul className="mt-2 list-disc space-y-2 pl-5">
           <li>
-            <strong>Fees:</strong> The Pro version is available for a one-time payment of
-            $12.99.
+            <strong>Fees:</strong> The Pro version is available for a one-time payment of{" "}
+            {SITE.lifetimePrice}.
           </li>
           <li>
             <strong>Lifetime Access:</strong> Your purchase includes lifetime access to all

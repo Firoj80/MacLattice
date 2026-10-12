@@ -1,6 +1,7 @@
 {
-  "title": "Scan My Disk — See what's taking up space | $7 lifetime",
+  "title": "Scan My Disk — See what's taking up space | $5 lifetime",
   "type": "website",
   "card": "custom",
-  "description": "Scan My Disk shows exactly what's taking up space on your Mac. Eight views, duplicate detection, saved scan comparison, cleanup presets. $7 lifetime."
+  "image": "/og.jpg",
+  "description": "Scan My Disk is a Windows disk analyzer. See what's taking up space. $5 lifetime, no subscription."
 }

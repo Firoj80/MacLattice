@@ -146,7 +146,7 @@ export const JOIN_FAQ = [
   },
   {
     q: "Do I need an account?",
-    a: "No. Buy a lifetime licence, get a key on the next screen, and we email the Mac app when it ships.",
+    a: "No. Buy a lifetime licence and the key shows on the next screen. Install the Windows app and paste the key on first launch.",
   },
   {
     q: "How many Macs can I use?",
