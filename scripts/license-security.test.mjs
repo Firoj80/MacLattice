@@ -45,11 +45,13 @@ test("certificate binds product, device, key hash, mode and expiry; forged paylo
       "lki-fixture",
       "pdt-fixture",
       "test_mode",
+      "Fixture Buyer",
     );
     const data = JSON.parse(Buffer.from(c.payload, "base64url").toString());
     assert.equal(data.device_id, "device-fixture");
     assert.equal(data.product_id, "pdt-fixture");
     assert.equal(data.mode, "test_mode");
+    assert.equal(data.buyer_name, "Fixture Buyer");
     assert.equal(data.expires_at - data.issued_at, 14 * 86400);
     assert.equal(data.license_hash.length, 64);
     assert.equal(

@@ -1,6 +1,7 @@
 import { getSql } from "@/lib/db";
 import { certificate, signingKey, GRACE_DAYS } from "@/lib/license-certificate";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
+import { verifyPayment } from "@/lib/dodo";
 export { GRACE_DAYS };
 async function purchasedLicense(key: string) {
   const { product, mode } = providerConfig(),
@@ -19,7 +20,10 @@ async function purchasedLicense(key: string) {
     (p.expires_at && Date.parse(p.expires_at) <= Date.now())
   )
     return null;
-  return { product, mode };
+  if (!p.payment_id) return null;
+  const payment = await verifyPayment(p.payment_id);
+  const buyerName = payment.customer?.name?.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 100) || null;
+  return { product, mode, buyerName };
 }
 export async function activateDevice(input: {
   licenseKey: string;
@@ -66,7 +70,7 @@ export async function activateDevice(input: {
     ok: true as const,
     instanceId: device,
     graceDays: GRACE_DAYS,
-    certificate: certificate(key, device, instance, license.product, license.mode),
+    certificate: certificate(key, device, instance, license.product, license.mode, license.buyerName),
   };
 }
 export async function validateDevice(input: { licenseKey: string; instanceId?: string | null }) {
@@ -89,7 +93,7 @@ export async function validateDevice(input: { licenseKey: string; instanceId?: s
   return {
     valid: true as const,
     graceDays: GRACE_DAYS,
-    certificate: certificate(key, device, instance, license.product, license.mode),
+    certificate: certificate(key, device, instance, license.product, license.mode, license.buyerName),
   };
 }
 export async function deactivateDevice(input: { licenseKey: string; instanceId: string }) {

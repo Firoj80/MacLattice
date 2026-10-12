@@ -5,7 +5,7 @@ if(process.env.DATABASE_URL||process.env.DODO_PAYMENTS_API_KEY)throw new Error('
 process.env.DODO_PAYMENTS_API_KEY='fixture-not-a-real-key';process.env.DODO_PRODUCT_ID='pdt_fixture';process.env.DODO_PAYMENTS_ENV='test_mode';
 process.env.LICENSE_SIGNING_PRIVATE_KEY=generateKeyPairSync('rsa',{modulusLength:2048}).privateKey.export({format:'pem',type:'pkcs8'}).toString();
 const realFetch=globalThis.fetch;let activations=0;
-const payments=new Map([['pay_fixture',{payment_id:'pay_fixture',status:'succeeded',product_cart:[{product_id:'pdt_fixture'}],metadata:{}}],['pay_other',{payment_id:'pay_other',status:'succeeded',product_cart:[{product_id:'pdt_other'}]}]]);
+const payments=new Map([['pay_fixture',{payment_id:'pay_fixture',status:'succeeded',product_cart:[{product_id:'pdt_fixture'}],customer:{name:' Fixture Buyer '},metadata:{}}],['pay_other',{payment_id:'pay_other',status:'succeeded',product_cart:[{product_id:'pdt_other'}]}]]);
 const licenses=new Map([['lic_fixture',{id:'lic_fixture',key:'fixture-key',payment_id:'pay_fixture',product_id:'pdt_fixture',source:'auto',status:'active',activations_limit:1}],['lic_other',{id:'lic_other',key:'foreign-key',payment_id:'pay_other',product_id:'pdt_other',source:'auto',status:'active'}]]);
 globalThis.fetch=async(input,init)=>{
  const url=String(input);if(!url.startsWith('https://test.dodopayments.com/'))return realFetch(input,init);
@@ -26,6 +26,8 @@ try{
  await dodo.handleDodoEvent({type:'license_key.created',data:{id:'lic_fixture'}},'evt-key');
  assert.equal((await license.activateDevice({licenseKey:'unknown-key',instanceId:'a'.repeat(64)})).ok,false);
  assert.equal((await license.activateDevice({licenseKey:'fixture-key',instanceId:'a'.repeat(64)})).ok,true);
+ const receipt=await license.validateDevice({licenseKey:'fixture-key',instanceId:'a'.repeat(64)});
+ assert.equal(JSON.parse(Buffer.from(receipt.certificate.payload,'base64url').toString()).buyer_name,'Fixture Buyer');
  assert.equal((await license.activateDevice({licenseKey:'fixture-key',instanceId:'a'.repeat(64)})).ok,true);assert.equal(activations,1);
  assert.equal((await license.validateDevice({licenseKey:'fixture-key',instanceId:'b'.repeat(64)})).valid,false);
  await license.deactivateDevice({licenseKey:'fixture-key',instanceId:'a'.repeat(64)});

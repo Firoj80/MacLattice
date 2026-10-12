@@ -14,6 +14,7 @@ export function certificate(
   instance: string,
   product: string,
   mode: string,
+  buyerName: string | null = null,
 ) {
   const now = Math.floor(Date.now() / 1000);
   const payload = Buffer.from(
@@ -23,6 +24,7 @@ export function certificate(
       audience: "ScanMyDisk.Windows",
       product_id: product,
       mode,
+      buyer_name: buyerName,
       license_hash: createHash("sha256").update(key).digest("hex"),
       device_id: device,
       instance_id: instance,

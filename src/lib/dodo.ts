@@ -22,6 +22,7 @@ export async function createDodoCheckout() {
   };
 }
 type Payment = {
+  customer?: { name?: string | null };
   payment_id: string;
   status: string;
   product_cart?: { product_id: string }[];
@@ -40,6 +41,7 @@ export async function verifyPayment(id: string) {
   await sql`insert into verified_payments(payment_id,product_id,status,provider_mode) values (${id},${product},'paid',${mode}) on conflict(payment_id) do nothing`;
   if (p.metadata?.order_id)
     await sql`update checkout_orders set payment_id=${id} where id=${p.metadata.order_id} and (payment_id is null or payment_id=${id})`;
+  return p;
 }
 export async function importProviderLicense(id: string) {
   const { product, mode } = providerConfig();
