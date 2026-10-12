@@ -1,24 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { findByEmail } from "@/lib/license";
-
 export const Route = createFileRoute("/api/license/recover")({
   server: {
     handlers: {
-      POST: async ({ request }) => {
-        const body = (await request.json().catch(() => ({}))) as { email?: string };
-        const email = body.email?.trim() ?? "";
-        if (!email.includes("@")) {
-          return Response.json({ ok: false, error: "invalid_email" }, { status: 400 });
-        }
-        const rows = await findByEmail(email);
-        return Response.json({
-          ok: true,
-          licenses: rows.map((r) => ({
-            license_key: r.license_key,
-            chip: r.chip,
-          })),
-        });
-      },
+      POST: () =>
+        Response.json(
+          {
+            error:
+              "For your privacy, licenses cannot be looked up by email alone. Check your Dodo purchase email or contact support@scanmydisk.com.",
+          },
+          { status: 403, headers: { "Cache-Control": "no-store" } },
+        ),
     },
   },
 });

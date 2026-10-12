@@ -1,110 +1,78 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
-import { SITE } from "@/data/site";
-import { issueLicense, refundLicense } from "@/lib/license";
-
-const API_KEY = process.env.DODO_PAYMENTS_API_KEY?.trim();
-const PRODUCT_ID = process.env.DODO_PRODUCT_ID?.trim();
-const WEBHOOK_KEY = process.env.DODO_PAYMENTS_WEBHOOK_KEY?.trim();
-const MODE = process.env.DODO_PAYMENTS_ENV?.trim() === "live_mode" ? "live" : "test";
-
-export function dodoConfigured() {
-  return Boolean(API_KEY && PRODUCT_ID);
-}
-
-export function dodoProductLink() {
-  const id = PRODUCT_ID || process.env.VITE_DODO_PRODUCT_ID?.trim();
-  if (!id) return null;
-  return `https://checkout.dodopayments.com/buy/${id}`;
-}
-
-function dodoApiHost() {
-  return MODE === "live" ? "https://live.dodopayments.com" : "https://test.dodopayments.com";
-}
-
-export async function createDodoCheckout(input: {
-  returnUrl: string;
-  chip: string;
-}) {
-  if (!API_KEY || !PRODUCT_ID) {
-    const link = dodoProductLink();
-    if (!link) return null;
-    const url = new URL(link);
-    url.searchParams.set("quantity", "1");
-    url.searchParams.set("redirect_url", input.returnUrl);
-    return { url: url.toString(), sessionId: null as string | null };
-  }
-
-  const res = await fetch(`${dodoApiHost()}/checkouts`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      product_cart: [{ product_id: PRODUCT_ID, quantity: 1 }],
-      return_url: input.returnUrl,
-      metadata: { chip: input.chip, product: SITE.name },
-    }),
+export { verifyDodoSignature } from "@/lib/webhook-signature";
+import { randomBytes, randomUUID, createHash } from "node:crypto";
+import { getSql } from "@/lib/db";
+import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
+export async function createDodoCheckout() {
+  const { product } = providerConfig(),
+    id = randomUUID(),
+    token = randomBytes(32).toString("base64url"),
+    hash = createHash("sha256").update(token).digest("hex");
+  const sql = await getSql();
+  await sql`insert into checkout_orders(id,access_hash) values (${id},${hash})`;
+  const session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
+    product_cart: [{ product_id: product, quantity: 1 }],
+    return_url: `https://www.scanmydisk.com/thanks?order_id=${id}`,
+    metadata: { order_id: id, platform: "windows" },
   });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Dodo checkout failed (${res.status}): ${text.slice(0, 240)}`);
-  }
-  const body = (await res.json()) as { checkout_url?: string; session_id?: string };
-  if (!body.checkout_url) throw new Error("Dodo checkout did not return a URL.");
-  return { url: body.checkout_url, sessionId: body.session_id ?? null };
-}
-
-export function verifyDodoSignature(raw: string, request: Request) {
-  if (!WEBHOOK_KEY) return false;
-  const id = request.headers.get("webhook-id") ?? "";
-  const ts = request.headers.get("webhook-timestamp") ?? "";
-  const sig = request.headers.get("webhook-signature") ?? "";
-  if (!id || !ts || !sig) return false;
-  const secret = WEBHOOK_KEY.startsWith("whsec_")
-    ? Buffer.from(WEBHOOK_KEY.slice(6), "base64")
-    : Buffer.from(WEBHOOK_KEY);
-  const expected = createHmac("sha256", secret).update(`${id}.${ts}.${raw}`).digest("base64");
-  return sig.split(" ").some((part) => {
-    const value = part.includes(",") ? part.split(",")[1] : part;
-    try {
-      const a = Buffer.from(value);
-      const b = Buffer.from(expected);
-      return a.length === b.length && timingSafeEqual(a, b);
-    } catch {
-      return false;
-    }
-  });
-}
-
-type DodoPayload = {
-  type?: string;
-  data?: {
-    payment_id?: string;
-    status?: string;
-    metadata?: { chip?: string };
-    customer?: { email?: string; name?: string; customer_id?: string };
-    license_key?: string;
-    license_keys?: string[];
+  if (new URL(session.checkout_url).protocol !== "https:") throw new Error("Invalid checkout URL.");
+  await sql`update checkout_orders set session_id=${session.session_id} where id=${id}`;
+  return {
+    url: session.checkout_url,
+    cookie: `smd_checkout=${id}.${token}; HttpOnly; Secure; SameSite=Lax; Domain=scanmydisk.com; Path=/; Max-Age=86400`,
   };
+}
+type Payment = {
+  payment_id: string;
+  status: string;
+  product_cart?: { product_id: string }[];
+  metadata?: { order_id?: string };
 };
-
-export async function handleDodoEvent(payload: DodoPayload) {
-  const type = payload.type ?? "";
-  const data = payload.data ?? {};
-  const paymentId = data.payment_id ?? null;
-  const email = data.customer?.email ?? null;
-  const name = data.customer?.name ?? null;
-  const chip = data.metadata?.chip ?? null;
-  const givenKey = data.license_key || data.license_keys?.[0] || null;
-
-  if (type === "payment.succeeded") {
-    const key = await issueLicense({ paymentId, email, name, chip, licenseKey: givenKey });
-    return { ok: true, key };
+export async function verifyPayment(id: string) {
+  const { product, mode } = providerConfig(),
+    p = await dodoRequest<Payment>(`/payments/${encodeURIComponent(id)}`);
+  if (
+    p.payment_id !== id ||
+    p.status !== "succeeded" ||
+    !p.product_cart?.some((item) => item.product_id === product)
+  )
+    throw new Error("Purchase product mismatch.");
+  const sql = await getSql();
+  await sql`insert into verified_payments(payment_id,product_id,status,provider_mode) values (${id},${product},'paid',${mode}) on conflict(payment_id) do nothing`;
+  if (p.metadata?.order_id)
+    await sql`update checkout_orders set payment_id=${id} where id=${p.metadata.order_id} and (payment_id is null or payment_id=${id})`;
+}
+export async function importProviderLicense(id: string) {
+  const { product, mode } = providerConfig();
+  // Isolated compatibility adapter: Dodo still supports this endpoint, but it is deprecated in favour of grants.
+  const l = await dodoRequest<ProviderLicense>(`/license_keys/${encodeURIComponent(id)}`);
+  if (l.id !== id || l.product_id !== product || l.source !== "auto" || !l.payment_id || !l.key)
+    throw new Error("License product mismatch.");
+  await verifyPayment(l.payment_id);
+  const sql = await getSql();
+  await sql`insert into licenses(license_key,payment_id,provider_id,product_id,provider_mode,status,activations_limit)
+ select ${l.key},${l.payment_id},${l.id},${product},${mode},${l.status},${l.activations_limit ?? 1}
+ from verified_payments where payment_id=${l.payment_id} and status='paid'
+ on conflict(license_key) do update set status=case when licenses.status='refunded' then 'refunded' else excluded.status end`;
+}
+export async function handleDodoEvent(
+  payload: { type?: string; data?: Record<string, unknown> },
+  eventId: string,
+) {
+  const sql = await getSql();
+  if ((await sql`select event_id from dodo_webhook_events where event_id=${eventId}`).length)
+    return;
+  const d = payload.data ?? {};
+  if (payload.type === "payment.succeeded") {
+    if (typeof d.payment_id !== "string") throw new Error("Missing payment ID.");
+    await verifyPayment(d.payment_id);
+  } else if (payload.type === "license_key.created") {
+    if (typeof d.id !== "string") throw new Error("Missing license ID.");
+    await importProviderLicense(d.id);
+  } else if (payload.type === "refund.succeeded") {
+    if (typeof d.payment_id !== "string") throw new Error("Missing refund payment ID.");
+    const { mode } = providerConfig();
+    await sql`insert into verified_payments(payment_id,status,provider_mode) values (${d.payment_id},'refunded',${mode}) on conflict(payment_id) do update set status='refunded'`;
+    await sql`update licenses set status='refunded' where payment_id=${d.payment_id}`;
   }
-  if (type === "refund.succeeded" && paymentId) {
-    await refundLicense(paymentId);
-    return { ok: true };
-  }
-  return { ok: true, ignored: type };
+  await sql`insert into dodo_webhook_events(event_id) values (${eventId}) on conflict do nothing`;
 }

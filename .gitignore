@@ -17,3 +17,6 @@ attachments
 .grok
 *.local
 coverage
+
+.local-license/
+screenshots/

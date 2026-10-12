@@ -1,97 +1,106 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { JoinShell } from "@/components/signup/join-shell";
-import { SITE } from "@/data/site";
 import { pageHead } from "@/lib/seo";
-
 export const Route = createFileRoute("/thanks")({
   component: ThanksPage,
   head: () =>
     pageHead({
-      title: `Thank you | ${SITE.name}`,
-      description: `Your ${SITE.name} lifetime licence.`,
+      title: "Your purchase | Scan My Disk",
+      description: "Verify your purchase and receive your Windows license.",
       path: "/thanks",
     }),
 });
-
 function ThanksPage() {
-  const [key, setKey] = useState("");
-  const [email, setEmail] = useState("");
-  const [preview, setPreview] = useState(false);
-  const [copied, setCopied] = useState(false);
-
+  const [key, setKey] = useState(""),
+    [download, setDownload] = useState<string | null>(null),
+    [message, setMessage] = useState("Checking your purchase…"),
+    [copied, setCopied] = useState(false);
   useEffect(() => {
-    const q = new URLSearchParams(window.location.search);
-    const fromUrl = q.get("license_key") ?? "";
-    const paymentId = q.get("payment_id") ?? "";
-    setEmail(q.get("email") ?? "");
-    setPreview(q.get("status") === "preview" || q.get("status") === "test");
-    if (fromUrl) {
-      setKey(fromUrl);
+    const id = new URLSearchParams(window.location.search).get("order_id");
+    if (!id) {
+      setMessage(
+        "Open this page from your checkout. Your license will also arrive in your Dodo purchase email.",
+      );
       return;
     }
-    if (!paymentId) return;
-    void fetch(`/api/license/order?payment_id=${encodeURIComponent(paymentId)}`)
-      .then((r) => r.json())
-      .then((data: { license_key?: string }) => {
-        if (data.license_key) setKey(data.license_key);
-      })
-      .catch(() => undefined);
+    let stopped = false,
+      count = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const poll = async () => {
+      try {
+        const r = await fetch(`/api/license/order?order_id=${encodeURIComponent(id)}`, {
+          cache: "no-store",
+        });
+        if (!r.ok) {
+          if (!stopped)
+            setMessage(
+              "This checkout session could not be verified. Check your purchase email or contact support.",
+            );
+          return;
+        }
+        const d = (await r.json()) as { license_key?: string; installer_url?: string };
+        if (stopped) return;
+        if (d.license_key) {
+          setKey(d.license_key);
+          setDownload(d.installer_url ?? null);
+          setMessage("Your payment and license have been verified.");
+          return;
+        }
+        setMessage("Waiting for payment confirmation and your license. This can take a moment.");
+      } catch {
+        if (!stopped) setMessage("Verification is temporarily unavailable. Retrying…");
+      }
+      if (!stopped && ++count < 30) timer = setTimeout(() => void poll(), 3000);
+      else if (!stopped)
+        setMessage(
+          "Your license is still processing. Check your Dodo email or reload this page shortly.",
+        );
+    };
+    void poll();
+    return () => {
+      stopped = true;
+      clearTimeout(timer);
+    };
   }, []);
-
-  async function copy() {
-    if (!key) return;
-    await navigator.clipboard.writeText(key);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1600);
-  }
-
   return (
     <JoinShell compact>
       <section className="mx-auto max-w-xl px-5 py-20 sm:px-8">
-        <p className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-          {preview ? "Test licence" : "Payment received"}
-        </p>
-        <h1 className="font-display mt-3 text-4xl leading-tight font-medium tracking-tight text-fg">
-          Your lifetime key is ready.
+        <p className="text-sm font-medium text-primary">Scan My Disk for Windows</p>
+        <h1 className="font-display mt-3 text-4xl font-medium text-fg">
+          {key ? "Your lifetime license is ready." : "Confirming your purchase"}
         </h1>
-        <p className="mt-4 text-[16px] leading-relaxed text-muted">
-          Your Windows licence is ready. Install Scan My Disk and paste this key on first launch.
-          {email ? (
-            <>
-              {" "}
-              A copy of the receipt is on <span className="text-fg">{email}</span>.
-            </>
-          ) : null}
+        <p role="status" className="mt-4 text-base text-muted">
+          {message}
         </p>
-
-        <div className="mt-8 rounded-[28px] border border-border bg-card p-6">
-          <p className="text-xs font-medium tracking-[0.16em] text-muted uppercase">Licence key</p>
-          <p className="font-display mt-3 break-all text-2xl tracking-wide text-fg">
-            {key || "Issuing… check this page again in a few seconds."}
-          </p>
-          {key ? (
+        {key && (
+          <div className="mt-8 rounded-3xl border border-border bg-card p-6">
+            <p className="text-sm text-muted">License key</p>
+            <p className="mt-3 break-all text-2xl text-fg">{key}</p>
             <button
-              type="button"
-              onClick={() => void copy()}
-              className="mt-5 inline-flex h-11 items-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg"
+              className="mt-5 inline-flex h-11 items-center rounded-xl bg-primary px-4 font-semibold text-primary-fg"
+              onClick={() => void navigator.clipboard.writeText(key).then(() => setCopied(true))}
             >
               {copied ? "Copied" : "Copy key"}
             </button>
-          ) : null}
-        </div>
-
-        <ul className="mt-8 space-y-2 text-sm leading-relaxed text-muted">
-          <li>One Windows PC at a time. Deactivate in Settings to move it.</li>
-          <li>Offline grace is 14 days after the last successful check.</li>
-          <li>
-            Lost the key?{" "}
-            <Link to="/license" className="text-primary underline-offset-4 hover:underline">
-              Recover it here
-            </Link>
-            .
-          </li>
-        </ul>
+            {download ? (
+              <a
+                href={download}
+                className="mt-4 flex min-h-11 items-center justify-center rounded-xl bg-primary px-4 font-semibold text-primary-fg"
+              >
+                Download Windows installer
+              </a>
+            ) : (
+              <p className="mt-4 text-sm text-muted">
+                The Windows installer download will appear here once the release is available.
+              </p>
+            )}
+          </div>
+        )}
+        <p className="mt-8 text-sm text-muted">
+          Keep your license email. One PC at a time; activation requires an internet connection.
+          Need help? support@scanmydisk.com
+        </p>
       </section>
     </JoinShell>
   );
