@@ -21,7 +21,9 @@ export function absUrl(path = "/") {
 }
 
 export function ogImage() {
-  return absUrl("/scanmydisk-preview.jpg");
+  // New path on purpose. X caches the old /og.jpg DissectMac card forever
+  // because that file is served with Cache-Control: immutable.
+  return absUrl("/x-share-v3.jpg");
 }
 
 export function pageHead({

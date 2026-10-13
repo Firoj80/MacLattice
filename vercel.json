@@ -8,6 +8,15 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/(og|x-share-v3|scanmydisk-preview)\\.(jpg|png)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
+      ]
     }
   ]
 }
