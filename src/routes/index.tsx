@@ -119,7 +119,7 @@ function Hero() {
           </span>
         </div>
         <img
-          src="/windows-real-scan.png"
+          src="/windows-real-scan.webp"
           alt="Actual Scan My Disk Windows app displaying a real System32 disk usage scan"
           width={1680}
           height={882}
@@ -206,7 +206,7 @@ const FEATURE_TABS = [
     icon: HardDrive,
     title: "See exactly where your disk space goes",
     body: "Scan your full PC, your user profile, or any custom folder. Explore an interactive treemap sized strictly by disk usage, inspect individual files, and review selected items in Cleanup Queue before removing them.",
-    image: "/windows-views/treemap.png",
+    image: "/windows-views/treemap.webp",
     alt: "Scan My Disk for Windows showing a real System32 scan in Treemap view",
     caption: "Actual Windows app · real System32 scan",
   },
@@ -216,7 +216,7 @@ const FEATURE_TABS = [
     icon: Layers,
     title: "Manage installed Windows applications",
     body: "Browse installed apps with high-res icons and measured sizes. For supported apps, launch the Windows or vendor uninstaller and choose whether to keep app data or review selected leftovers for removal.",
-    image: "/windows-features/applications.png",
+    image: "/windows-features/applications.webp",
     alt: "Scan My Disk Windows Applications screen with installed app icons and uninstall controls",
     caption: "Actual Windows app · installed applications",
   },
@@ -226,7 +226,7 @@ const FEATURE_TABS = [
     icon: Copy,
     title: "Find matching copies. Choose what to keep.",
     body: "Find identical files across your scan using three-pass content hashing. Choose a copy to keep, then review the redundant copies in Cleanup Queue before taking action.",
-    image: "/windows-features/duplicates.png",
+    image: "/windows-features/duplicates.webp",
     alt: "Actual Scan My Disk duplicate review interface with an example matching file group",
     caption: "Actual Windows app · example duplicate group",
   },
@@ -236,7 +236,7 @@ const FEATURE_TABS = [
     icon: Camera,
     title: "See how your folders change over time",
     body: "Save a lightweight scan snapshot and compare earlier and later scans of the same location. Immediately spot which folders grew or shrank over time.",
-    image: "/windows-features/snapshots.png",
+    image: "/windows-features/snapshots.webp",
     alt: "Actual Scan My Disk snapshot comparison interface with example saved scans",
     caption: "Actual Windows app · example snapshot comparison",
   },
@@ -246,7 +246,7 @@ const FEATURE_TABS = [
     icon: Activity,
     title: "See what is using your PC right now",
     body: "Watch real-time CPU usage, memory pressure, network rates, and free volume space. Search the process list and sort by resource footprint to detect performance bottlenecks.",
-    image: "/windows-features/monitor.png",
+    image: "/windows-features/monitor.webp",
     alt: "Scan My Disk Windows Monitor showing live CPU, memory, network, and system drive metrics",
     caption: "Actual Windows app · live system monitor",
   },
@@ -429,44 +429,63 @@ function Pricing() {
 
 function Views() {
   return (
-    <section id="views" className="border-t border-white/10 px-6 py-24 md:py-32">
+    <section id="views" className="border-t border-white/10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Visualizations</p>
-        <h2 className="mb-4 max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          One scan. Eight ways to read it.
-        </h2>
-        <p className="mb-8 max-w-2xl text-base text-muted">
-          Eight interactive views generated from the same scan. Navigate folder hierarchy, pinpoint the heaviest files, or explore storage by modification age.
-        </p>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="mb-10 max-w-2xl">
+          <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Visualizations</p>
+          <h2 className="mb-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            One scan. Eight ways to read it.
+          </h2>
+          <p className="text-base text-muted">
+            Eight interactive perspectives generated from the same scan. Navigate folder trees, isolate space hogs, or audit storage by file age.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {JOIN_VIEWS.map((view) => (
             <article
               key={view.name}
-              className="glass-card group overflow-hidden rounded-2xl border border-white/10 p-2 transition-all duration-300 hover:border-sky-500/30"
+              className="glass-card group flex flex-col justify-between overflow-hidden rounded-xl border border-white/10 p-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-500/5"
             >
-              <div className="overflow-hidden rounded-xl">
-                <img
-                  src={view.image}
-                  alt={`${view.name} in ${SITE.name}`}
-                  width={1680}
-                  height={882}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-white">{view.name}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{view.body}</p>
+              <div>
                 <a
                   href={view.image}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 text-xs text-sky-400 hover:text-sky-300 hover:underline"
+                  className="relative block aspect-[16/10] w-full overflow-hidden rounded-lg bg-black/60 border border-white/5"
                   aria-label={`View full ${view.name} screenshot`}
                 >
-                  <span>View full screenshot</span>
-                  <ExternalLink className="size-3" />
+                  <img
+                    src={view.image}
+                    alt={`${view.name} in ${SITE.name}`}
+                    width={560}
+                    height={350}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100 flex items-end justify-end p-2">
+                    <span className="inline-flex items-center gap-1 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-medium text-sky-300 backdrop-blur-sm">
+                      Full view <ExternalLink className="size-2.5" />
+                    </span>
+                  </div>
+                </a>
+                <div className="px-1 pt-3 pb-1">
+                  <h3 className="text-sm font-semibold text-white tracking-tight">{view.name}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted line-clamp-2">{view.body}</p>
+                </div>
+              </div>
+
+              <div className="px-1 pt-1">
+                <a
+                  href={view.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-medium text-sky-400 hover:text-sky-300 transition-colors"
+                  aria-label={`Open ${view.name} full view`}
+                >
+                  <span>Open full screenshot</span>
+                  <ExternalLink className="size-2.5" />
                 </a>
               </div>
             </article>
