@@ -62,6 +62,7 @@ function Hero() {
           Get {SITE.name} Pro · {SITE.lifetimePrice}
         </a>
         <p className="mt-3 text-sm text-white/40">One-time payment · Lifetime licence, no subscription</p>
+        <Link to="/license" className="mt-4 inline-flex min-h-11 items-center text-sm text-fg underline underline-offset-4">Already purchased? Download app or recover licence</Link>
         <ul className="mt-8 space-y-2 text-sm text-white/70">
           {["Windows app, ready now", "Licence key on this site after checkout", "Files never leave your PC"].map(
             (item) => (

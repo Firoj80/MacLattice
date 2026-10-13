@@ -22,6 +22,8 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThanksRouteImport } from './routes/thanks'
 import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
+import { Route as ApiCustomerPortalRouteImport } from './routes/api/customer-portal'
+import { Route as ApiDownloadRouteImport } from './routes/api/download'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -98,6 +100,16 @@ const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
   path: '/api/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiCustomerPortalRoute = ApiCustomerPortalRouteImport.update({
+  id: '/api/customer-portal',
+  path: '/api/customer-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDownloadRoute = ApiDownloadRouteImport.update({
+  id: '/api/download',
+  path: '/api/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -163,6 +175,8 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
   '/api/checkout': typeof ApiCheckoutRoute
+  '/api/customer-portal': typeof ApiCustomerPortalRoute
+  '/api/download': typeof ApiDownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -188,6 +202,8 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
   '/api/checkout': typeof ApiCheckoutRoute
+  '/api/customer-portal': typeof ApiCustomerPortalRoute
+  '/api/download': typeof ApiDownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -214,6 +230,8 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
   '/api/checkout': typeof ApiCheckoutRoute
+  '/api/customer-portal': typeof ApiCustomerPortalRoute
+  '/api/download': typeof ApiDownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -241,6 +259,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thanks'
     | '/api/checkout'
+    | '/api/customer-portal'
+    | '/api/download'
     | '/blog/$slug'
     | '/blog/'
     | '/api/auth/$'
@@ -266,6 +286,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thanks'
     | '/api/checkout'
+    | '/api/customer-portal'
+    | '/api/download'
     | '/blog/$slug'
     | '/blog'
     | '/api/auth/$'
@@ -291,6 +313,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thanks'
     | '/api/checkout'
+    | '/api/customer-portal'
+    | '/api/download'
     | '/blog/$slug'
     | '/blog/'
     | '/api/auth/$'
@@ -317,6 +341,8 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThanksRoute: typeof ThanksRoute
   ApiCheckoutRoute: typeof ApiCheckoutRoute
+  ApiCustomerPortalRoute: typeof ApiCustomerPortalRoute
+  ApiDownloadRoute: typeof ApiDownloadRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -422,6 +448,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/customer-portal': {
+      id: '/api/customer-portal'
+      path: '/api/customer-portal'
+      fullPath: '/api/customer-portal'
+      preLoaderRoute: typeof ApiCustomerPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/download': {
+      id: '/api/download'
+      path: '/api/download'
+      fullPath: '/api/download'
+      preLoaderRoute: typeof ApiDownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -509,6 +549,8 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThanksRoute: ThanksRoute,
   ApiCheckoutRoute: ApiCheckoutRoute,
+  ApiCustomerPortalRoute: ApiCustomerPortalRoute,
+  ApiDownloadRoute: ApiDownloadRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

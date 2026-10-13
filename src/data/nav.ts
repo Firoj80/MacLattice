@@ -18,7 +18,7 @@ export const FOOTER_PRODUCT: NavItem[] = [
   { to: "/", hash: "pricing", label: "Pricing" },
   { href: "/buy", label: "Buy licence" },
   { to: "/blog", label: "Blog" },
-  { to: "/license", label: "Already Have Licence?" },
+  { to: "/license", label: "Downloads & licence recovery" },
 ];
 
 export const FOOTER_LEGAL: NavItem[] = [
