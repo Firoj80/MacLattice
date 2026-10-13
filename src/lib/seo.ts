@@ -21,7 +21,7 @@ export function absUrl(path = "/") {
 }
 
 export function ogImage() {
-  return absUrl("/windows-share-preview.png");
+  return absUrl("/windows-share-preview.png?v=2");
 }
 
 export function pageHead({
