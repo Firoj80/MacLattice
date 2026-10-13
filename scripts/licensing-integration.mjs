@@ -1,25 +1,53 @@
 import assert from 'node:assert/strict';
 import {createServer} from 'vite';
-import {generateKeyPairSync} from 'node:crypto';
+import {generateKeyPairSync,createHash} from 'node:crypto';
 if(process.env.DATABASE_URL||process.env.DODO_PAYMENTS_API_KEY)throw new Error('Run this check only without real provider/database credentials.');
 process.env.DODO_PAYMENTS_API_KEY='fixture-not-a-real-key';process.env.DODO_PRODUCT_ID='pdt_fixture';process.env.DODO_PAYMENTS_ENV='test_mode';
 process.env.LICENSE_SIGNING_PRIVATE_KEY=generateKeyPairSync('rsa',{modulusLength:2048}).privateKey.export({format:'pem',type:'pkcs8'}).toString();
-const realFetch=globalThis.fetch;let activations=0;
+const realFetch=globalThis.fetch;let activations=0,providerCalls=0;
 const payments=new Map([['pay_fixture',{payment_id:'pay_fixture',status:'succeeded',product_cart:[{product_id:'pdt_fixture'}],customer:{name:' Fixture Buyer '},metadata:{}}],['pay_other',{payment_id:'pay_other',status:'succeeded',product_cart:[{product_id:'pdt_other'}]}]]);
 const licenses=new Map([['lic_fixture',{id:'lic_fixture',key:'fixture-key',payment_id:'pay_fixture',product_id:'pdt_fixture',source:'auto',status:'active',activations_limit:1}],['lic_other',{id:'lic_other',key:'foreign-key',payment_id:'pay_other',product_id:'pdt_other',source:'auto',status:'active'}]]);
+payments.set('pay_zero',{payment_id:'pay_zero',status:'succeeded',total_amount:0,product_cart:[{product_id:'pdt_fixture'}],customer:{name:'Coupon Buyer',customer_id:'cus_zero'},metadata:{order_id:'order_zero'}});
+licenses.set('lic_zero',{id:'lic_zero',key:'zero-payment-key',payment_id:'pay_zero',product_id:'pdt_fixture',customer_id:'cus_zero',source:'auto',status:'active',activations_limit:1});
+licenses.set('lic_manual',{id:'lic_manual',key:'manual-key',payment_id:'pay_zero',product_id:'pdt_fixture',source:'manual',status:'active'});
+payments.set('pay_pending',{payment_id:'pay_pending',status:'processing',product_cart:[{product_id:'pdt_fixture'}]});
+licenses.set('lic_pending',{id:'lic_pending',key:'unpaid-key',payment_id:'pay_pending',product_id:'pdt_fixture',source:'auto',status:'active'});
 globalThis.fetch=async(input,init)=>{
  const url=String(input);if(!url.startsWith('https://test.dodopayments.com/'))return realFetch(input,init);
+ providerCalls++;
  const path=new URL(url).pathname;const body=init?.body?JSON.parse(init.body):{};
+ if(path==='/license_keys'){const query=new URL(url).searchParams;return Response.json({items:[...licenses.values()].filter(l=>l.product_id===query.get('product_id')&&(!query.get('customer_id')||l.customer_id===query.get('customer_id')))});}
+ if(path==='/checkouts/cks_zero')return Response.json({id:'cks_zero',payment_id:'pay_zero',payment_status:'succeeded'});
  if(path.startsWith('/payments/'))return Response.json(payments.get(path.split('/').at(-1))??{}, {status:payments.has(path.split('/').at(-1))?200:404});
  if(path.startsWith('/license_keys/'))return Response.json(licenses.get(path.split('/').at(-1))??{}, {status:licenses.has(path.split('/').at(-1))?200:404});
  if(path==='/licenses/activate'){activations++;return Response.json({id:'lki_fixture',product:{product_id:'pdt_fixture'}});}
- if(path==='/licenses/validate')return Response.json({valid:body.license_key==='fixture-key'});
+ if(path==='/licenses/validate')return Response.json({valid:['fixture-key','zero-payment-key'].includes(body.license_key)});
  if(path==='/licenses/deactivate')return new Response(null,{status:204});
  throw new Error('Unexpected provider request: '+path);
 };
 const server=await createServer({server:{middlewareMode:true},appType:'custom'});
 try{
  const dodo=await server.ssrLoadModule('/src/lib/dodo.ts'),license=await server.ssrLoadModule('/src/lib/license.ts');
+ const db=await server.ssrLoadModule('/src/lib/db.ts'); const sql=await db.getSql();
+ const checkoutToken='fixture-checkout-capability',checkoutHash=createHash('sha256').update(checkoutToken).digest('hex');
+ await sql`insert into checkout_orders(id,access_hash,session_id) values ('order_zero',${checkoutHash},'cks_zero')`;
+ await dodo.recoverCheckoutOrder('order_zero');
+ const recovered=await sql`select l.license_key from checkout_orders o join licenses l on l.payment_id=o.payment_id where o.id='order_zero'`;
+ assert.equal(recovered[0].license_key,'zero-payment-key');
+ const orderRoute=await server.ssrLoadModule('/src/routes/api/license/order.ts');
+ const getOrder=orderRoute.Route.options.server.handlers.GET;
+ const callsBefore=providerCalls;
+ const unauthorized=await getOrder({request:new Request('https://example.test/api/license/order?order_id=order_zero',{headers:{cookie:'smd_checkout=order_zero.wrong-token'}})});
+ assert.equal(unauthorized.status,403); assert.equal(providerCalls,callsBefore);
+ const authorized=await getOrder({request:new Request('https://example.test/api/license/order?order_id=order_zero',{headers:{cookie:`smd_checkout=order_zero.${checkoutToken}`}})});
+ assert.equal((await authorized.json()).license_key,'zero-payment-key');
+ await assert.rejects(()=>dodo.recoverProviderLicense({key:'unpaid-key'}));
+ assert.equal(await dodo.recoverProviderLicense({key:'manual-key'}),false);
+ await sql`delete from licenses where license_key='zero-payment-key'`;
+ const zeroReceipt=await license.activateDevice({licenseKey:'zero-payment-key',instanceId:'c'.repeat(64)});
+ assert.equal(zeroReceipt.ok,true);
+ assert.equal(JSON.parse(Buffer.from(zeroReceipt.certificate.payload,'base64url').toString()).buyer_name,'Coupon Buyer');
+ activations=0;
  await assert.rejects(()=>dodo.importProviderLicense('lic_other'));
  await dodo.handleDodoEvent({type:'payment.succeeded',data:{payment_id:'pay_fixture'}},'evt-paid');
  await dodo.handleDodoEvent({type:'license_key.created',data:{id:'lic_fixture'}},'evt-key');
@@ -37,6 +65,6 @@ try{
  assert.equal((await license.activateDevice({licenseKey:'fixture-key',instanceId:'a'.repeat(64)})).ok,false);
  const handler=await server.ssrLoadModule('/src/lib/license-handler.ts');
  assert.equal((await handler.licenseHandler('activate')({request:new Request('https://example.test',{method:'POST',body:'{}'})})).status,400);
- console.log('PASS: mock provider and local DB — wrong product/unpaid keys rejected, duplicate events safe, repeat activation reuses instance, wrong device and refunded licenses blocked. No real purchase.');
+ console.log('PASS: zero-value checkout recovered without webhooks; missing-license activation recovered; manual/wrong-product keys rejected; repeat activation, wrong-device and refund protections pass. No real purchase.');
 }finally{globalThis.fetch=realFetch;await server.close();}
 process.exit(0);

@@ -1,5 +1,6 @@
 import { activateDevice, validateDevice, deactivateDevice } from "@/lib/license";
 import { rateLimit } from "@/lib/license-rate-limit";
+import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export function licenseHandler(action: "activate" | "validate" | "deactivate") {
   return async ({ request }: { request: Request }) => {
     const headers = { "Cache-Control": "no-store" };
@@ -39,7 +40,8 @@ export function licenseHandler(action: "activate" | "validate" | "deactivate") {
             ? await validateDevice(input)
             : await deactivateDevice(input);
       return Response.json(result, { headers });
-    } catch {
+    } catch (error) {
+      logCheckoutFailure(error);
       return Response.json({ error: "licensing_unavailable" }, { status: 503, headers });
     }
   };

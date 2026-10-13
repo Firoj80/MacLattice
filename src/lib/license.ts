@@ -1,15 +1,20 @@
 import { getSql } from "@/lib/db";
 import { certificate, signingKey, GRACE_DAYS } from "@/lib/license-certificate";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
-import { verifyPayment } from "@/lib/dodo";
+import { verifyPayment, recoverProviderLicense } from "@/lib/dodo";
 export { GRACE_DAYS };
 async function purchasedLicense(key: string) {
   const { product, mode } = providerConfig(),
     sql = await getSql();
-  const rows = await sql<{
+  let rows = await sql<{
     provider_id: string;
   }>`select l.provider_id from licenses l join verified_payments p on p.payment_id=l.payment_id where l.license_key=${key} and l.status='active' and l.product_id=${product} and l.provider_mode=${mode} and p.status='paid'`;
-  if (!rows[0]?.provider_id) return null;
+  if (!rows[0]?.provider_id) {
+    if ((await sql`select id from licenses where license_key=${key} and provider_mode=${mode}`).length) return null;
+    if (!await recoverProviderLicense({ key })) return null;
+    rows = await sql<{ provider_id: string }>`select l.provider_id from licenses l join verified_payments p on p.payment_id=l.payment_id where l.license_key=${key} and l.status='active' and l.product_id=${product} and l.provider_mode=${mode} and p.status='paid'`;
+    if (!rows[0]?.provider_id) return null;
+  }
   const p = await dodoRequest<ProviderLicense>(
     `/license_keys/${encodeURIComponent(rows[0].provider_id)}`,
   );

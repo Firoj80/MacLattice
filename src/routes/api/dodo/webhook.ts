@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { handleDodoEvent, verifyDodoSignature } from "@/lib/dodo";
+import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export const Route = createFileRoute("/api/dodo/webhook")({
   server: {
     handlers: {
@@ -8,8 +9,10 @@ export const Route = createFileRoute("/api/dodo/webhook")({
           return new Response("Webhook not configured", { status: 503 });
         const raw = await request.text();
         if (raw.length > 262144) return new Response("Too large", { status: 413 });
-        if (!verifyDodoSignature(raw, request))
+        if (!verifyDodoSignature(raw, request)) {
+          console.error("[dodo-webhook] signature_rejected", { idPresent: !!request.headers.get("webhook-id"), timestampPresent: !!request.headers.get("webhook-timestamp"), signaturePresent: !!request.headers.get("webhook-signature") });
           return new Response("Invalid signature", { status: 401 });
+        }
         let payload: Parameters<typeof handleDodoEvent>[0];
         try {
           payload = JSON.parse(raw);
@@ -21,7 +24,8 @@ export const Route = createFileRoute("/api/dodo/webhook")({
         try {
           await handleDodoEvent(payload, request.headers.get("webhook-id")!);
           return new Response("ok");
-        } catch {
+        } catch (error) {
+          logCheckoutFailure(error);
           return new Response("Event processing failed; retry required", { status: 503 });
         }
       },

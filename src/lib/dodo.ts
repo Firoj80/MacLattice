@@ -22,7 +22,7 @@ export async function createDodoCheckout() {
   };
 }
 type Payment = {
-  customer?: { name?: string | null };
+  customer?: { name?: string | null; customer_id?: string };
   payment_id: string;
   status: string;
   product_cart?: { product_id: string }[];
@@ -56,6 +56,39 @@ export async function importProviderLicense(id: string) {
  from verified_payments where payment_id=${l.payment_id} and status='paid'
  on conflict(license_key) do update set status=case when licenses.status='refunded' then 'refunded' else excluded.status end`;
 }
+/** Reconcile only automatic, product-matching keys through authenticated provider APIs. */
+export async function recoverProviderLicense(match: { key?: string; paymentId?: string; customerId?: string }) {
+  if (!match.key && !match.paymentId) return false;
+  const { product } = providerConfig();
+  for (let page = 0; page < 5; page++) {
+    const query = new URLSearchParams({ product_id: product, source: "auto", page_size: "100", page_number: String(page) });
+    if (match.customerId) query.set("customer_id", match.customerId);
+    const response = await dodoRequest<{ items: ProviderLicense[] }>(`/license_keys?${query}`);
+    const found = response.items.find(l => l.product_id === product && l.source === "auto" && l.status === "active"
+      && (!match.key || l.key === match.key) && (!match.paymentId || l.payment_id === match.paymentId));
+    if (found) { await importProviderLicense(found.id); return true; }
+    if (response.items.length < 100) break;
+  }
+  return false;
+}
+
+/** Invoke only after the caller verifies the order's capability cookie. */
+export async function recoverCheckoutOrder(orderId: string) {
+  const sql = await getSql();
+  const claimed = await sql<{ session_id: string | null }>`update checkout_orders set last_reconciled_at=now()
+    where id=${orderId} and created_at>now()-interval '24 hours'
+    and (last_reconciled_at is null or last_reconciled_at<now()-interval '15 seconds') returning session_id`;
+  const sessionId = claimed[0]?.session_id;
+  if (!sessionId) return;
+  const session = await dodoRequest<{ id: string; payment_id: string | null; payment_status: string | null }>(`/checkouts/${encodeURIComponent(sessionId)}`);
+  if (session.id !== sessionId) throw new Error("Checkout session mismatch.");
+  if (session.payment_status !== "succeeded" || !session.payment_id) return;
+  const payment = await verifyPayment(session.payment_id);
+  if (payment.metadata?.order_id && payment.metadata.order_id !== orderId) throw new Error("Checkout payment mismatch.");
+  await sql`update checkout_orders set payment_id=${session.payment_id} where id=${orderId} and (payment_id is null or payment_id=${session.payment_id})`;
+  await recoverProviderLicense({ paymentId: session.payment_id, customerId: payment.customer?.customer_id });
+}
+
 export async function handleDodoEvent(
   payload: { type?: string; data?: Record<string, unknown> },
   eventId: string,
@@ -68,8 +101,9 @@ export async function handleDodoEvent(
     if (typeof d.payment_id !== "string") throw new Error("Missing payment ID.");
     await verifyPayment(d.payment_id);
   } else if (payload.type === "license_key.created") {
-    if (typeof d.id !== "string") throw new Error("Missing license ID.");
-    await importProviderLicense(d.id);
+    const licenseId = typeof d.id === "string" ? d.id : d.license_key_id;
+    if (typeof licenseId !== "string") throw new Error("Missing license ID.");
+    await importProviderLicense(licenseId);
   } else if (payload.type === "refund.succeeded") {
     if (typeof d.payment_id !== "string") throw new Error("Missing refund payment ID.");
     const { mode } = providerConfig();

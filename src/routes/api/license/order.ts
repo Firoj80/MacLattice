@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { getSql } from "@/lib/db";
+import { recoverCheckoutOrder } from "@/lib/dodo";
+import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export const Route = createFileRoute("/api/license/order")({
   server: {
     handlers: {
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/api/license/order")({
             { status: 403, headers: { "Cache-Control": "no-store" } },
           );
         const sql = await getSql();
-        const rows = await sql<{
+        let rows = await sql<{
           access_hash: string;
           license_key: string | null;
         }>`select o.access_hash,l.license_key from checkout_orders o
@@ -30,6 +32,16 @@ export const Route = createFileRoute("/api/license/order")({
           actual = createHash("sha256").update(token).digest();
         if (expected.length !== actual.length || !timingSafeEqual(expected, actual))
           return Response.json({ ok: false }, { status: 403 });
+        if (!rows[0]?.license_key) {
+          try { await recoverCheckoutOrder(id); }
+          catch (error) {
+            logCheckoutFailure(error);
+            return Response.json({ error: "verification_unavailable" }, { status: 503, headers: { "Cache-Control": "no-store" } });
+          }
+          rows = await sql<{ access_hash: string; license_key: string | null }>`select o.access_hash,l.license_key from checkout_orders o
+            left join licenses l on l.payment_id=o.payment_id and l.status='active'
+            left join verified_payments p on p.payment_id=o.payment_id where o.id=${id} and p.status='paid'`;
+        }
         let installer: string | null = null;
         const configured = process.env.LICENSE_INSTALLER_URL;
         if (configured) {

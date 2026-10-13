@@ -17,6 +17,7 @@ function ThanksPage() {
     [download, setDownload] = useState<string | null>(null),
     [message, setMessage] = useState("Checking your purchase…"),
     [copied, setCopied] = useState(false);
+  const [retry, setRetry] = useState(0);
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("order_id");
     if (!id) {
@@ -64,7 +65,7 @@ function ThanksPage() {
       stopped = true;
       clearTimeout(timer);
     };
-  }, []);
+  }, [retry]);
   return (
     <JoinShell compact>
       <section className="mx-auto max-w-xl px-5 py-20 sm:px-8">
@@ -75,6 +76,7 @@ function ThanksPage() {
         <p role="status" className="mt-4 text-base text-muted">
           {message}
         </p>
+        {!key && <button className="mt-5 inline-flex h-11 items-center rounded-xl bg-primary px-4 font-semibold text-primary-fg" onClick={() => { setMessage("Checking your purchase…"); setRetry(value => value + 1); }}>Check again</button>}
         {key && (
           <div className="mt-8 rounded-3xl border border-border bg-card p-6">
             <p className="text-sm text-muted">License key</p>
