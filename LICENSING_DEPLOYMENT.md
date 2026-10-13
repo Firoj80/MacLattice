@@ -6,11 +6,11 @@ This branch replaces demo checkout/free key generation with Dodo hosted checkout
 
 - `DATABASE_URL`: Neon connection string.
 - `DODO_PAYMENTS_API_KEY`: server-only key with Checkout Sessions Write, Payments Read and License Keys Read.
-- `DODO_PRODUCT_ID`: `pdt_0NpZhrg9Cf6iCL20eyVnl` for the current test build.
-- `DODO_PAYMENTS_ENV`: `test_mode` for this build; never use test keys to sell a live release.
+- `DODO_PRODUCT_ID`: `pdt_0NpaEH2nUgeRxxmqs5cx5` for Windows release 0.1.2.
+- `DODO_PAYMENTS_ENV`: `live_mode` for Windows release 0.1.2. Test-mode license keys are not accepted by this build.
 - `DODO_PAYMENTS_WEBHOOK_KEY`: signing secret for this endpoint.
 - `LICENSE_SIGNING_PRIVATE_KEY`: complete PKCS#8 RSA PEM, matching the public key embedded in the Windows build. A matching private key has already been generated locally at `C:/Users/CYBERCITY/Downloads/scanmydisk_landing/.local-license/private.pem`. Keep this secret outside GitHub and outside VITE-prefixed variables. Back it up securely; do not regenerate without rebuilding the app.
-- `LICENSE_INSTALLER_URL`: HTTPS URL of the final Windows installer. The verified purchase page only shows a download when configured. The installer itself can be copied; license activation is the entitlement check.
+- `LICENSE_INSTALLER_URL`: HTTPS URL of the final Windows installer. For 0.1.2 use `https://github.com/Firoj80/MacLattice/releases/download/windows-v0.1.2/ScanMyDisk-Setup-x64.exe` after publishing the asset. The verified purchase page attempts one automatic download per checkout and retains a manual download button. The installer itself can be copied; license activation is the entitlement check.
 
 Configure `https://www.scanmydisk.com/api/dodo/webhook` for `payment.succeeded`, `license_key.created`, and `refund.succeeded`. Enable automatic license fulfillment, no expiration and one activation in the Dodo product. Checkout and the purchase page must use the production scanmydisk.com domain; capability cookies intentionally do not work on unrelated preview domains.
 
