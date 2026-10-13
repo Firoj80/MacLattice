@@ -149,12 +149,12 @@ export const JOIN_FAQ = [
     a: "No. Buy a lifetime licence and the key shows on the next screen. Install the Windows app and paste the key on first launch.",
   },
   {
-    q: "How many Macs can I use?",
-    a: "One Mac at a time. Deactivate on the first machine, then activate on the next. Fourteen days offline grace if you forget.",
+    q: "How many PCs can I use?",
+    a: "One PC at a time. Deactivate on the first machine, then activate on the next. Fourteen days offline grace if you forget.",
   },
   {
     q: "Is my data uploaded?",
-    a: "No. Scanning, hashing, and duplicate matching all run on your Mac. File names never leave the machine.",
+    a: "No. Scanning, hashing, and duplicate matching all run locally on your PC. File names never leave the machine.",
   },
   {
     q: "What if I want a refund?",

@@ -34,19 +34,23 @@ function NavLink({ item, className, onClick }: { item: NavItem; className: strin
 function JoinHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl">
+    <header className="fixed top-0 z-50 w-full border-b border-white/[0.08] bg-[#030712]/80 backdrop-blur-2xl transition-colors">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <BrandMark />
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-x-3 overflow-hidden text-[13px] font-medium whitespace-nowrap text-muted md:flex lg:gap-x-4">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-x-2 overflow-hidden text-[13px] font-medium whitespace-nowrap text-muted md:flex lg:gap-x-3">
           {MAIN_NAV.map((item) => (
-            <NavLink key={item.label} item={item} className="hover:text-fg" />
+            <NavLink
+              key={item.label}
+              item={item}
+              className="rounded-lg px-2.5 py-1 text-muted transition-all duration-200 hover:bg-white/[0.06] hover:text-white"
+            />
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <HeaderBuy />
           <button
             type="button"
-            className="rounded-lg p-2 text-fg md:hidden"
+            className="rounded-lg p-2 text-fg transition-colors hover:bg-white/[0.08] md:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
@@ -55,14 +59,14 @@ function JoinHeader() {
         </div>
       </div>
       {open ? (
-        <div className="border-t border-border bg-bg px-5 py-3 md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col">
+        <div className="border-t border-white/[0.08] bg-[#070b16]/95 backdrop-blur-2xl px-5 py-4 md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col gap-1">
             {MAIN_NAV.map((item) => (
               <NavLink
                 key={item.label}
                 item={item}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted hover:bg-fg/5 hover:text-fg"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-white/[0.08] hover:text-white"
               />
             ))}
           </div>

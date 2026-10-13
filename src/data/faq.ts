@@ -44,8 +44,8 @@ export const FAQS = [
       "Scan My Disk offers treemap visualization plus uninstall, leftovers, duplicates, scan comparison, and cleanup presets. Unlike subscription-based tools, we charge a one-time $5. We're privacy-focused with 100% local processing.",
   },
   {
-    question: "What does 'System Data' or 'Other' mean on my Mac?",
+    question: "What does 'System Data' or hidden system folders mean on Windows?",
     answer:
-      "System Data includes caches, logs, app containers, and temporary files that macOS generates. Scan My Disk helps you visualize exactly what's in there so you can safely reclaim space.",
+      "System Data includes caches, logs, temp files, and system storage that Windows generates. Scan My Disk helps you visualize exactly what's in there so you can safely reclaim space.",
   },
 ] as const;
