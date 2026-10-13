@@ -4,7 +4,7 @@ import {generateKeyPairSync,createHash} from 'node:crypto';
 if(process.env.DATABASE_URL||process.env.DODO_PAYMENTS_API_KEY)throw new Error('Run this check only without real provider/database credentials.');
 process.env.DODO_PAYMENTS_API_KEY='fixture-not-a-real-key';process.env.DODO_PRODUCT_ID='pdt_fixture';process.env.DODO_PAYMENTS_ENV='test_mode';
 process.env.LICENSE_SIGNING_PRIVATE_KEY=generateKeyPairSync('rsa',{modulusLength:2048}).privateKey.export({format:'pem',type:'pkcs8'}).toString();
-const realFetch=globalThis.fetch;let activations=0,providerCalls=0;
+const realFetch=globalThis.fetch;let activations=0,providerCalls=0;const checkoutBodies=[];
 const payments=new Map([['pay_fixture',{payment_id:'pay_fixture',status:'succeeded',product_cart:[{product_id:'pdt_fixture'}],customer:{name:' Fixture Buyer '},metadata:{}}],['pay_other',{payment_id:'pay_other',status:'succeeded',product_cart:[{product_id:'pdt_other'}]}]]);
 const licenses=new Map([['lic_fixture',{id:'lic_fixture',key:'fixture-key',payment_id:'pay_fixture',product_id:'pdt_fixture',source:'auto',status:'active',activations_limit:1}],['lic_other',{id:'lic_other',key:'foreign-key',payment_id:'pay_other',product_id:'pdt_other',source:'auto',status:'active'}]]);
 payments.set('pay_zero',{payment_id:'pay_zero',status:'succeeded',total_amount:0,product_cart:[{product_id:'pdt_fixture'}],customer:{name:'Coupon Buyer',customer_id:'cus_zero'},metadata:{order_id:'order_zero'}});
@@ -16,6 +16,7 @@ globalThis.fetch=async(input,init)=>{
  const url=String(input);if(!url.startsWith('https://test.dodopayments.com/'))return realFetch(input,init);
  providerCalls++;
  const path=new URL(url).pathname;const body=init?.body?JSON.parse(init.body):{};
+ if(path==='/checkouts'){checkoutBodies.push(body);return Response.json({checkout_url:'https://test.checkout.dodopayments.com/session/cks_attribution',session_id:'cks_attribution'});}
  if(path==='/license_keys'){const query=new URL(url).searchParams;return Response.json({items:[...licenses.values()].filter(l=>l.product_id===query.get('product_id')&&(!query.get('customer_id')||l.customer_id===query.get('customer_id')))});}
  if(path==='/checkouts/cks_zero')return Response.json({id:'cks_zero',payment_id:'pay_zero',payment_status:'succeeded'});
  if(path.startsWith('/payments/'))return Response.json(payments.get(path.split('/').at(-1))??{}, {status:payments.has(path.split('/').at(-1))?200:404});
@@ -29,6 +30,23 @@ const server=await createServer({server:{middlewareMode:true},appType:'custom'})
 try{
  const dodo=await server.ssrLoadModule('/src/lib/dodo.ts'),license=await server.ssrLoadModule('/src/lib/license.ts');
  const db=await server.ssrLoadModule('/src/lib/db.ts'); const sql=await db.getSql();
+ await dodo.createDodoCheckout('datafast_visitor_id=12345678-1234-1234-1234-123456789abc');
+ assert.equal(checkoutBodies[0].metadata.datafast_visitor_id,'12345678-1234-1234-1234-123456789abc');
+ assert.equal(checkoutBodies[0].metadata.platform,'windows');
+ assert.ok(checkoutBodies[0].metadata.order_id);
+ await dodo.createDodoCheckout();
+ assert.equal(Object.hasOwn(checkoutBodies[1].metadata,'datafast_visitor_id'),false);
+ await dodo.createDodoCheckout('datafast_visitor_id=%ZZ');
+ assert.equal(Object.hasOwn(checkoutBodies[2].metadata,'datafast_visitor_id'),false);
+ const buyRoute=await server.ssrLoadModule('/src/routes/buy.ts');
+ const buyResponse=await buyRoute.Route.options.server.handlers.GET({request:new Request('https://example.test/buy',{headers:{cookie:'datafast_visitor_id=visitor-from-buy','x-forwarded-for':'fixture-buy'}})});
+ assert.equal(buyResponse.status,302);
+ assert.equal(checkoutBodies.at(-1).metadata.datafast_visitor_id,'visitor-from-buy');
+ assert.ok(buyResponse.headers.get('set-cookie').startsWith('smd_checkout='));
+ const checkoutRoute=await server.ssrLoadModule('/src/routes/api/checkout.ts');
+ const checkoutResponse=await checkoutRoute.Route.options.server.handlers.POST({request:new Request('https://example.test/api/checkout',{method:'POST',headers:{cookie:'datafast_visitor_id=visitor-from-api','x-forwarded-for':'fixture-api'}})});
+ assert.equal(checkoutResponse.status,200);
+ assert.equal(checkoutBodies.at(-1).metadata.datafast_visitor_id,'visitor-from-api');
  const checkoutToken='fixture-checkout-capability',checkoutHash=createHash('sha256').update(checkoutToken).digest('hex');
  await sql`insert into checkout_orders(id,access_hash,session_id) values ('order_zero',${checkoutHash},'cks_zero')`;
  await dodo.recoverCheckoutOrder('order_zero');

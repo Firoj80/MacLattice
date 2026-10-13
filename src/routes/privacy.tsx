@@ -64,6 +64,9 @@ function PrivacyPage() {
           We do not send your license key, purchase email, scanned files, or checkout
           order query parameters as analytics events. Website analytics is separate
           from local disk scanning in the Windows app.
+          We also pass the DataFast visitor identifier to Dodo Payments in checkout
+          metadata so completed payments can be attributed to referring websites
+          and marketing campaigns in DataFast.
         </p>
       </LegalSection>      <LegalSection title="5. Third-Party Services">
         <p>We use the following trusted third-party services:</p>

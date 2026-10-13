@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
+import { datafastPageUrl } from "@/lib/datafast-attribution";
 
 let clientPromise: Promise<Awaited<ReturnType<typeof import("datafast").initDataFast>>> | undefined;
 let lastPath: string | undefined;
@@ -20,7 +21,7 @@ export function WebsiteAnalytics() {
       if (cancelled || lastPath === pathname) return;
       lastPath = pathname;
       // Checkout query strings contain order identifiers; never track full URLs.
-      await client.trackPageview(pathname);
+      await client.trackScreen(pathname, { href: datafastPageUrl(window.location.href) });
     }).catch(() => {
       // Analytics failures must not interrupt checkout or the website.
       clientPromise = undefined;

@@ -2,7 +2,9 @@ export { verifyDodoSignature } from "@/lib/webhook-signature";
 import { randomBytes, randomUUID, createHash } from "node:crypto";
 import { getSql } from "@/lib/db";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
-export async function createDodoCheckout() {
+import { datafastVisitorId } from "@/lib/datafast-attribution";
+export async function createDodoCheckout(cookieHeader: string | null = null) {
+  const visitorId = datafastVisitorId(cookieHeader);
   const { product } = providerConfig(),
     id = randomUUID(),
     token = randomBytes(32).toString("base64url"),
@@ -12,7 +14,11 @@ export async function createDodoCheckout() {
   const session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
     product_cart: [{ product_id: product, quantity: 1 }],
     return_url: `https://www.scanmydisk.com/thanks?order_id=${id}`,
-    metadata: { order_id: id, platform: "windows" },
+    metadata: {
+      order_id: id,
+      platform: "windows",
+      ...(visitorId ? { datafast_visitor_id: visitorId } : {}),
+    },
   });
   if (new URL(session.checkout_url).protocol !== "https:") throw new Error("Invalid checkout URL.");
   await sql`update checkout_orders set session_id=${session.session_id} where id=${id}`;

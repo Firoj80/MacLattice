@@ -15,7 +15,7 @@ export const Route = createFileRoute("/api/checkout")({
             ))
           )
             return Response.json({ error: "too_many_requests" }, { status: 429 });
-          const s = await createDodoCheckout();
+          const s = await createDodoCheckout(request.headers.get("cookie"));
           return Response.json(
             { url: s.url, provider: "dodo" },
             { headers: { "Set-Cookie": s.cookie, "Cache-Control": "no-store" } },

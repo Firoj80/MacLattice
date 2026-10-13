@@ -15,7 +15,7 @@ export const Route = createFileRoute("/buy")({
             ))
           )
             return new Response("Please wait before trying again.", { status: 429 });
-          const s = await createDodoCheckout();
+          const s = await createDodoCheckout(request.headers.get("cookie"));
           return new Response(null, {
             status: 302,
             headers: { Location: s.url, "Set-Cookie": s.cookie, "Cache-Control": "no-store" },
