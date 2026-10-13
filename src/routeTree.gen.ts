@@ -27,6 +27,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiDodoWebhookRouteImport } from './routes/api/dodo/webhook'
 import { Route as ApiLicenseActivateRouteImport } from './routes/api/license/activate'
+import { Route as ApiLicenseConfigRouteImport } from './routes/api/license/config'
 import { Route as ApiLicenseDeactivateRouteImport } from './routes/api/license/deactivate'
 import { Route as ApiLicenseOrderRouteImport } from './routes/api/license/order'
 import { Route as ApiLicenseRecoverRouteImport } from './routes/api/license/recover'
@@ -122,6 +123,11 @@ const ApiLicenseActivateRoute = ApiLicenseActivateRouteImport.update({
   path: '/api/license/activate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiLicenseConfigRoute = ApiLicenseConfigRouteImport.update({
+  id: '/api/license/config',
+  path: '/api/license/config',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiLicenseDeactivateRoute = ApiLicenseDeactivateRouteImport.update({
   id: '/api/license/deactivate',
   path: '/api/license/deactivate',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/config': typeof ApiLicenseConfigRoute
   '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
@@ -186,6 +193,7 @@ export interface FileRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/config': typeof ApiLicenseConfigRoute
   '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
@@ -211,6 +219,7 @@ export interface FileRoutesById {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
+  '/api/license/config': typeof ApiLicenseConfigRoute
   '/api/license/deactivate': typeof ApiLicenseDeactivateRoute
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
+    | '/api/license/config'
     | '/api/license/deactivate'
     | '/api/license/order'
     | '/api/license/recover'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
+    | '/api/license/config'
     | '/api/license/deactivate'
     | '/api/license/order'
     | '/api/license/recover'
@@ -285,6 +296,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
+    | '/api/license/config'
     | '/api/license/deactivate'
     | '/api/license/order'
     | '/api/license/recover'
@@ -310,6 +322,7 @@ export interface RootRouteChildren {
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiDodoWebhookRoute: typeof ApiDodoWebhookRoute
   ApiLicenseActivateRoute: typeof ApiLicenseActivateRoute
+  ApiLicenseConfigRoute: typeof ApiLicenseConfigRoute
   ApiLicenseDeactivateRoute: typeof ApiLicenseDeactivateRoute
   ApiLicenseOrderRoute: typeof ApiLicenseOrderRoute
   ApiLicenseRecoverRoute: typeof ApiLicenseRecoverRoute
@@ -444,6 +457,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLicenseActivateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/license/config': {
+      id: '/api/license/config'
+      path: '/api/license/config'
+      fullPath: '/api/license/config'
+      preLoaderRoute: typeof ApiLicenseConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/license/deactivate': {
       id: '/api/license/deactivate'
       path: '/api/license/deactivate'
@@ -494,6 +514,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiDodoWebhookRoute: ApiDodoWebhookRoute,
   ApiLicenseActivateRoute: ApiLicenseActivateRoute,
+  ApiLicenseConfigRoute: ApiLicenseConfigRoute,
   ApiLicenseDeactivateRoute: ApiLicenseDeactivateRoute,
   ApiLicenseOrderRoute: ApiLicenseOrderRoute,
   ApiLicenseRecoverRoute: ApiLicenseRecoverRoute,

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { JoinShell } from "@/components/signup/join-shell";
 import { pageHead } from "@/lib/seo";
+import { startInstallerDownload } from "@/lib/installer-download";
 export const Route = createFileRoute("/thanks")({
   component: ThanksPage,
   head: () =>
@@ -45,6 +46,7 @@ function ThanksPage() {
           setKey(d.license_key);
           setDownload(d.installer_url ?? null);
           setMessage("Your payment and license have been verified.");
+          if (d.installer_url) startInstallerDownload(id, d.license_key, d.installer_url);
           return;
         }
         setMessage("Waiting for payment confirmation and your license. This can take a moment.");
@@ -84,12 +86,16 @@ function ThanksPage() {
               {copied ? "Copied" : "Copy key"}
             </button>
             {download ? (
+              <>
+              <p className="mt-4 text-sm text-muted">Your download should start automatically. If it does not, use the button below.</p>
               <a
                 href={download}
+                download="ScanMyDisk-Setup-x64.exe"
                 className="mt-4 flex min-h-11 items-center justify-center rounded-xl bg-primary px-4 font-semibold text-primary-fg"
               >
                 Download Windows installer
               </a>
+              </>
             ) : (
               <p className="mt-4 text-sm text-muted">
                 The Windows installer download will appear here once the release is available.
