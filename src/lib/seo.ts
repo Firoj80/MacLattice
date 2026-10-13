@@ -11,7 +11,7 @@ export const TWITTER_TITLE = "Scan My Disk — Windows disk analyzer";
 export const TWITTER_DESCRIPTION =
   "See exactly what's taking up space on your PC. $5 lifetime. No subscription.";
 
-export const OG_IMAGE_ALT = "Scan My Disk logo — Windows disk analyzer, $5 lifetime";
+export const OG_IMAGE_ALT = "Scan My Disk for Windows showing a real Windows system-folder scan in its disk usage treemap";
 
 export function absUrl(path = "/") {
   if (path.startsWith("http")) return path;
@@ -21,7 +21,7 @@ export function absUrl(path = "/") {
 }
 
 export function ogImage() {
-  return absUrl("/og.jpg");
+  return absUrl("/windows-share-preview.png");
 }
 
 export function pageHead({
@@ -58,7 +58,7 @@ export function pageHead({
       { property: "og:image", content: image },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:alt", content: OG_IMAGE_ALT },
       { property: "og:type", content: type },
       { name: "twitter:card", content: "summary_large_image" },
@@ -89,7 +89,7 @@ export function softwareJsonLd() {
         description:
           "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space, with interactive visualisations.",
         screenshot: ogImage(),
-        softwareVersion: "1.0",
+        softwareVersion: "0.1.5",
         featureList: [
           "Interactive treemap visualization",
           "Fast disk scanning",

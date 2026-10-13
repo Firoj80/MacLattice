@@ -76,13 +76,13 @@ function Hero() {
       </div>
       <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
         <img
-          src="/join-disk.webp"
-          alt="Scan My Disk treemap"
-          width={1400}
-          height={788}
+          src="/windows-real-scan.png"
+          alt="Actual Scan My Disk Windows app displaying a real System32 disk usage scan"
+          width={1680}
+          height={882}
           fetchPriority="high"
           decoding="async"
-          className="aspect-[16/10] w-full object-cover object-top"
+          className="h-auto w-full"
         />
       </div>
     </section>

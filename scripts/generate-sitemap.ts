@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.resolve(__dirname, "../public");
 
-const BASE_URL = "https://scanmydisk.com";
+const BASE_URL = "https://www.scanmydisk.com";
 
 const staticRoutes = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
