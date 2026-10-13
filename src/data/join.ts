@@ -1,43 +1,43 @@
 export const JOIN_VIEWS = [
   {
     name: "Folders",
-    body: "Walk folder by folder, sized as you go, the way a Mac actually stores things.",
-    image: "/join-disk.webp",
+    body: "Browse folder cards with their sizes and item counts, then open a folder to explore deeper.",
+    image: "/windows-views/folders.png",
   },
   {
     name: "Sunburst",
     body: "Rings radiating from the scan root so nested weight is obvious at a glance.",
-    image: "/view-sunburst.webp",
+    image: "/windows-views/sunburst.png",
   },
   {
     name: "Flame",
-    body: "Depth top to bottom, size left to right — a heat map of what is heavy.",
-    image: "/view-flame.webp",
+    body: "Follow stacked folder levels, with wider blocks showing where more disk space is used.",
+    image: "/windows-views/flame.png",
   },
   {
     name: "Bubbles",
-    body: "Nested bubbles, one per folder, so outliers pop before you click anything.",
-    image: "/view-bubbles.webp",
+    body: "Compare relative sizes with nested circles. Large circles make the biggest items stand out.",
+    image: "/windows-views/bubbles.png",
   },
   {
     name: "Mind Map",
-    body: "Branches from the root, weighted by size, for people who think in trees.",
-    image: "/view-mind.webp",
+    body: "Follow branches from your scan root, with dots and links showing relative storage weight.",
+    image: "/windows-views/mind-map.png",
   },
   {
     name: "Top Sizes",
     body: "The biggest items, ranked. Skip the hunt and start with the worst offenders.",
-    image: "/feature-uninstaller.webp",
+    image: "/windows-views/top-sizes.png",
   },
   {
     name: "Age Map",
-    body: "Where your bytes sit on a timeline. Surface large files you have not opened in a year.",
-    image: "/join-compare.webp",
+    body: "Group storage by last-modified date and review large, older files. Age reflects modification, not last access.",
+    image: "/windows-views/age-map.png",
   },
   {
     name: "Treemap",
-    body: "Every file as a rectangle, sized by bytes. The classic map, still the fastest read.",
-    image: "/join-disk.webp",
+    body: "See nested files and folders as rectangles sized by disk usage. Select a block to inspect it.",
+    image: "/windows-views/treemap.png",
   },
 ] as const;
 

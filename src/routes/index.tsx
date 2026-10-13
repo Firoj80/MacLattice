@@ -148,49 +148,54 @@ function Hogs() {
 
 const FEATURE_TABS = [
   {
-    id: "uninstaller",
-    label: "App uninstaller",
-    title: "Remove apps and everything they left behind",
-    body: "Deleting an app leaves its containers, caches and preference files behind. Scan My Disk finds them and removes the lot.",
-    image: "/feature-uninstaller.webp",
-    alt: "Scan My Disk app uninstaller",
-  },
-  {
-    id: "leftovers",
-    label: "Leftover cleanup",
-    title: "Clear what deleted apps left behind",
-    body: "Dragging an app to the Bin does not touch Application Support, containers, or preferences. Scan My Disk lists the orphans so you can review them and move them to the Trash.",
-    image: "/join-presets.webp",
-    alt: "Scan My Disk leftover cleanup",
-  },
-  {
     id: "treemap",
     label: "Storage map",
-    title: "Every folder, drawn to scale",
-    body: "The disk space analyzer draws the drive as a map. Every folder is a block sized by the space it uses, so the biggest problems are the biggest shapes. Click a block to go deeper.",
-    image: "/join-disk.webp",
-    alt: "Scan My Disk storage map",
+    title: "See exactly where your disk space goes",
+    body: "Scan your full PC, your home folder, or a folder you choose. Explore a map sized by disk usage, inspect individual files, and review selected items in Cleanup Queue before removing them.",
+    image: "/windows-views/treemap.png",
+    alt: "Scan My Disk for Windows showing a real System32 scan in Treemap view",
+    caption: "Actual Windows app · real System32 scan",
   },
   {
-    id: "search",
-    label: "Search",
-    title: "Find a file faster than Finder",
-    body: "Search the whole scan by name in seconds, including the Library folders Finder hides. Filter to large files, disk images, archives, and developer junk.",
-    image: "/feature-search.webp",
-    alt: "Scan My Disk search",
+    id: "uninstaller",
+    label: "Applications",
+    title: "Manage installed Windows applications",
+    body: "Browse installed apps with their icons and reported sizes. For supported apps, launch the Windows or vendor uninstaller and choose whether to keep app data or review selected leftovers for removal.",
+    image: "/windows-features/applications.png",
+    alt: "Scan My Disk Windows Applications screen with installed app icons and uninstall controls",
+    caption: "Actual Windows app · installed applications",
+  },
+  {
+    id: "duplicates",
+    label: "Duplicates",
+    title: "Find matching copies. Choose what to keep.",
+    body: "Find identical files in your scan and see their potential savings. Choose a copy to keep, then review the remaining copies in Cleanup Queue before taking action.",
+    image: "/windows-features/duplicates.png",
+    alt: "Actual Scan My Disk duplicate review interface with an example matching file group",
+    caption: "Actual Windows app · example duplicate group",
+  },
+  {
+    id: "snapshots",
+    label: "Snapshots",
+    title: "See how your folders change over time",
+    body: "Save a scan snapshot and compare earlier and later scans of the same location. See which folders grew or shrank. Snapshots record scan information; they are not backups of your files.",
+    image: "/windows-features/snapshots.png",
+    alt: "Actual Scan My Disk snapshot comparison interface with example saved scans",
+    caption: "Actual Windows app · example snapshot comparison",
   },
   {
     id: "monitor",
     label: "Live monitor",
     title: "See what is using the PC right now",
-    body: "Watch CPU load, memory pressure, and network activity while a heavy build is running, so you can tell what is actually slowing the machine down.",
-    image: "/monitoring.webp",
-    alt: "Scan My Disk live monitor",
+    body: "Watch CPU usage, memory, network activity, and free space on your system drive. Search the process list and sort by CPU or memory to see what is using your PC right now.",
+    image: "/windows-features/monitor.png",
+    alt: "Scan My Disk Windows Monitor showing live CPU, memory, network, and system drive metrics",
+    caption: "Actual Windows app · live system monitor",
   },
 ] as const;
 
 function ScanSeeClear() {
-  const [active, setActive] = useState<(typeof FEATURE_TABS)[number]["id"]>("uninstaller");
+  const [active, setActive] = useState<(typeof FEATURE_TABS)[number]["id"]>("treemap");
   const panel = FEATURE_TABS.find((tab) => tab.id === active) ?? FEATURE_TABS[0];
 
   return (
@@ -201,7 +206,7 @@ function ScanSeeClear() {
             Scan. See. Clear.
           </h2>
           <p className="text-lg text-white/60">
-            Every clean-up tool in {SITE.name}, for one payment of {SITE.lifetimePrice}.
+            Explore your storage, review cleanup, and keep track of your Windows PC.
           </p>
         </div>
         <div
@@ -219,8 +224,19 @@ function ScanSeeClear() {
                 type="button"
                 aria-selected={selected}
                 aria-controls={`panel-${tab.id}`}
+                tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(tab.id)}
-                className={`inline-flex flex-none items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium ${
+                onKeyDown={(event) => {
+                  const current = FEATURE_TABS.findIndex((item) => item.id === active);
+                  const next = event.key === "ArrowRight" ? (current + 1) % FEATURE_TABS.length
+                    : event.key === "ArrowLeft" ? (current + FEATURE_TABS.length - 1) % FEATURE_TABS.length
+                      : event.key === "Home" ? 0 : event.key === "End" ? FEATURE_TABS.length - 1 : -1;
+                  if (next < 0) return;
+                  event.preventDefault();
+                  setActive(FEATURE_TABS[next].id);
+                  document.getElementById(`tab-${FEATURE_TABS[next].id}`)?.focus();
+                }}
+                className={`inline-flex min-h-11 flex-none items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   selected
                     ? "border-white bg-white text-black"
                     : "border-white/10 bg-white/[0.03] text-white/70 hover:border-white/20 hover:text-white"
@@ -243,15 +259,22 @@ function ScanSeeClear() {
             </h3>
             <p className="text-base leading-relaxed text-white/60 md:text-lg">{panel.body}</p>
           </div>
-          <div className="order-1 overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl lg:order-2">
+          <figure className="order-1 overflow-hidden rounded-xl border border-border bg-surface lg:order-2">
             <img
+              key={panel.id}
               src={panel.image}
               alt={panel.alt}
-              width={1400}
-              height={788}
+              width={1680}
+              height={panel.id === "treemap" ? 882 : 1050}
+              loading="lazy"
+              decoding="async"
               className="h-auto w-full"
             />
-          </div>
+            <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-border px-4 py-3 text-xs text-muted">
+              <span>{panel.caption}</span>
+              <a href={panel.image} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-fg underline underline-offset-4">View full screenshot</a>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -342,20 +365,23 @@ function Views() {
         <h2 className="mb-10 max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
           One scan. Eight ways to read it.
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <p className="mb-8 max-w-2xl text-base text-muted">Eight views from the same real Windows scan. Follow folder structure, spot the largest files, or explore storage by modification date.</p>
+        <div className="grid gap-6 sm:grid-cols-2">
           {JOIN_VIEWS.map((view) => (
             <article key={view.name} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
               <img
                 src={view.image}
                 alt={`${view.name} in ${SITE.name}`}
-                width={700}
-                height={394}
+                width={1680}
+                height={882}
                 loading="lazy"
-                className="aspect-video w-full object-cover object-top"
+                decoding="async"
+                className="h-auto w-full"
               />
               <div className="p-5">
                 <h3 className="font-semibold text-white">{view.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/55">{view.body}</p>
+                <a href={view.image} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center text-sm text-fg underline underline-offset-4" aria-label={`View full ${view.name} screenshot`}>View full screenshot</a>
               </div>
             </article>
           ))}
