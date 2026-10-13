@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { BlogCta } from "@/components/blog-cta";
 import { JsonLd } from "@/components/json-ld";
@@ -12,6 +12,13 @@ import { formatDate } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
+    if (params.slug === "grandperspective-vs-dissectmac") {
+      throw redirect({
+        to: "/blog/$slug",
+        params: { slug: "grandperspective-vs-scanmydisk" },
+        statusCode: 301,
+      });
+    }
     const post = getPost(params.slug);
     if (!post) throw notFound();
     return { post, related: relatedPosts(params.slug) };

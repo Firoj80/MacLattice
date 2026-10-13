@@ -3,7 +3,7 @@ export const BLOG_SEO: Record<string, { description: string }> = {
     description:
       "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, Scan My Disk & more on M1/M2/M3. See which disk analyzer wins →",
   },
-  "grandperspective-vs-dissectmac": {
+  "grandperspective-vs-scanmydisk": {
     description:
       "GrandPerspective is free but feels dated on Apple Silicon Macs. Compare speed, UI & features with a modern alternative. Both are free →",
   },

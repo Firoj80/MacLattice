@@ -16,12 +16,12 @@ export const OG_IMAGE_ALT = "Scan My Disk for Windows showing a real Windows sys
 export function absUrl(path = "/") {
   if (path.startsWith("http")) return path;
   const base = SITE.origin.replace(/\/$/, "");
-  if (path === "/") return base;
+  if (path === "/") return `${base}/`;
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function ogImage() {
-  return absUrl("/windows-share-preview.png?v=2");
+  return absUrl("/scanmydisk-preview.jpg");
 }
 
 export function pageHead({
@@ -56,15 +56,21 @@ export function pageHead({
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "en_US" },
       { property: "og:image", content: image },
+      { property: "og:image:secure_url", content: image },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:alt", content: OG_IMAGE_ALT },
       { property: "og:type", content: type },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@scanmydisk" },
+      { name: "twitter:creator", content: "@scanmydisk" },
+      { name: "twitter:domain", content: "scanmydisk.com" },
+      { name: "twitter:url", content: url },
       { name: "twitter:title", content: type === "article" ? socialTitle : TWITTER_TITLE },
       { name: "twitter:description", content: type === "article" ? description : TWITTER_DESCRIPTION },
       { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
       ...(published ? [{ property: "article:published_time", content: published }] : []),
     ],
     links: [{ rel: "canonical", href: url }],
