@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import appCss from "../styles.css?url";
+import { WebsiteAnalytics } from "@/components/website-analytics";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -35,6 +36,7 @@ export const Route = createRootRoute({
       </head>
       <body className="bg-bg font-sans text-fg antialiased">
         <Outlet />
+        <WebsiteAnalytics />
         <Scripts />
       </body>
     </html>

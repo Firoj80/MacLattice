@@ -9,14 +9,14 @@ export const Route = createFileRoute("/privacy")({
     pageHead({
       title: "Privacy Policy | Scan My Disk",
       description:
-        "Scan My Disk privacy policy. Your files never leave your Mac — all scanning happens 100% locally.",
+        "Scan My Disk privacy policy. Your files never leave your Windows PC — all scanning happens 100% locally.",
       path: "/privacy",
     }),
 });
 
 function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="January 24, 2026">
+    <LegalPage title="Privacy Policy" updated="October 13, 2026">
       <LegalSection title="1. Introduction">
         <p>
           {SITE.name} ("we", "us", or "our") respects your
@@ -33,21 +33,21 @@ function PrivacyPage() {
             privacy is baked into the app by design.
           </p>
           <p>
-            <strong>Local Files:</strong> Your files never leave your Mac. We only analyze
+            <strong>Local Files:</strong> Your files never leave your Windows PC. We only analyze
             metadata (like size and type) locally to provide visualizations, without ever
             accessing the content of your documents.
           </p>
         </div>
       </LegalSection>
       <LegalSection title="3. Data We Collect">
-        <p>We may collect minimal usage data to handle subscriptions and license validation:</p>
+        <p>We may collect minimal usage data to handle purchases and license validation:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5">
           <li>
             <strong>Payment Information:</strong> Processed securely by our payment
             provider (Dodo Payments). We do not store your credit card details.
           </li>
           <li>
-            <strong>License Keys:</strong> To validate your Pro subscription.
+            <strong>License Keys:</strong> To validate your lifetime license.
           </li>
           <li>
             <strong>Email Address:</strong> Used for sending license keys and critical
@@ -55,44 +55,25 @@ function PrivacyPage() {
           </li>
         </ul>
       </LegalSection>
-      <LegalSection title="4. Error & Crash Reporting">
+      <LegalSection title="4. Website Analytics">
         <p>
-          To improve the reliability of {SITE.name}, we use Sentry.io for automated crash
-          reporting. We have implemented strict, device-level protections to ensure your
-          privacy:
+          We use DataFast to understand website visits and navigation. Its SDK processes
+          page paths, referring websites, browser and device information, and visitor
+          and session identifiers stored in your browser. Analytics requests also
+          expose network information such as your IP address to the service.
+          We do not send your license key, purchase email, scanned files, or checkout
+          order query parameters as analytics events. Website analytics is separate
+          from local disk scanning in the Windows app.
         </p>
-        <ul className="mt-2 list-disc space-y-2 pl-5">
-          <li>
-            <strong>Zero-PII Policy:</strong> We do not collect personal names, email
-            addresses, or IP addresses in crash reports.
-          </li>
-          <li>
-            <strong>Local Scrubbing:</strong> All sensitive data is sanitized directly on
-            your device before it ever reaches the cloud.
-          </li>
-          <li>
-            <strong>Path Anonymization:</strong> We automatically redact folder names and
-            usernames in file paths (e.g.,{" "}
-            <code className="rounded bg-primary/8 px-1 text-primary">
-              /Users/[redacted]/...
-            </code>
-            ) so your private folder structure remains anonymous.
-          </li>
-          <li>
-            <strong>Minimal Footprint:</strong> We do not use Sentry for session tracking,
-            performance monitoring, or device identification.
-          </li>
-        </ul>
-      </LegalSection>
-      <LegalSection title="5. Third-Party Services">
+      </LegalSection>      <LegalSection title="5. Third-Party Services">
         <p>We use the following trusted third-party services:</p>
         <ul className="mt-2 list-disc space-y-2 pl-5">
           <li>
-            <strong>Dodo Payments:</strong> For payment processing and subscription
+            <strong>Dodo Payments:</strong> For payment processing and license
             management.
           </li>
           <li>
-            <strong>Sentry.io:</strong> For anonymous crash reporting and error tracking.
+            <strong>DataFast:</strong> For website traffic and navigation analytics.
           </li>
         </ul>
       </LegalSection>
@@ -108,3 +89,4 @@ function PrivacyPage() {
     </LegalPage>
   );
 }
+
