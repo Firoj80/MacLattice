@@ -1,3 +1,5 @@
+import { reviewBody } from "./review-post.ts";
+
 export type BlogPost = {
   slug: string;
   author: string;
@@ -9,6 +11,16 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "scan-my-disk-windows-disk-space-analyzer",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title: "Scan My Disk Review: A $5 Windows Disk Space Analyzer That Makes You Look Before You Delete",
+    tags: ["Windows", "Review", "Disk Analyzer", "Cleanup"],
+    excerpt:
+      "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
+    body: reviewBody,
+  },
   {
     "slug": "android-emulator-cleanup",
     "author": "Kapil",

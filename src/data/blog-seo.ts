@@ -1,4 +1,9 @@
-export const BLOG_SEO: Record<string, { description: string }> = {
+export const BLOG_SEO: Record<string, { description: string; title?: string }> = {
+  "scan-my-disk-windows-disk-space-analyzer": {
+    title: "Scan My Disk Review: $5 Windows Disk Space Analyzer (2026)",
+    description:
+      "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
+  },
   "daisydisk-alternatives": {
     description:
       "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, Scan My Disk & more on M1/M2/M3. See which disk analyzer wins →",
@@ -67,4 +72,8 @@ export const BLOG_SEO: Record<string, { description: string }> = {
 
 export function blogSeoDescription(slug: string, fallback: string) {
   return BLOG_SEO[slug]?.description ?? fallback;
+}
+
+export function blogSeoTitle(slug: string, fallback: string) {
+  return BLOG_SEO[slug]?.title ?? fallback;
 }

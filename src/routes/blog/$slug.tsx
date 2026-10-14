@@ -4,7 +4,7 @@ import { BlogCta } from "@/components/blog-cta";
 import { JsonLd } from "@/components/json-ld";
 import { MarkdownBody } from "@/components/markdown-body";
 import { SiteShell } from "@/components/site-shell";
-import { blogSeoDescription } from "@/data/blog-seo";
+import { blogSeoDescription, blogSeoTitle } from "@/data/blog-seo";
 import { getPost, relatedPosts } from "@/data/blog";
 import { SITE } from "@/data/site";
 import { blogPostingJsonLd, pageHead } from "@/lib/seo";
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const { post } = loaderData;
     const description = blogSeoDescription(post.slug, post.excerpt);
     return pageHead({
-      title: `${post.title} | ${SITE.name}`,
+      title: blogSeoTitle(post.slug, `${post.title} | ${SITE.name}`),
       description,
       path: `/blog/${post.slug}`,
       type: "article",
