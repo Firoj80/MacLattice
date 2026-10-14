@@ -20,7 +20,7 @@ To test it, I scanned \`C:\\Windows\\system32\`. It counted 14,979 files across 
 
 What I do like is that the app admits what it could not read. The scan header says "19 read errors; sizes may be incomplete." Protected folders exist, and a tool that quietly shows you a smaller number than the real one is worse than one that tells you.
 
-![Scan My Disk scanning C:\\Windows\\system32, with 14,979 files drawn as a treemap](/blog/review/treemap.webp)
+![Scan My Disk scanning C:\\Windows\\system32, with 14,979 files drawn as a treemap](/blog/review/treemap.jpg)
 
 ## 2. Eight views of the same scan
 
@@ -28,23 +28,23 @@ One scan gives you eight ways to look at the result. They are Treemap, Folders, 
 
 Treemap is the one most people will live in. Every file and folder is a rectangle sized by disk usage, so the big blocks are obviously the problem. In my system32 scan, DriverStore was the largest block by a wide margin.
 
-![Treemap view of C:\\Windows\\system32 in Scan My Disk](/blog/review/treemap.webp)
+![Treemap view of C:\\Windows\\system32 in Scan My Disk](/blog/review/treemap.jpg)
 
 Folders is the plainest view. It shows cards with sizes and item counts. DriverStore was 1.52 GB across 2,556 files, and winevt was 255 MB.
 
-![Folders view showing DriverStore at 1.52 GB and winevt at 255 MB](/blog/review/folders.webp)
+![Folders view showing DriverStore at 1.52 GB and winevt at 255 MB](/blog/review/folders.jpg)
 
 Flame stacks folder levels, so you can see that DriverStore and FileRepository are both 1.52 GB. That tells you one is inside the other, which a treemap does not make as obvious.
 
-![Flame view of system32, with DriverStore and FileRepository stacked](/blog/review/flame.webp)
+![Flame view of system32, with DriverStore and FileRepository stacked](/blog/review/flame.jpg)
 
 Sunburst, Bubbles, and Mind Map show the same hierarchy as rings, circles, and branches. I will be honest: they look great, and I find myself starting with Treemap or Top Sizes anyway. Some people think in circles, though, and the option is there.
 
-![Sunburst view of the system32 scan](/blog/review/sunburst.webp)
+![Sunburst view of the system32 scan](/blog/review/sunburst.jpg)
 
-![Bubbles view of the system32 scan](/blog/review/bubbles.webp)
+![Bubbles view of the system32 scan](/blog/review/bubbles.jpg)
 
-![Mind Map view of the system32 scan](/blog/review/mind-map.webp)
+![Mind Map view of the system32 scan](/blog/review/mind-map.jpg)
 
 ## 3. Top Sizes: skip the hunt
 
@@ -54,7 +54,7 @@ In my scan the top entries were MRT.exe at 139 MB and BucketConfidenceData.cab a
 
 A small detail I appreciate: the page notes that sizes are allocated bytes, and that folder totals include their contents and can overlap other rows. That saves you from adding numbers up and getting confused.
 
-![Top Sizes listing the largest files under system32, with Stage buttons](/blog/review/top-sizes.webp)
+![Top Sizes listing the largest files under system32, with Stage buttons](/blog/review/top-sizes.jpg)
 
 ## 4. Age Map: how old are these bytes?
 
@@ -62,7 +62,7 @@ Age Map groups storage by last-modified date. For system32 it showed 324 MB (117
 
 On a user folder, this view is how you find the large, old files you forgot about. One caveat, and the app says it too: age here means last modified, not last opened. A file you open every week but never edit will still look old.
 
-![Age Map grouping system32 files by last modified date](/blog/review/age-map.webp)
+![Age Map grouping system32 files by last modified date](/blog/review/age-map.jpg)
 
 ## 5. Duplicates
 
@@ -72,7 +72,7 @@ My demo folder had one duplicate group, two copies of a 1 MB file, for 1 MB of p
 
 Matching is content-based and runs on your PC.
 
-![Duplicates tab showing two copies of Asset 1.bin and 1 MB of potential savings](/blog/review/duplicates.webp)
+![Duplicates tab showing two copies of Asset 1.bin and 1 MB of potential savings](/blog/review/duplicates.jpg)
 
 ## 6. Applications and leftover files
 
@@ -80,7 +80,7 @@ The Applications tab lists installed programs with their reported size. On the t
 
 Select an app and you can uninstall it. The app lets you back up selected app data, or send leftovers to the Recycle Bin, after the uninstall finishes. It also lists "user data candidates", which are folders whose names match the app. The wording there is careful: these are suspected app data, not proof of ownership or junk, so you review each path before staging it. I like that it does not pretend to be certain.
 
-![Applications tab with Microsoft OneDrive selected and an Uninstall button](/blog/review/applications.webp)
+![Applications tab with Microsoft OneDrive selected and an Uninstall button](/blog/review/applications.jpg)
 
 ## 7. Snapshots: what grew since last month?
 
@@ -88,13 +88,13 @@ Save a scan as a snapshot, then compare two dates for the same folder or drive. 
 
 In my demo, a folder went from 40 MB to 50 MB, and the table pointed straight at Downloads, up 10 MB. On a real machine, this is how you find the folder that quietly adds a few gigabytes every month.
 
-![Snapshots comparison showing Downloads grew by 10 MB](/blog/review/snapshots.webp)
+![Snapshots comparison showing Downloads grew by 10 MB](/blog/review/snapshots.jpg)
 
 ## 8. Monitor
 
 The Monitor tab shows live CPU, memory, network speed, and free space on the system drive, refreshing every 2 seconds. Below that is a process list you can search and sort. It is not trying to replace Task Manager, but it is handy to have next to the disk view when something is slow and you are not sure if the culprit is storage or a runaway process.
 
-![Monitor tab with CPU, memory, network, free space, and a process list](/blog/review/monitor.webp)
+![Monitor tab with CPU, memory, network, free space, and a process list](/blog/review/monitor.jpg)
 
 ## The cleanup queue
 
