@@ -97,7 +97,7 @@ export function softwareJsonLd() {
         description:
           "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space, with interactive visualisations.",
         screenshot: ogImage(),
-        softwareVersion: "0.1.6",
+        softwareVersion: "0.1.7",
         featureList: [
           "Interactive treemap visualization",
           "Fast disk scanning",
