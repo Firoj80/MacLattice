@@ -28,6 +28,11 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Inter:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap",
       },
     ],
+    scripts: [
+      {
+        children: `(function(){var k="smd-chunk-reload";window.addEventListener("vite:preloadError",function(e){e.preventDefault();try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(err){}location.reload()})})();`,
+      },
+    ],
   }),
   component: () => (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>

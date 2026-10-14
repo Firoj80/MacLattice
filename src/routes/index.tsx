@@ -498,9 +498,24 @@ function Views() {
 
 function Guides() {
   const cards = [
-    ["Uninstall", "Uninstall apps properly", "Remove an app and the residual caches it leaves behind in AppData.", "/blog"],
-    ["Free up space", "Free up space on Windows", "Caches, temp downloads, old installer backups and developer junk.", "/blog"],
-    ["System Storage", "Inspect System Data", "What the hidden Windows folders hold, and how to shrink them.", "/blog"],
+    {
+      kicker: "Uninstall",
+      title: "Uninstall apps properly",
+      body: "Remove an app and the residual caches it leaves behind.",
+      slug: "delete-hidden-caches",
+    },
+    {
+      kicker: "Free up space",
+      title: "Free up space",
+      body: "Where a full disk actually goes, and how to get the space back.",
+      slug: "beginner-mac-cleanup",
+    },
+    {
+      kicker: "System Data",
+      title: "Inspect System Data",
+      body: "What the hidden system folders hold, and which ones you can delete.",
+      slug: "system-data-mystery",
+    },
   ];
   return (
     <section className="border-t border-white/10 px-6 py-20 md:py-24">
@@ -508,15 +523,16 @@ function Guides() {
         <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Guides &amp; Articles</p>
         <h2 className="mb-8 text-3xl font-bold tracking-tight text-white sm:text-4xl">Storage optimization guides</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map(([kicker, title, body, href]) => (
+          {cards.map((card) => (
             <Link
-              key={title}
-              to={href}
+              key={card.slug}
+              to="/blog/$slug"
+              params={{ slug: card.slug }}
               className="glass-card group block rounded-2xl p-5 transition-all duration-200"
             >
-              <p className="text-xs font-semibold tracking-wider text-sky-400 uppercase">{kicker}</p>
-              <h3 className="mt-2 font-semibold text-white group-hover:text-sky-300">{title}</h3>
-              <p className="mt-2 text-sm text-muted">{body}</p>
+              <p className="text-xs font-semibold tracking-wider text-sky-400 uppercase">{card.kicker}</p>
+              <h3 className="mt-2 font-semibold text-white group-hover:text-sky-300">{card.title}</h3>
+              <p className="mt-2 text-sm text-muted">{card.body}</p>
             </Link>
           ))}
         </div>

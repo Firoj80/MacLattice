@@ -27,15 +27,16 @@ function generateSitemap() {
   for (const route of staticRoutes) {
     xml += `  <url>\n`;
     xml += `    <loc>${BASE_URL}${route.path === "/" ? "" : route.path}</loc>\n`;
+    xml += `    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n`;
     xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
     xml += `    <priority>${route.priority.toFixed(1)}</priority>\n`;
     xml += `  </url>\n`;
   }
 
-  // Add dynamic blog posts
   for (const post of posts) {
     xml += `  <url>\n`;
     xml += `    <loc>${BASE_URL}/blog/${post.slug}</loc>\n`;
+    xml += `    <lastmod>${post.date}</lastmod>\n`;
     xml += `    <changefreq>monthly</changefreq>\n`;
     xml += `    <priority>0.8</priority>\n`;
     xml += `  </url>\n`;

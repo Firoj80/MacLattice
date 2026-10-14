@@ -18,6 +18,9 @@ export const FOOTER_PRODUCT: NavItem[] = [
   { to: "/", hash: "pricing", label: "Pricing" },
   { href: "/buy", label: "Buy licence" },
   { to: "/blog", label: "Blog" },
+  { href: "/blog/delete-hidden-caches", label: "Uninstall leftovers" },
+  { href: "/blog/beginner-mac-cleanup", label: "Free up space" },
+  { href: "/blog/system-data-mystery", label: "System Data" },
   { to: "/license", label: "Downloads & licence recovery" },
 ];
 
