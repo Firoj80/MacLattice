@@ -1,7 +1,25 @@
+import { useEffect } from "react";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { TriangleAlert } from "lucide-react";
 
+function isStaleChunk(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error ?? "");
+  return /dynamically imported module|Importing a module script failed|Failed to fetch/i.test(message);
+}
+
 export function AppErrorComponent({ error }: ErrorComponentProps) {
+  useEffect(() => {
+    if (!isStaleChunk(error)) return;
+    const key = "smd-chunk-reload";
+    try {
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, "1");
+    } catch {
+      return;
+    }
+    window.location.reload();
+  }, [error]);
+
   return (
     <main
       className={

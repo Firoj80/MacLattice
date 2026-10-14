@@ -1,5 +1,43 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "scanmydisk.com" }],
+      "destination": "https://www.scanmydisk.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/pay",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/#pricing",
+      "permanent": true
+    },
+    {
+      "source": "/signup",
+      "destination": "/buy",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/buy",
+      "permanent": true
+    }
+  ],
   "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/(.*)\\.(webp|png|jpg|jpeg|svg|ico|woff2)",
       "headers": [

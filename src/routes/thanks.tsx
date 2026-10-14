@@ -12,6 +12,7 @@ export const Route = createFileRoute("/thanks")({
       title: "Your purchase | Scan My Disk",
       description: "Verify your purchase and receive your Windows license.",
       path: "/thanks",
+      index: false,
     }),
 });
 

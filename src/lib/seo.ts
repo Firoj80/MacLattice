@@ -33,6 +33,7 @@ export function pageHead({
   type = "website",
   published,
   ogTitle,
+  index = true,
 }: {
   title: string;
   description: string;
@@ -40,18 +41,25 @@ export function pageHead({
   type?: "website" | "article";
   published?: string;
   ogTitle?: string;
+  index?: boolean;
 }) {
   const url = absUrl(path);
   const image = ogImage();
   const socialTitle = ogTitle ?? title;
+  const robots = index ? "index, follow" : "noindex, nofollow";
 
   return {
     meta: [
       { title },
       { name: "description", content: description },
       { name: "author", content: SITE.name },
-      { name: "robots", content: "index, follow" },
-      { name: "googlebot", content: "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" },
+      { name: "robots", content: robots },
+      {
+        name: "googlebot",
+        content: index
+          ? "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+          : "noindex, nofollow",
+      },
       { property: "og:title", content: socialTitle },
       { property: "og:description", content: description },
       { property: "og:url", content: url },
