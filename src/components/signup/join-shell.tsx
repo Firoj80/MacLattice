@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { HeaderBuy } from "@/components/header-buy";
 import { BrandMark } from "@/components/brand";
+import { CodeHypeBadge } from "@/components/codehype-badge";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, MAIN_NAV, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
 
@@ -85,6 +86,7 @@ function JoinFooter() {
         <div>
           <BrandMark size="sm" />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">{SITE.tagline}</p>
+          <CodeHypeBadge />
         </div>
         <div>
           <h4 className="mb-3 text-sm font-semibold text-fg">Product</h4>

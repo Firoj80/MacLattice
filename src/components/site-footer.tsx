@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { BrandMark } from "@/components/brand";
+import { CodeHypeBadge } from "@/components/codehype-badge";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
 
@@ -31,6 +32,7 @@ export function SiteFooter() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
               {SITE.tagline}
             </p>
+            <CodeHypeBadge />
           </div>
 
           <div>
