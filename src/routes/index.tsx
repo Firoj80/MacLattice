@@ -502,7 +502,7 @@ function Guides() {
       kicker: "Uninstall",
       title: "Uninstall apps properly",
       body: "Remove an app and the residual caches it leaves behind.",
-      slug: "delete-hidden-caches",
+      slug: "clean-appdata-programdata-leftovers-windows",
     },
     {
       kicker: "Free up space",

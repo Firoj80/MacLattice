@@ -1,4 +1,8 @@
 import { reviewBody } from "./review-post.ts";
+import { appDataBody } from "./win-posts/clean-appdata-programdata-leftovers-windows.ts";
+import { devCachesBody } from "./win-posts/clean-developer-caches-node-modules-gradle-visual-studio-windows.ts";
+import { duplicatesBody } from "./win-posts/find-delete-duplicate-files-windows-content-hashing.ts";
+import { dockerVhdxBody } from "./win-posts/shrink-docker-wsl2-ext4-vhdx-windows.ts";
 
 export type BlogPost = {
   slug: string;
@@ -20,6 +24,47 @@ export const posts: BlogPost[] = [
     excerpt:
       "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
     body: reviewBody,
+  },
+  {
+    slug: "clean-appdata-programdata-leftovers-windows",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title: "How to Safely Clean AppData and ProgramData Leftovers on Windows 10 & 11",
+    tags: ["Windows", "AppData", "Cleanup"],
+    excerpt:
+      "Running out of C: drive space? Learn which folders inside AppData and ProgramData are safe to delete on Windows 10 & 11, and how Scan My Disk removes leftover app junk for $5.",
+    body: appDataBody,
+  },
+  {
+    slug: "shrink-docker-wsl2-ext4-vhdx-windows",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title: "Why Docker Desktop and WSL2 Eat 100GB+ on Windows (And How to Shrink ext4.vhdx Safely)",
+    tags: ["Windows", "Docker", "WSL"],
+    excerpt:
+      "Deleted Docker images on Windows 10/11 but didn't get your C: drive space back? Learn how to locate and compact bloated WSL2 ext4.vhdx virtual disks safely.",
+    body: dockerVhdxBody,
+  },
+  {
+    slug: "clean-developer-caches-node-modules-gradle-visual-studio-windows",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title:
+      "The Developer's Windows Disk Cleanup Guide: Reclaim 50GB+ from node_modules, Gradle & Visual Studio Caches",
+    tags: ["Windows", "Developer", "Cleanup"],
+    excerpt:
+      "Out of SSD space on your Windows dev machine? Learn how to find and purge dormant node_modules folders, Android Gradle caches, and Visual Studio build artifacts safely.",
+    body: devCachesBody,
+  },
+  {
+    slug: "find-delete-duplicate-files-windows-content-hashing",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title: "How to Find and Delete Duplicate Files on Windows 10 & 11 Using 3-Pass Content Hashing",
+    tags: ["Windows", "Duplicates", "Cleanup"],
+    excerpt:
+      "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
+    body: duplicatesBody,
   },
   {
     "slug": "android-emulator-cleanup",

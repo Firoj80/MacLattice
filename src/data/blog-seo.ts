@@ -4,6 +4,26 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
     description:
       "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
   },
+  "clean-appdata-programdata-leftovers-windows": {
+    title: "How to Safely Clean AppData & ProgramData Leftovers on Windows 10/11 (2026)",
+    description:
+      "Running out of C: drive space? Learn which folders inside AppData and ProgramData are safe to delete on Windows 10 & 11, and how Scan My Disk removes leftover app junk for $5.",
+  },
+  "shrink-docker-wsl2-ext4-vhdx-windows": {
+    title: "Why Docker Desktop & WSL2 Eat 100GB+ on Windows (How to Shrink ext4.vhdx)",
+    description:
+      "Deleted Docker images on Windows 10/11 but didn't get your C: drive space back? Learn how to locate and compact bloated WSL2 ext4.vhdx virtual disks safely.",
+  },
+  "clean-developer-caches-node-modules-gradle-visual-studio-windows": {
+    title: "Windows Developer Disk Cleanup: Reclaim 50GB+ from node_modules, Gradle & VS",
+    description:
+      "Out of SSD space on your Windows dev machine? Learn how to find and purge dormant node_modules folders, Android Gradle caches, and Visual Studio build artifacts safely.",
+  },
+  "find-delete-duplicate-files-windows-content-hashing": {
+    title: "How to Find & Delete Duplicate Files on Windows 10/11 (3-Pass Content Hashing)",
+    description:
+      "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
+  },
   "daisydisk-alternatives": {
     description:
       "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, Scan My Disk & more on M1/M2/M3. See which disk analyzer wins →",

@@ -148,8 +148,42 @@ function Paragraph({ text, k }: { text: string; k: string }) {
   return <>{nodes}</>;
 }
 
+function splitBlocks(markdown: string): string[] {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const blocks: string[] = [];
+  let buf: string[] = [];
+  let inFence = false;
+  const flush = () => {
+    const text = buf.join("\n").trim();
+    if (text) blocks.push(text);
+    buf = [];
+  };
+  for (const line of lines) {
+    const fence = line.trim().startsWith("```");
+    if (fence && !inFence) {
+      flush();
+      inFence = true;
+      buf.push(line);
+      continue;
+    }
+    if (fence && inFence) {
+      buf.push(line);
+      inFence = false;
+      flush();
+      continue;
+    }
+    if (!inFence && line.trim() === "") {
+      flush();
+      continue;
+    }
+    buf.push(line);
+  }
+  flush();
+  return blocks;
+}
+
 export function MarkdownBody({ markdown }: { markdown: string }) {
-  const blocks = markdown.replace(/\r\n/g, "\n").split(/\n{2,}/);
+  const blocks = splitBlocks(markdown);
   const nodes: ReactNode[] = [];
 
   for (let i = 0; i < blocks.length; i++) {
