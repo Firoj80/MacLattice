@@ -4,6 +4,11 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
     description:
       "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
   },
+  "best-windows-disk-space-analyzers-windirstat-wiztree-treesize": {
+    title: "Best Windows Disk Space Analyzers (2026): Scan My Disk vs WinDirStat, WizTree & TreeSize",
+    description:
+      "Comparing the best Windows 10 & 11 disk space analyzers in 2026. See how Scan My Disk's 8 visual maps, 3-pass duplicate finder, and $5 lifetime license stack up against WinDirStat, WizTree, and TreeSize.",
+  },
   "clean-appdata-programdata-leftovers-windows": {
     title: "How to Safely Clean AppData & ProgramData Leftovers on Windows 10/11 (2026)",
     description:

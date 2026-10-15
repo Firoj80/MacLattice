@@ -3,6 +3,7 @@ import { appDataBody } from "./win-posts/clean-appdata-programdata-leftovers-win
 import { devCachesBody } from "./win-posts/clean-developer-caches-node-modules-gradle-visual-studio-windows.ts";
 import { duplicatesBody } from "./win-posts/find-delete-duplicate-files-windows-content-hashing.ts";
 import { dockerVhdxBody } from "./win-posts/shrink-docker-wsl2-ext4-vhdx-windows.ts";
+import { analyzersBody } from "./win-posts/best-windows-disk-space-analyzers-windirstat-wiztree-treesize.ts";
 
 export type BlogPost = {
   slug: string;
@@ -24,6 +25,16 @@ export const posts: BlogPost[] = [
     excerpt:
       "A hands-on look at Scan My Disk, a $5 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
     body: reviewBody,
+  },
+  {
+    slug: "best-windows-disk-space-analyzers-windirstat-wiztree-treesize",
+    author: "Scan My Disk team",
+    date: "2026-10-15",
+    title: "Best Windows Disk Space Analyzers in 2026: Scan My Disk vs. WinDirStat, WizTree & TreeSize",
+    tags: ["Windows", "Comparison", "Disk Analyzer"],
+    excerpt:
+      "Comparing the best Windows 10 & 11 disk space analyzers in 2026. See how Scan My Disk's 8 visual maps, 3-pass duplicate finder, and $5 lifetime license stack up against WinDirStat, WizTree, and TreeSize.",
+    body: analyzersBody,
   },
   {
     slug: "clean-appdata-programdata-leftovers-windows",
