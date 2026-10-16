@@ -1,15 +1,15 @@
 import { SITE } from "@/data/site";
 import { FAQS } from "@/data/faq";
 
-export const HOME_TITLE = "Scan My Disk — See what's taking up space | $5 lifetime";
+export const HOME_TITLE = "Scan My Disk — See What's Using Space on Windows ($5)";
 
 export const HOME_DESCRIPTION =
-  "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space. Eight views, duplicate detection, saved scan comparison, and cleanup presets. $5 lifetime.";
+  "A Windows disk map that shows what's using space. Eight views, duplicate finder, and saved scan comparison. $5 once. No subscription.";
 
-export const TWITTER_TITLE = "Scan My Disk — Windows disk analyzer";
+export const TWITTER_TITLE = "Scan My Disk — See what's using space on Windows";
 
 export const TWITTER_DESCRIPTION =
-  "See exactly what's taking up space on your PC. $5 lifetime. No subscription.";
+  "Eight views, duplicate finder, and saved scan comparison. $5 lifetime. No subscription.";
 
 export const OG_IMAGE_ALT = "Scan My Disk for Windows showing a real Windows system-folder scan in its disk usage treemap";
 
@@ -103,7 +103,7 @@ export function softwareJsonLd() {
           description: "One-time lifetime licence for $5",
         },
         description:
-          "Scan My Disk is a Windows disk analyzer that shows exactly what's taking up space, with interactive visualisations.",
+          "A Windows disk map that shows what's using space, with eight views, a duplicate finder, and saved scan comparison.",
         screenshot: ogImage(),
         softwareVersion: "0.1.7",
         featureList: [

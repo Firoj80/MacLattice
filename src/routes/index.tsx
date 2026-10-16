@@ -68,7 +68,7 @@ function Hero() {
           <span>Windows 10 &amp; 11 · 100% Local · {SITE.lifetimePrice} Lifetime</span>
         </div>
         <h1 className="text-gradient mb-6 text-[2.75rem] leading-[1.04] font-bold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]">
-          The disk space analyzer that clears your PC
+          See what's using space on Windows
         </h1>
         <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/70">
           See every folder on your drive drawn to scale, spot what is eating your storage, and reclaim gigabytes

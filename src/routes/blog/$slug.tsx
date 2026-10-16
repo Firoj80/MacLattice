@@ -27,7 +27,7 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!loaderData) {
       return pageHead({
         title: "Scan My Disk Blog",
-        description: "Mac storage tips and guides from Scan My Disk.",
+        description: "Windows disk cleanup guides from Scan My Disk.",
         path: "/blog",
       });
     }

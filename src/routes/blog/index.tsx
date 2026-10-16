@@ -10,9 +10,9 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
   head: () =>
     pageHead({
-      title: "Blog - Mac Storage Tips & Guides | Scan My Disk",
+      title: "Windows Disk Cleanup Guides | Scan My Disk",
       description:
-        "Learn how to free up space, manage system data, and optimize your Mac storage with our expert guides and tips.",
+        "Find what's using space on Windows: AppData leftovers, Docker and WSL disks, developer caches, and duplicate files.",
       path: "/blog",
     }),
 });
