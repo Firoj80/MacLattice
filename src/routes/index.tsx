@@ -49,75 +49,59 @@ function SignupLanding() {
 
 function Hero() {
   return (
-    <section className="glow-ambient relative mx-auto grid max-w-6xl items-center gap-12 px-6 pt-12 pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] lg:gap-10 lg:pt-16 lg:pb-28">
-      <div>
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-500/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-sky-400 backdrop-blur-md">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-            <span className="relative inline-flex size-2 rounded-full bg-sky-400"></span>
-          </span>
-          <span>Visual disk space analyzer · 100% local · {SITE.lifetimePrice} lifetime</span>
-        </div>
-        <h1 className="text-gradient mb-6 text-[2.75rem] leading-[1.04] font-bold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]">
-          See what’s eating your disk space
-        </h1>
-        <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/70">
-          ScanMyDisk is a visual disk space analyzer. It maps large files, duplicates, caches and cleanup
-          opportunities so you can see what is using the disk. Lifetime is {SITE.lifetimePrice}. No subscription.
-        </p>
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <a
-            href={BUY_HREF}
-            className="btn-primary group !px-6 !py-3.5 !text-base shadow-[0_0_30px_rgba(255,255,255,0.18)]"
-          >
-            <span>Get {SITE.name} Pro · {SITE.lifetimePrice}</span>
-            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-          <Link
-            to="/license"
-            className="btn-secondary !px-4 !py-3 !text-sm"
-          >
-            <Download className="size-4 text-sky-400" />
-            <span>Download / License</span>
-          </Link>
-        </div>
-        <p className="mt-4 text-sm text-white/80">
+    <section className="glow-ambient relative mx-auto max-w-5xl px-6 pt-16 pb-16 text-center lg:pt-24 lg:pb-20">
+      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-500/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-sky-400 backdrop-blur-md">
+        <span className="relative flex size-2">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+          <span className="relative inline-flex size-2 rounded-full bg-sky-400"></span>
+        </span>
+        <span>Visual disk space analyzer · 100% local · {SITE.lifetimePrice} lifetime</span>
+      </div>
+      <h1 className="text-gradient mx-auto mb-6 max-w-4xl text-[2.75rem] leading-[1.04] font-bold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[4rem]">
+        See what’s eating your disk space
+      </h1>
+      <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/70">
+        ScanMyDisk is a visual disk space analyzer. It maps large files, duplicates, caches and cleanup
+        opportunities so you can see what is using the disk. Lifetime is {SITE.lifetimePrice}. No subscription.
+      </p>
+      <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href={BUY_HREF}
+          className="btn-primary group !px-6 !py-3.5 !text-base shadow-[0_0_30px_rgba(255,255,255,0.18)]"
+        >
+          <span>Get {SITE.name} Pro · {SITE.lifetimePrice}</span>
+          <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </a>
+        <Link to="/license" className="btn-secondary !px-4 !py-3 !text-sm">
+          <Download className="size-4 text-sky-400" />
+          <span>Download / License</span>
+        </Link>
+      </div>
+      <div className="mt-8 flex flex-col items-center gap-2 text-sm sm:flex-row sm:justify-center sm:gap-8">
+        <p className="text-white/80">
           Available now:{" "}
           <Link to="/windows" className="font-semibold text-white underline-offset-2 hover:underline">
             Windows 10 & 11
           </Link>
         </p>
-        <p className="mt-1 text-sm text-white/60">
+        <p className="text-white/60">
           Coming soon:{" "}
           <Link to="/macos" className="font-semibold text-white/80 underline-offset-2 hover:underline">
             macOS
           </Link>
         </p>
-        <p className="mt-3 text-xs text-white/45">{availabilitySentence()}</p>
-        <nav aria-label="Platforms" className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-          <Link to="/windows" className="font-medium text-sky-300 hover:text-sky-200">
-            Windows — Available Now
-          </Link>
-          <Link to="/macos" className="font-medium text-white/70 hover:text-white">
-            macOS — {macOSAvailable() ? "Available Now" : "Coming Soon"}
-          </Link>
-        </nav>
-        <ul className="mt-8 space-y-2.5 text-sm text-white/80">
-          {[
-            "Currently available for Windows 10 and Windows 11",
-            "macOS version coming soon",
-            "100% private: scanning stays on your device",
-          ].map((item) => (
-            <li key={item} className="flex items-center gap-2.5">
-              <span className="flex size-5 items-center justify-center rounded-full bg-sky-500/15 text-sky-400">
-                <Check className="size-3.5" />
-              </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
       </div>
-      <div className="relative group overflow-hidden rounded-2xl border border-white/15 bg-slate-950/80 p-2 shadow-2xl transition-all duration-300 hover:border-sky-500/30 hover:shadow-[0_0_50px_rgba(56,189,248,0.15)]">
+      <p className="mt-3 text-xs text-white/45">{availabilitySentence()}</p>
+      <nav aria-label="Platforms" className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+        <Link to="/windows" className="font-medium text-sky-300 hover:text-sky-200">
+          Windows — Available Now
+        </Link>
+        <Link to="/macos" className="font-medium text-white/70 hover:text-white">
+          macOS — {macOSAvailable() ? "Available Now" : "Coming Soon"}
+        </Link>
+      </nav>
+      <p className="mx-auto mt-6 max-w-md text-sm text-white/70">100% private: scanning stays on your device</p>
+      <div className="relative mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-slate-950/80 p-2 text-left shadow-2xl">
         <div className="mb-2 flex items-center justify-between border-b border-white/10 px-2 pb-2 text-xs text-white/50">
           <div className="flex items-center gap-1.5">
             <div className="size-2.5 rounded-full bg-red-500/70"></div>
@@ -125,9 +109,7 @@ function Hero() {
             <div className="size-2.5 rounded-full bg-green-500/70"></div>
             <span className="ml-2 font-mono text-[11px] text-white/50">Scan My Disk — System32 scan</span>
           </div>
-          <span className="rounded bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-400">
-            Windows Native
-          </span>
+          <span className="rounded bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-400">Windows</span>
         </div>
         <img
           src="/windows-real-scan.webp"
@@ -186,12 +168,12 @@ function Hogs() {
   return (
     <section id="features" className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-3 text-xs font-semibold tracking-wider text-sky-400 uppercase">Where the space goes</p>
-        <h2 className="mb-4 max-w-3xl text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl md:text-5xl">
-          Six things that silently fill your PC drive.
+        <p className="mb-3 text-center text-xs font-semibold tracking-wider text-sky-400 uppercase">Where the space goes</p>
+        <h2 className="mx-auto mb-4 max-w-3xl text-center text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl md:text-5xl">
+          Six things that silently fill a drive.
         </h2>
-        <p className="mb-10 max-w-2xl text-lg text-white/60">
-          Windows hides the biggest space hogs in folders you rarely open. {SITE.name} finds them in one comprehensive scan.
+        <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-white/60">
+          The biggest files hide in folders you rarely open. {SITE.name} finds them in one scan.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(([title, path, body]) => (
@@ -360,12 +342,12 @@ function How() {
   return (
     <section className="border-t border-white/10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">How it works</p>
-        <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-          How {SITE.name} cleans a PC
+        <p className="mb-2 text-center text-xs font-semibold tracking-wider text-sky-400 uppercase">How it works</p>
+        <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+          How {SITE.name} cleans a drive
         </h2>
-        <p className="mb-10 max-w-2xl text-lg text-white/60">
-          No automated background deletion that risks your files. You look first, review in the queue, then decide.
+        <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-white/60">
+          Nothing is deleted until you look, review it, and confirm.
         </p>
         <div className="grid gap-6 md:grid-cols-3">
           {steps.map(([n, title, body]) => (
@@ -397,11 +379,11 @@ function Pricing() {
   return (
     <section id="pricing" className="border-t border-white/10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+        <h2 className="mb-3 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
           One price. Every tool. Yours for good.
         </h2>
-        <p className="mb-10 max-w-2xl text-lg text-white/60">
-          Other disk analyzers charge recurring subscriptions. {SITE.name} is a one-time purchase with no renewal fees.
+        <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-white/60">
+          {SITE.lifetimePrice} once. No renewal, and no account.
         </p>
         <div className="glow-card relative grid gap-10 rounded-3xl border border-white/15 bg-gradient-to-b from-sky-500/10 via-white/[0.03] to-transparent p-7 backdrop-blur-xl md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:p-10">
           <div>
@@ -443,13 +425,13 @@ function Views() {
   return (
     <section id="views" className="border-t border-white/10 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-2xl">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
           <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Visualizations</p>
           <h2 className="mb-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             One scan. Eight ways to read it.
           </h2>
           <p className="text-base text-muted">
-            Eight interactive perspectives generated from the same scan. Navigate folder trees, isolate space hogs, or audit storage by file age.
+            Eight views from the same scan. Open a folder, find the largest files, or sort by age.
           </p>
         </div>
 
@@ -532,8 +514,8 @@ function Guides() {
   return (
     <section className="border-t border-white/10 px-6 py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Guides &amp; Articles</p>
-        <h2 className="mb-8 text-3xl font-bold tracking-tight text-white sm:text-4xl">Storage optimization guides</h2>
+        <p className="mb-2 text-center text-xs font-semibold tracking-wider text-sky-400 uppercase">Guides</p>
+        <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">Storage guides</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => (
             <Link
