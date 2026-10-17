@@ -8,9 +8,7 @@ import {
   socialAvailability,
 } from "@/data/site";
 
-export const HOME_TITLE = macOSAvailable()
-  ? "ScanMyDisk – Disk Space Analyzer for Windows & macOS"
-  : "ScanMyDisk – Visual Disk Space Analyzer for Windows";
+export const HOME_TITLE = "ScanMyDisk – Visual Disk Space Analyzer for Windows/macOS";
 
 export const HOME_DESCRIPTION = `ScanMyDisk helps you visualize disk usage, find large files, duplicates, caches and cleanup opportunities. ${availabilitySentence()}`;
 
