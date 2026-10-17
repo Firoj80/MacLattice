@@ -19,7 +19,7 @@ import {
 import { JoinShell } from "@/components/signup/join-shell";
 import { JsonLd } from "@/components/json-ld";
 import { JOIN_FAQ, JOIN_VIEWS } from "@/data/join";
-import { SITE, availabilitySentence, macOSAvailable } from "@/data/site";
+import { SITE, availabilitySentence } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 import { HOME_DESCRIPTION, HOME_TITLE, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
 
@@ -91,15 +91,6 @@ function Hero() {
           </Link>
         </p>
       </div>
-      <p className="mt-3 text-xs text-white/45">{availabilitySentence()}</p>
-      <nav aria-label="Platforms" className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
-        <Link to="/windows" className="font-medium text-sky-300 hover:text-sky-200">
-          Windows — Available Now
-        </Link>
-        <Link to="/macos" className="font-medium text-white/70 hover:text-white">
-          macOS — {macOSAvailable() ? "Available Now" : "Coming Soon"}
-        </Link>
-      </nav>
       <p className="mx-auto mt-6 max-w-md text-sm text-white/70">100% private: scanning stays on your device</p>
       <div className="relative mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-slate-950/80 p-2 text-left shadow-2xl">
         <div className="mb-2 flex items-center justify-between border-b border-white/10 px-2 pb-2 text-xs text-white/50">
