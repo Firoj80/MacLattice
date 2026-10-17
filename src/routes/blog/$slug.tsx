@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { MarkdownBody } from "@/components/markdown-body";
 import { SiteShell } from "@/components/site-shell";
 import { blogSeoDescription, blogSeoTitle } from "@/data/blog-seo";
-import { getPost, relatedPosts } from "@/data/blog";
+import { getPost, isMacStorageGuide, relatedPosts } from "@/data/blog";
 import { SITE } from "@/data/site";
 import { blogPostingJsonLd, pageHead } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!loaderData) {
       return pageHead({
         title: "Scan My Disk Blog",
-        description: "Windows disk cleanup guides from Scan My Disk.",
+        description: "Disk space guides from ScanMyDisk. Available now for Windows. macOS coming soon.",
         path: "/blog",
       });
     }
@@ -40,6 +40,7 @@ export const Route = createFileRoute("/blog/$slug")({
       type: "article",
       published: post.date,
       ogTitle: post.title,
+      index: !isMacStorageGuide(post.slug),
     });
   },
   component: BlogPostPage,
@@ -87,6 +88,12 @@ function BlogPostPage() {
             <span className="h-1 w-1 rounded-full bg-fg/20" />
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </div>
+          {isMacStorageGuide(post.slug) ? (
+            <p className="mb-8 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted">
+              This article is a macOS storage guide. ScanMyDisk is currently available for Windows 10
+              and Windows 11. The macOS version is coming soon.
+            </p>
+          ) : null}
         </header>
         <div>
           <MarkdownBody markdown={post.body} />

@@ -19,9 +19,9 @@ import {
 import { JoinShell } from "@/components/signup/join-shell";
 import { JsonLd } from "@/components/json-ld";
 import { JOIN_FAQ, JOIN_VIEWS } from "@/data/join";
-import { SITE } from "@/data/site";
+import { SITE, availabilitySentence, macOSAvailable } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
-import { HOME_DESCRIPTION, HOME_TITLE, pageHead } from "@/lib/seo";
+import { HOME_DESCRIPTION, HOME_TITLE, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   component: SignupLanding,
@@ -31,17 +31,8 @@ export const Route = createFileRoute("/")({
 function SignupLanding() {
   return (
     <JoinShell>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: JOIN_FAQ.map((item) => ({
-            "@type": "Question",
-            name: item.q,
-            acceptedAnswer: { "@type": "Answer", text: item.a },
-          })),
-        }}
-      />
+      <JsonLd data={softwareJsonLd()} />
+      <JsonLd data={faqJsonLd(JOIN_FAQ)} />
       <Hero />
       <Proof />
       <Hogs />
@@ -65,14 +56,14 @@ function Hero() {
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
             <span className="relative inline-flex size-2 rounded-full bg-sky-400"></span>
           </span>
-          <span>Windows 10 &amp; 11 · 100% Local · {SITE.lifetimePrice} Lifetime</span>
+          <span>Visual disk space analyzer · 100% local · {SITE.lifetimePrice} lifetime</span>
         </div>
         <h1 className="text-gradient mb-6 text-[2.75rem] leading-[1.04] font-bold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]">
-          See what's using space on Windows
+          See what’s eating your disk space
         </h1>
         <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/70">
-          See every folder on your drive drawn to scale, spot what is eating your storage, and reclaim gigabytes
-          with confidence. Lifetime is {SITE.lifetimePrice}. No recurring subscription, ever.
+          ScanMyDisk is a visual disk space analyzer. It maps large files, duplicates, caches and cleanup
+          opportunities so you can see what is using the disk. Lifetime is {SITE.lifetimePrice}. No subscription.
         </p>
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <a
@@ -90,12 +81,32 @@ function Hero() {
             <span>Download / License</span>
           </Link>
         </div>
-        <p className="mt-3 text-xs text-white/45">One-time payment · 15-day refund guarantee · Instant key</p>
+        <p className="mt-4 text-sm text-white/80">
+          Available now:{" "}
+          <Link to="/windows" className="font-semibold text-white underline-offset-2 hover:underline">
+            Windows 10 & 11
+          </Link>
+        </p>
+        <p className="mt-1 text-sm text-white/60">
+          Coming soon:{" "}
+          <Link to="/macos" className="font-semibold text-white/80 underline-offset-2 hover:underline">
+            macOS
+          </Link>
+        </p>
+        <p className="mt-3 text-xs text-white/45">{availabilitySentence()}</p>
+        <nav aria-label="Platforms" className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <Link to="/windows" className="font-medium text-sky-300 hover:text-sky-200">
+            Windows — Available Now
+          </Link>
+          <Link to="/macos" className="font-medium text-white/70 hover:text-white">
+            macOS — {macOSAvailable() ? "Available Now" : "Coming Soon"}
+          </Link>
+        </nav>
         <ul className="mt-8 space-y-2.5 text-sm text-white/80">
           {[
-            "Native Windows x64 application, ready to run",
-            "Instant licence key right after checkout",
-            "100% private: your files never leave your PC",
+            "Currently available for Windows 10 and Windows 11",
+            "macOS version coming soon",
+            "100% private: scanning stays on your device",
           ].map((item) => (
             <li key={item} className="flex items-center gap-2.5">
               <span className="flex size-5 items-center justify-center rounded-full bg-sky-500/15 text-sky-400">
@@ -120,7 +131,7 @@ function Hero() {
         </div>
         <img
           src="/windows-real-scan.webp"
-          alt="Actual Scan My Disk Windows app displaying a real System32 disk usage scan"
+          alt="ScanMyDisk Windows disk analyzer treemap"
           width={1680}
           height={882}
           fetchPriority="high"
@@ -207,7 +218,7 @@ const FEATURE_TABS = [
     title: "See exactly where your disk space goes",
     body: "Scan your full PC, your user profile, or any custom folder. Explore an interactive treemap sized strictly by disk usage, inspect individual files, and review selected items in Cleanup Queue before removing them.",
     image: "/windows-views/treemap.webp",
-    alt: "Scan My Disk for Windows showing a real System32 scan in Treemap view",
+    alt: "ScanMyDisk Windows disk analyzer treemap",
     caption: "Actual Windows app · real System32 scan",
   },
   {
@@ -217,7 +228,7 @@ const FEATURE_TABS = [
     title: "Manage installed Windows applications",
     body: "Browse installed apps with high-res icons and measured sizes. For supported apps, launch the Windows or vendor uninstaller and choose whether to keep app data or review selected leftovers for removal.",
     image: "/windows-features/applications.webp",
-    alt: "Scan My Disk Windows Applications screen with installed app icons and uninstall controls",
+    alt: "ScanMyDisk storage visualizer on Windows 11",
     caption: "Actual Windows app · installed applications",
   },
   {
@@ -247,7 +258,7 @@ const FEATURE_TABS = [
     title: "See what is using your PC right now",
     body: "Watch real-time CPU usage, memory pressure, network rates, and free volume space. Search the process list and sort by resource footprint to detect performance bottlenecks.",
     image: "/windows-features/monitor.webp",
-    alt: "Scan My Disk Windows Monitor showing live CPU, memory, network, and system drive metrics",
+    alt: "ScanMyDisk Windows disk usage monitor",
     caption: "Actual Windows app · live system monitor",
   },
 ] as const;
@@ -395,8 +406,9 @@ function Pricing() {
         <div className="glow-card relative grid gap-10 rounded-3xl border border-white/15 bg-gradient-to-b from-sky-500/10 via-white/[0.03] to-transparent p-7 backdrop-blur-xl md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:p-10">
           <div>
             <div className="inline-flex rounded-full bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-400">
-              Lifetime Licence · Windows
+              Lifetime Licence · currently for Windows
             </div>
+            <p className="mt-3 text-sm text-white/60">{availabilitySentence()}</p>
             <p className="mt-4 text-5xl font-bold tracking-tight text-white">
               {SITE.lifetimePrice}
               <span className="ml-2 text-lg font-medium text-white/50">one-time</span>
@@ -457,7 +469,7 @@ function Views() {
                 >
                   <img
                     src={view.image}
-                    alt={`${view.name} in ${SITE.name}`}
+                    alt={`ScanMyDisk Windows disk usage ${view.name} view`}
                     width={560}
                     height={350}
                     loading="lazy"
@@ -508,13 +520,13 @@ function Guides() {
       kicker: "Free up space",
       title: "Free up space",
       body: "Where a full disk actually goes, and how to get the space back.",
-      slug: "beginner-mac-cleanup",
+      slug: "find-delete-duplicate-files-windows-content-hashing",
     },
     {
       kicker: "System Data",
       title: "Inspect System Data",
       body: "What the hidden system folders hold, and which ones you can delete.",
-      slug: "system-data-mystery",
+      slug: "shrink-docker-wsl2-ext4-vhdx-windows",
     },
   ];
   return (

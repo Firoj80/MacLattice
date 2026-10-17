@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Check } from "lucide-react";
 import { SITE } from "@/data/site";
-import { buyHref } from "@/lib/buy";
-
-type Chip = "silicon" | "intel";
+import { BUY_HREF } from "@/lib/buy";
 
 const FEATURES = [
   "Eight disk visualisations",
@@ -15,8 +12,6 @@ const FEATURES = [
 ];
 
 export function BuyLicenseCard() {
-  const [chip, setChip] = useState<Chip>("silicon");
-
   return (
     <div
       id="buy"
@@ -53,46 +48,17 @@ export function BuyLicenseCard() {
         </div>
 
         <div className="mt-6 space-y-3">
-          <fieldset>
-            <legend className="mb-1.5 block text-xs font-medium tracking-wide text-muted">
-              Your Mac
-            </legend>
-            <div className="grid grid-cols-2 gap-2">
-              {(
-                [
-                  ["silicon", "Apple Silicon"],
-                  ["intel", "Intel"],
-                ] as const
-              ).map(([id, label]) => (
-                <label
-                  key={id}
-                  className={`flex h-11 cursor-pointer items-center justify-center rounded-xl border text-sm font-semibold ${
-                    chip === id
-                      ? "border-primary bg-primary/8 text-primary"
-                      : "border-border bg-bg text-fg"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="chip"
-                    value={id}
-                    checked={chip === id}
-                    onChange={() => setChip(id)}
-                    className="sr-only"
-                  />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <p className="text-sm leading-relaxed text-muted">
+            Currently available for Windows 10 and 11. macOS version coming soon.
+          </p>
           <a
-            href={buyHref(chip)}
+            href={BUY_HREF}
             className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
             Buy Lifetime Licence in {SITE.lifetimePrice}
           </a>
         </div>
-        <p className="mt-3 text-center text-xs text-muted">15-day refund · one Mac at a time</p>
+        <p className="mt-3 text-center text-xs text-muted">15-day refund · one device at a time</p>
       </div>
     </div>
   );

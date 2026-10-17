@@ -301,6 +301,20 @@ export function getPost(slug: string): BlogPost | undefined {
   return posts.find((p) => p.slug === slug);
 }
 
+const WINDOWS_GUIDE_SLUGS = new Set([
+  "scan-my-disk-windows-disk-space-analyzer",
+  "best-windows-disk-space-analyzers-windirstat-wiztree-treesize",
+  "clean-appdata-programdata-leftovers-windows",
+  "shrink-docker-wsl2-ext4-vhdx-windows",
+  "clean-developer-caches-node-modules-gradle-visual-studio-windows",
+  "find-delete-duplicate-files-windows-content-hashing",
+]);
+
+/** Older posts are macOS storage guides. They are not a Mac download page. */
+export function isMacStorageGuide(slug: string) {
+  return !WINDOWS_GUIDE_SLUGS.has(slug);
+}
+
 export function relatedPosts(slug: string, n = 3): BlogPost[] {
   const current = getPost(slug);
   if (!current) return posts.slice(0, n);

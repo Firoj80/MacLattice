@@ -1,7 +1,7 @@
 {
-  "title": "Scan My Disk — See What's Using Space on Windows ($5)",
+  "title": "ScanMyDisk – Visual Disk Space Analyzer for Windows",
   "type": "website",
   "card": "custom",
   "image": "/x-share-v3.jpg",
-  "description": "A Windows disk map that shows what's using space. Eight views, duplicate finder, and saved scan comparison. $5 once."
+  "description": "ScanMyDisk helps you visualize disk usage, find large files, duplicates, caches and cleanup opportunities. Available for Windows. macOS coming soon."
 }

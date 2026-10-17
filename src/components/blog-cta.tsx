@@ -1,4 +1,4 @@
-import { SITE } from "@/data/site";
+import { SITE, availabilitySentence } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 
 export function BlogCta() {
@@ -11,8 +11,8 @@ export function BlogCta() {
               Finding these files too slow?
             </h3>
             <p className="mb-8 text-lg leading-relaxed text-muted">
-              {SITE.name} visualizes your entire drive, making it obvious where these
-              hidden caches are hiding.
+              {SITE.brand} visualizes your entire drive, making it obvious where these
+              hidden caches are hiding. {availabilitySentence()}
             </p>
             <a
               href={BUY_HREF}
@@ -23,8 +23,8 @@ export function BlogCta() {
           </div>
           <div className="relative aspect-video w-full flex-1 overflow-hidden rounded-xl border border-border shadow-xl md:aspect-auto md:h-[240px]">
             <img
-              src="/app-screenshot.webp"
-              alt={`${SITE.name} Interface`}
+              src="/windows-real-scan.webp"
+              alt="ScanMyDisk Windows disk analyzer treemap"
               width={1200}
               height={673}
               loading="lazy"

@@ -10,9 +10,9 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
   head: () =>
     pageHead({
-      title: "Windows Disk Cleanup Guides | Scan My Disk",
+      title: "Disk Space Guides | ScanMyDisk",
       description:
-        "Find what's using space on Windows: AppData leftovers, Docker and WSL disks, developer caches, and duplicate files.",
+        "Guides for finding what is using disk space. ScanMyDisk is available now for Windows 10 and 11. The macOS version is coming soon.",
       path: "/blog",
     }),
 });
@@ -41,11 +41,11 @@ function BlogIndex() {
       <div className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-16 text-center">
           <h1 className="font-display mb-6 text-4xl font-medium tracking-tight text-fg md:text-5xl">
-            Mac Storage <span className="text-primary">Guides</span>
+            Disk space <span className="text-primary">guides</span>
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-muted">
-            Deep dives into macOS storage, hidden caches, and how to keep your Mac running
-            lean.
+            Guides for finding what is using disk space. ScanMyDisk is available now for Windows 10
+            and 11. The macOS version is coming soon.
           </p>
         </header>
 

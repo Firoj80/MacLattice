@@ -1,3 +1,5 @@
+import { PLATFORM_FAQ } from "@/data/site";
+
 export const JOIN_VIEWS = [
   {
     name: "Folders",
@@ -44,7 +46,7 @@ export const JOIN_VIEWS = [
 export const JOIN_TOOLKIT = [
   {
     name: "Complete app uninstaller",
-    body: "Every app listed with its true footprint — bundle plus caches, preferences, HTTP storage, and logs. Uninstall the whole set, not just the icon you dragged to Trash.",
+    body: "Every app listed with its true footprint — the program plus caches, settings, and logs. Uninstall the whole set, not just the shortcut.",
     image: "/feature-uninstaller.webp",
   },
   {
@@ -54,12 +56,12 @@ export const JOIN_TOOLKIT = [
   },
   {
     name: "Intelligent search",
-    body: "Search the entire Mac in seconds. Faster than Finder, and it actually looks inside the places Finder pretends are empty.",
+    body: "Search the scan in seconds, including folders the file manager usually hides.",
     image: "/feature-search.webp",
   },
   {
     name: "Quick Wins on arrival",
-    body: "Downloads, caches, logs, iOS Simulators, node_modules, build artifacts, and Xcode DerivedData are totalled the moment a scan lands.",
+    body: "Downloads, caches, logs, old installers, node_modules, and build artifacts are totalled the moment a scan lands.",
   },
   {
     name: "Big and untouched",
@@ -75,7 +77,7 @@ export const JOIN_TOOLKIT = [
   },
   {
     name: "External and network volumes",
-    body: "Scan the full Mac, a home folder, an external SSD, or a mounted network share. Same map, same cleanup tools.",
+    body: "Scan a full drive, a user folder, an external disk, or a mounted network share. Same map, same cleanup tools.",
   },
   {
     name: "Real-time monitoring",
@@ -84,16 +86,16 @@ export const JOIN_TOOLKIT = [
   },
   {
     name: "Beautiful themes",
-    body: "Forest, Ocean, and Aurora. Built for macOS Dark Mode so the app sits next to the rest of your tools without shouting.",
+    body: "Forest, Ocean, and Aurora. Themes that stay readable in dark mode.",
     image: "/foresttheme.webp",
   },
   {
     name: "Blazing native scan",
-    body: "Apple Silicon and Intel. Incremental walking, so visualisations start filling in while the scan is still running.",
+    body: "A native scan for the platform you are on. Visualisations start filling in while the scan is still running.",
   },
   {
     name: "100% local, private",
-    body: "Scanning, hashing, and duplicate matching happen on your Mac. File names never leave the machine.",
+    body: "Scanning, hashing, and duplicate matching happen on your device. File names never leave the machine.",
   },
 ] as const;
 
@@ -131,7 +133,7 @@ export const JOIN_SIGNATURE = [
     body: "Ready-made cleanup profiles so you are not hunting files one by one. Choose Safe, Developer, Cache, or Large Junk, then walk the suggested set before anything is removed.",
     points: [
       "Safe Cleanup — conservative junk with almost no risk.",
-      "Developer Cleanup — DerivedData, node_modules, simulators, build artifacts.",
+      "Developer Cleanup — node_modules, build caches, and other project leftovers.",
       "Cache Cleanup and Large Junk Cleanup for the heavy, obvious waste.",
     ],
     image: "/join-presets.webp",
@@ -140,6 +142,7 @@ export const JOIN_SIGNATURE = [
 ] as const;
 
 export const JOIN_FAQ = [
+  ...PLATFORM_FAQ,
   {
     q: "What does Scan My Disk actually do?",
     a: "It scans a drive or folder and maps every byte, then gives you eight ways to look at the result — folders, sunburst, flame, bubbles, mind map, top sizes, age map and treemap. From there you can find duplicates, compare saved scans, run a cleanup preset, uninstall leftovers, or stage files for review.",

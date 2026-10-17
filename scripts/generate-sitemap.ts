@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { posts } from "../src/data/blog.ts";
+import { isMacStorageGuide, posts } from "../src/data/blog.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +11,8 @@ const BASE_URL = "https://www.scanmydisk.com";
 
 const staticRoutes = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
+  { path: "/windows", priority: 0.9, changefreq: "weekly" },
+  { path: "/macos", priority: 0.7, changefreq: "weekly" },
   { path: "/blog", priority: 0.9, changefreq: "weekly" },
   { path: "/contact", priority: 0.4, changefreq: "yearly" },
   { path: "/privacy", priority: 0.3, changefreq: "yearly" },
@@ -34,6 +36,7 @@ function generateSitemap() {
   }
 
   for (const post of posts) {
+    if (isMacStorageGuide(post.slug)) continue;
     xml += `  <url>\n`;
     xml += `    <loc>${BASE_URL}/blog/${post.slug}</loc>\n`;
     xml += `    <lastmod>${post.date}</lastmod>\n`;

@@ -1,3 +1,5 @@
+import { macOSAvailable } from "@/data/site";
+
 export type NavItem = {
   to?: "/" | "/blog" | "/contact" | "/privacy" | "/terms" | "/refund-policy" | "/license";
   href?: string;
@@ -18,9 +20,11 @@ export const FOOTER_PRODUCT: NavItem[] = [
   { to: "/", hash: "pricing", label: "Pricing" },
   { href: "/buy", label: "Buy licence" },
   { to: "/blog", label: "Blog" },
+  { href: "/windows", label: "Windows — Available Now" },
+  { href: "/macos", label: macOSAvailable() ? "macOS — Available Now" : "macOS — Coming Soon" },
   { href: "/blog/clean-appdata-programdata-leftovers-windows", label: "Uninstall leftovers" },
-  { href: "/blog/beginner-mac-cleanup", label: "Free up space" },
-  { href: "/blog/system-data-mystery", label: "System Data" },
+  { href: "/blog/find-delete-duplicate-files-windows-content-hashing", label: "Free up space" },
+  { href: "/blog/shrink-docker-wsl2-ext4-vhdx-windows", label: "System Data" },
   { to: "/license", label: "Downloads & licence recovery" },
 ];
 

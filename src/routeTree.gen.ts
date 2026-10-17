@@ -15,6 +15,7 @@ import { Route as BuyRouteImport } from './routes/buy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LicenseRouteImport } from './routes/license'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MacosRouteImport } from './routes/macos'
 import { Route as PayRouteImport } from './routes/pay'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -22,6 +23,7 @@ import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThanksRouteImport } from './routes/thanks'
+import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
 import { Route as ApiCustomerPortalRouteImport } from './routes/api/customer-portal'
 import { Route as ApiDownloadRouteImport } from './routes/api/download'
@@ -66,6 +68,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MacosRoute = MacosRouteImport.update({
+  id: '/macos',
+  path: '/macos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PayRoute = PayRouteImport.update({
   id: '/pay',
   path: '/pay',
@@ -99,6 +106,11 @@ const TermsRoute = TermsRouteImport.update({
 const ThanksRoute = ThanksRouteImport.update({
   id: '/thanks',
   path: '/thanks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WindowsRoute = WindowsRouteImport.update({
+  id: '/windows',
+  path: '/windows',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
@@ -174,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/license': typeof LicenseRoute
   '/login': typeof LoginRoute
+  '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -181,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/windows': typeof WindowsRoute
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
@@ -202,6 +216,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/license': typeof LicenseRoute
   '/login': typeof LoginRoute
+  '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -209,6 +224,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/windows': typeof WindowsRoute
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
@@ -231,6 +247,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/license': typeof LicenseRoute
   '/login': typeof LoginRoute
+  '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -238,6 +255,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/thanks': typeof ThanksRoute
+  '/windows': typeof WindowsRoute
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
@@ -261,6 +279,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/license'
     | '/login'
+    | '/macos'
     | '/pay'
     | '/pricing'
     | '/privacy'
@@ -268,6 +287,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/terms'
     | '/thanks'
+    | '/windows'
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
@@ -289,6 +309,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/license'
     | '/login'
+    | '/macos'
     | '/pay'
     | '/pricing'
     | '/privacy'
@@ -296,6 +317,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/terms'
     | '/thanks'
+    | '/windows'
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
@@ -317,6 +339,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/license'
     | '/login'
+    | '/macos'
     | '/pay'
     | '/pricing'
     | '/privacy'
@@ -324,6 +347,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/terms'
     | '/thanks'
+    | '/windows'
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
@@ -346,6 +370,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LicenseRoute: typeof LicenseRoute
   LoginRoute: typeof LoginRoute
+  MacosRoute: typeof MacosRoute
   PayRoute: typeof PayRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -353,6 +378,7 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   TermsRoute: typeof TermsRoute
   ThanksRoute: typeof ThanksRoute
+  WindowsRoute: typeof WindowsRoute
   ApiCheckoutRoute: typeof ApiCheckoutRoute
   ApiCustomerPortalRoute: typeof ApiCustomerPortalRoute
   ApiDownloadRoute: typeof ApiDownloadRoute
@@ -412,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/macos': {
+      id: '/macos'
+      path: '/macos'
+      fullPath: '/macos'
+      preLoaderRoute: typeof MacosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pay': {
       id: '/pay'
       path: '/pay'
@@ -459,6 +492,13 @@ declare module '@tanstack/react-router' {
       path: '/thanks'
       fullPath: '/thanks'
       preLoaderRoute: typeof ThanksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/windows': {
+      id: '/windows'
+      path: '/windows'
+      fullPath: '/windows'
+      preLoaderRoute: typeof WindowsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/checkout': {
@@ -562,6 +602,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LicenseRoute: LicenseRoute,
   LoginRoute: LoginRoute,
+  MacosRoute: MacosRoute,
   PayRoute: PayRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
@@ -569,6 +610,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   TermsRoute: TermsRoute,
   ThanksRoute: ThanksRoute,
+  WindowsRoute: WindowsRoute,
   ApiCheckoutRoute: ApiCheckoutRoute,
   ApiCustomerPortalRoute: ApiCustomerPortalRoute,
   ApiDownloadRoute: ApiDownloadRoute,

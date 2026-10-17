@@ -1,17 +1,28 @@
-import { SITE } from "@/data/site";
 import { FAQS } from "@/data/faq";
+import {
+  availabilitySentence,
+  macOSAvailable,
+  operatingSystems,
+  PLATFORM_FAQ,
+  SITE,
+  socialAvailability,
+} from "@/data/site";
 
-export const HOME_TITLE = "Scan My Disk — See What's Using Space on Windows ($5)";
+export const HOME_TITLE = macOSAvailable()
+  ? "ScanMyDisk – Disk Space Analyzer for Windows & macOS"
+  : "ScanMyDisk – Visual Disk Space Analyzer for Windows";
 
-export const HOME_DESCRIPTION =
-  "A Windows disk map that shows what's using space. Eight views, duplicate finder, and saved scan comparison. $5 once. No subscription.";
+export const HOME_DESCRIPTION = `ScanMyDisk helps you visualize disk usage, find large files, duplicates, caches and cleanup opportunities. ${availabilitySentence()}`;
 
-export const TWITTER_TITLE = "Scan My Disk — See what's using space on Windows";
+export const TWITTER_TITLE = "ScanMyDisk – Visual Disk Space Analyzer";
 
-export const TWITTER_DESCRIPTION =
-  "Eight views, duplicate finder, and saved scan comparison. $5 lifetime. No subscription.";
+export const TWITTER_DESCRIPTION = `Visualize disk usage, large files, duplicates and caches. ${socialAvailability()}`;
 
-export const OG_IMAGE_ALT = "Scan My Disk for Windows showing a real Windows system-folder scan in its disk usage treemap";
+export const OG_IMAGE_ALT = "ScanMyDisk Windows disk analyzer treemap";
+
+export const PRODUCT_DESCRIPTION = macOSAvailable()
+  ? "ScanMyDisk is a visual disk space analyzer and storage visualizer. It shows what is using disk space, including large files, duplicates and caches. Available for Windows 10, Windows 11 and macOS."
+  : "ScanMyDisk is a visual disk space analyzer and storage visualizer. It shows what is using disk space, including large files, duplicates and caches. Currently available for Windows 10 and Windows 11. A macOS version is coming soon.";
 
 export function absUrl(path = "/") {
   if (path.startsWith("http")) return path;
@@ -33,6 +44,7 @@ export function pageHead({
   type = "website",
   published,
   ogTitle,
+  ogDescription,
   index = true,
 }: {
   title: string;
@@ -41,18 +53,20 @@ export function pageHead({
   type?: "website" | "article";
   published?: string;
   ogTitle?: string;
+  ogDescription?: string;
   index?: boolean;
 }) {
   const url = absUrl(path);
   const image = ogImage();
   const socialTitle = ogTitle ?? title;
+  const socialDescription = ogDescription ?? description;
   const robots = index ? "index, follow" : "noindex, nofollow";
 
   return {
     meta: [
       { title },
       { name: "description", content: description },
-      { name: "author", content: SITE.name },
+      { name: "author", content: SITE.brand },
       { name: "robots", content: robots },
       {
         name: "googlebot",
@@ -61,9 +75,9 @@ export function pageHead({
           : "noindex, nofollow",
       },
       { property: "og:title", content: socialTitle },
-      { property: "og:description", content: description },
+      { property: "og:description", content: socialDescription },
       { property: "og:url", content: url },
-      { property: "og:site_name", content: SITE.name },
+      { property: "og:site_name", content: SITE.brand },
       { property: "og:locale", content: "en_US" },
       { property: "og:image", content: image },
       { property: "og:image:secure_url", content: image },
@@ -77,8 +91,8 @@ export function pageHead({
       { name: "twitter:creator", content: "@scanmydisk" },
       { name: "twitter:domain", content: "scanmydisk.com" },
       { name: "twitter:url", content: url },
-      { name: "twitter:title", content: type === "article" ? socialTitle : TWITTER_TITLE },
-      { name: "twitter:description", content: type === "article" ? description : TWITTER_DESCRIPTION },
+      { name: "twitter:title", content: type === "article" ? socialTitle : socialTitle },
+      { name: "twitter:description", content: socialDescription },
       { name: "twitter:image", content: image },
       { name: "twitter:image:alt", content: OG_IMAGE_ALT },
       ...(published ? [{ property: "article:published_time", content: published }] : []),
@@ -93,37 +107,41 @@ export function softwareJsonLd() {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        name: SITE.name,
+        name: SITE.brand,
+        alternateName: SITE.name,
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "Windows",
+        applicationSubCategory: "Disk space analyzer",
+        operatingSystem: operatingSystems(),
         offers: {
           "@type": "Offer",
           price: "5",
           priceCurrency: "USD",
           description: "One-time lifetime licence for $5",
         },
-        description:
-          "A Windows disk map that shows what's using space, with eight views, a duplicate finder, and saved scan comparison.",
+        description: PRODUCT_DESCRIPTION,
         screenshot: ogImage(),
         softwareVersion: "0.1.7",
         featureList: [
-          "Interactive treemap visualization",
-          "Fast disk scanning",
-          "Privacy-focused (100% local)",
-          "Windows app",
+          "Disk usage visualization",
+          "Storage visualizer",
+          "Large file and folder finder",
+          "Duplicate detection",
+          "Local analysis — files stay on the device",
         ],
         url: absUrl("/"),
       },
       {
         "@type": "Organization",
-        name: SITE.name,
+        name: SITE.brand,
+        alternateName: SITE.name,
         url: absUrl("/"),
         logo: absUrl("/icon.png"),
         email: SITE.email,
       },
       {
         "@type": "WebSite",
-        name: SITE.name,
+        name: SITE.brand,
+        alternateName: SITE.name,
         url: absUrl("/"),
         description: HOME_DESCRIPTION,
       },
@@ -131,7 +149,22 @@ export function softwareJsonLd() {
   };
 }
 
-export function faqJsonLd() {
+export function faqJsonLd(items: readonly { q: string; a: string }[] = PLATFORM_FAQ) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
+export function legacyFaqJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -158,10 +191,10 @@ export function blogPostingJsonLd(post: {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
-    author: { "@type": "Organization", name: SITE.name },
+    author: { "@type": "Organization", name: SITE.brand },
     publisher: {
       "@type": "Organization",
-      name: SITE.name,
+      name: SITE.brand,
       logo: { "@type": "ImageObject", url: absUrl("/icon.png") },
     },
     datePublished: post.date,

@@ -2,7 +2,7 @@ export const FAQS = [
   {
     question: "Which version should I download?",
     answer:
-      "The app for sale today is Scan My Disk for Windows. Buy the $5 lifetime licence, then install the Windows app and paste the key on first launch.",
+      "The app for sale today is ScanMyDisk for Windows 10 and Windows 11. A macOS version is in development and coming soon. Buy the $5 lifetime licence, then install the Windows app and paste the key on first launch.",
   },
   {
     question: "Is Scan My Disk safe to use?",
@@ -39,9 +39,9 @@ export const FAQS = [
       "Yes. We offer a 15-day money-back guarantee, no questions asked. Just email us at support@scanmydisk.com.",
   },
   {
-    question: "How is Scan My Disk different from DaisyDisk or CleanMyMac?",
+    question: "How is ScanMyDisk different from a cleanup subscription?",
     answer:
-      "Scan My Disk offers treemap visualization plus uninstall, leftovers, duplicates, scan comparison, and cleanup presets. Unlike subscription-based tools, we charge a one-time $5. We're privacy-focused with 100% local processing.",
+      "ScanMyDisk is a visual disk space analyzer. It is currently available for Windows 10 and Windows 11. A macOS version is coming soon. It is a one-time $5 purchase, and scanning stays on the device.",
   },
   {
     question: "What does 'System Data' or hidden system folders mean on Windows?",
