@@ -40,7 +40,6 @@ export const Route = createFileRoute("/blog/$slug")({
       type: "article",
       published: post.date,
       ogTitle: post.title,
-      index: !isMacStorageGuide(post.slug),
     });
   },
   component: BlogPostPage,

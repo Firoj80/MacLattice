@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { isMacStorageGuide, posts } from "../src/data/blog.ts";
+import { posts } from "../src/data/blog.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,7 +36,6 @@ function generateSitemap() {
   }
 
   for (const post of posts) {
-    if (isMacStorageGuide(post.slug)) continue;
     xml += `  <url>\n`;
     xml += `    <loc>${BASE_URL}/blog/${post.slug}</loc>\n`;
     xml += `    <lastmod>${post.date}</lastmod>\n`;
