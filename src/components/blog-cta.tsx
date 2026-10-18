@@ -1,7 +1,9 @@
+import { useLocalPricing } from "@/components/local-pricing";
 import { SITE, availabilitySentence } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 
 export function BlogCta() {
+  const price = useLocalPricing();
   return (
     <footer className="mt-16 border-t border-border pt-8">
       <div className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 text-center md:p-12 md:text-left">
@@ -18,7 +20,7 @@ export function BlogCta() {
               href={BUY_HREF}
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-medium text-primary-fg shadow-lg transition-all hover:brightness-110 md:w-auto"
             >
-              Buy licence · {SITE.lifetimePrice}
+              Buy licence · {price.lifetimePrice}
             </a>
           </div>
           <div className="relative aspect-video w-full flex-1 overflow-hidden rounded-xl border border-border shadow-xl md:aspect-auto md:h-[240px]">

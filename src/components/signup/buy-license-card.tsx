@@ -1,3 +1,4 @@
+import { useLocalPricing } from "@/components/local-pricing";
 import { Check } from "lucide-react";
 import { SITE } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
@@ -12,6 +13,7 @@ const FEATURES = [
 ];
 
 export function BuyLicenseCard() {
+  const price = useLocalPricing();
   return (
     <div
       id="buy"
@@ -21,7 +23,7 @@ export function BuyLicenseCard() {
         <p className="text-xs font-semibold tracking-[0.2em] uppercase opacity-80">Lifetime licence</p>
         <div className="mt-1 flex items-end gap-2">
           <span className="font-display text-5xl leading-none font-medium tracking-tight sm:text-6xl">
-            {SITE.lifetimePrice}
+            {price.lifetimePrice}
           </span>
           <span className="mb-1 text-sm font-medium opacity-80">once · forever</span>
         </div>
@@ -55,7 +57,7 @@ export function BuyLicenseCard() {
             href={BUY_HREF}
             className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
-            Buy Lifetime Licence in {SITE.lifetimePrice}
+            Buy Lifetime Licence in {price.lifetimePrice}
           </a>
         </div>
         <p className="mt-3 text-center text-xs text-muted">15-day refund · one device at a time</p>

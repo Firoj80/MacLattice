@@ -1,3 +1,4 @@
+import { useLocalPricing } from "@/components/local-pricing";
 import { useState, type FormEvent } from "react";
 import {
   GROK_PROVIDERS,
@@ -36,6 +37,7 @@ export function JoinAuthCard({ initialMode = "signup" }: { initialMode?: "signup
 }
 
 function SignedInPanel({ name }: { name: string }) {
+  const price = useLocalPricing();
   return (
     <div className="rounded-[28px] border border-border bg-card p-6 shadow-[0_20px_50px_rgb(28_27_25/0.08)] md:p-8">
       <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">You are in</p>
@@ -43,14 +45,14 @@ function SignedInPanel({ name }: { name: string }) {
         Welcome, {name.split(" ")[0]}.
       </h2>
       <p className="mt-3 text-[15px] leading-relaxed text-muted">
-        Your {SITE.name} account is ready. Lifetime access is {SITE.lifetimePrice} —
+        Your {SITE.name} account is ready. Lifetime access is {price.lifetimePrice} —
         paid once, yours forever.
       </p>
       <a
         href="#pricing"
         className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
       >
-        Get lifetime access — {SITE.lifetimePrice}
+        Get lifetime access — {price.lifetimePrice}
       </a>
       <div className="mt-6 border-t border-border pt-4">
         <UserButton />
@@ -60,6 +62,7 @@ function SignedInPanel({ name }: { name: string }) {
 }
 
 function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
+  const price = useLocalPricing();
   const [mode, setMode] = useState<"signup" | "signin">(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -106,7 +109,7 @@ function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
       </h2>
       <p className="mt-3 text-[15px] leading-relaxed text-muted">
         Then unlock every visualisation, duplicate finder, scan comparison, and
-        cleanup preset for {SITE.lifetimePrice} lifetime.
+        cleanup preset for {price.lifetimePrice} lifetime.
       </p>
 
       {authEnabled ? (

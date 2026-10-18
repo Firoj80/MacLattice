@@ -50,6 +50,61 @@
 }
 
 /* Custom interactive and aesthetic utilities */
+.offer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.75rem;
+  padding: 0.375rem 0.875rem 0.375rem 0.375rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-card);
+  font-size: 0.8125rem;
+  transition: border-color 180ms ease;
+}
+.offer-pill:hover { border-color: var(--color-primary); }
+.offer-label {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.375rem 0.625rem;
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.purchase-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.purchase-button:hover { opacity: 0.9; }
+.purchase-button:active { transform: scale(0.98); }
+.purchase-button-secondary {
+  border-color: var(--color-border);
+  background: var(--color-card);
+  color: var(--color-fg);
+}
+.purchase-button:focus-visible, .offer-pill:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .purchase-button, .offer-pill { transition: none; }
+  .purchase-button:active { transform: none; }
+}
+
 .glow-ambient {
   background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(56, 189, 248, 0.14), transparent 70%);
 }

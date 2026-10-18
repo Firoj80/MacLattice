@@ -2,6 +2,7 @@ import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-r
 import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import appCss from "../styles.css?url";
 import { WebsiteAnalytics } from "@/components/website-analytics";
+import { LocalPricingProvider } from "@/components/local-pricing";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -40,7 +41,7 @@ export const Route = createRootRoute({
         <HeadContent />
       </head>
       <body className="bg-bg font-sans text-fg antialiased">
-        <Outlet />
+        <LocalPricingProvider><Outlet /></LocalPricingProvider>
         <WebsiteAnalytics />
         <Scripts />
       </body>

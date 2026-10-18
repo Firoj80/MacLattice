@@ -27,6 +27,7 @@ import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
 import { Route as ApiCustomerPortalRouteImport } from './routes/api/customer-portal'
 import { Route as ApiDownloadRouteImport } from './routes/api/download'
+import { Route as ApiPricingRouteImport } from './routes/api/pricing'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -128,6 +129,11 @@ const ApiDownloadRoute = ApiDownloadRouteImport.update({
   path: '/api/download',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPricingRoute = ApiPricingRouteImport.update({
+  id: '/api/pricing',
+  path: '/api/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -259,6 +267,7 @@ export interface FileRoutesById {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -291,6 +300,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/pricing'
     | '/blog/$slug'
     | '/blog/'
     | '/api/auth/$'
@@ -321,6 +331,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/pricing'
     | '/blog/$slug'
     | '/blog'
     | '/api/auth/$'
@@ -351,6 +362,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/pricing'
     | '/blog/$slug'
     | '/blog/'
     | '/api/auth/$'
@@ -382,6 +394,7 @@ export interface RootRouteChildren {
   ApiCheckoutRoute: typeof ApiCheckoutRoute
   ApiCustomerPortalRoute: typeof ApiCustomerPortalRoute
   ApiDownloadRoute: typeof ApiDownloadRoute
+  ApiPricingRoute: typeof ApiPricingRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -522,6 +535,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiDownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/pricing': {
+      id: '/api/pricing'
+      path: '/api/pricing'
+      fullPath: '/api/pricing'
+      preLoaderRoute: typeof ApiPricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -614,6 +634,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiCheckoutRoute: ApiCheckoutRoute,
   ApiCustomerPortalRoute: ApiCustomerPortalRoute,
   ApiDownloadRoute: ApiDownloadRoute,
+  ApiPricingRoute: ApiPricingRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

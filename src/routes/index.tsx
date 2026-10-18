@@ -1,3 +1,5 @@
+import { useLocalPricing } from "@/components/local-pricing";
+import { PricingNote } from "@/components/local-pricing";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -47,36 +49,43 @@ function SignupLanding() {
   );
 }
 
+function EarlyBirdBanner() {
+  const price = useLocalPricing();
+  return (
+    <a href="#pricing" className="offer-pill" aria-label={`Early bird ${price.lifetimePrice}, then ${price.regularPrice}. View pricing.`}>
+      <span className="offer-label">Early-bird</span>
+      <span><strong className="font-semibold text-fg">{price.lifetimePrice}</strong><span className="text-muted">, then </span><s className="text-muted">{price.regularPrice}</s></span>
+      <ArrowRight className="size-3.5 text-muted" />
+    </a>
+  );
+}
+
 function Hero() {
+  const price = useLocalPricing();
   return (
     <section className="glow-ambient relative mx-auto max-w-5xl px-6 pt-16 pb-16 text-center lg:pt-24 lg:pb-20">
-      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-500/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-sky-400 backdrop-blur-md">
-        <span className="relative flex size-2">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-          <span className="relative inline-flex size-2 rounded-full bg-sky-400"></span>
-        </span>
-        <span>Visual disk space analyzer · 100% local · {SITE.lifetimePrice} lifetime</span>
-      </div>
+      <div className="mb-6"><EarlyBirdBanner /></div>
       <h1 className="text-gradient mx-auto mb-6 max-w-4xl text-[2.75rem] leading-[1.04] font-bold tracking-[-0.035em] text-balance sm:text-6xl lg:text-[4rem]">
         See what’s eating your disk space
       </h1>
       <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/70">
         ScanMyDisk is a visual disk space analyzer. It maps large files, duplicates, caches and cleanup
-        opportunities so you can see what is using the disk. Lifetime is {SITE.lifetimePrice}. No subscription.
+        opportunities so you can see what is using the disk. Early-bird lifetime access is {price.lifetimePrice} for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}.
       </p>
       <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
           href={BUY_HREF}
-          className="btn-primary group !px-6 !py-3.5 !text-base shadow-[0_0_30px_rgba(255,255,255,0.18)]"
+          className="purchase-button group"
         >
-          <span>Get {SITE.name} Pro · {SITE.lifetimePrice}</span>
+          <span>Get {SITE.name} Pro · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>
-        <Link to="/license" className="btn-secondary !px-4 !py-3 !text-sm">
+        <Link to="/license" className="purchase-button purchase-button-secondary">
           <Download className="size-4 text-sky-400" />
           <span>Download / License</span>
         </Link>
       </div>
+      <PricingNote />
       <div className="mt-8 flex flex-col items-center gap-2 text-sm sm:flex-row sm:justify-center sm:gap-8">
         <p className="text-white/80">
           Available now:{" "}
@@ -117,8 +126,9 @@ function Hero() {
 }
 
 function Proof() {
+  const price = useLocalPricing();
   const items = [
-    { k: "Lifetime Licence", v: `${SITE.lifetimePrice} once`, icon: Sparkles },
+    { k: "Early-bird Lifetime Licence", v: `${price.lifetimePrice} once · then ${price.regularPrice}`, icon: Sparkles },
     { k: "Clean & Verified", v: "Safe Windows installer", icon: ShieldCheck },
     { k: "100% Local Processing", v: "No uploads, no cloud", icon: Cpu },
     { k: "Fast Native Engine", v: "Windows 10 & 11 (64-bit)", icon: Clock },
@@ -357,6 +367,7 @@ function How() {
 }
 
 function Pricing() {
+  const price = useLocalPricing();
   const included = [
     "Delete files safely via native Recycle Bin",
     "App uninstaller that cleans leftover support data",
@@ -374,38 +385,46 @@ function Pricing() {
           One price. Every tool. Yours for good.
         </h2>
         <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-white/60">
-          {SITE.lifetimePrice} once. No renewal, and no account.
+          Early bird: {price.lifetimePrice} for the first {SITE.earlyBirdLimit} licenses. Then {price.regularPrice}. No renewal.
         </p>
-        <div className="glow-card relative grid gap-10 rounded-3xl border border-white/15 bg-gradient-to-b from-sky-500/10 via-white/[0.03] to-transparent p-7 backdrop-blur-xl md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:p-10">
+        <div className="mx-auto mb-8 max-w-md">
+          <p className="flex items-center justify-center gap-2 text-sm text-muted"><span className="size-2 shrink-0 rounded-full bg-primary" /><span><strong className="text-fg">{price.lifetimePrice}</strong> for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}</span></p>
+          <ol aria-label="Lifetime pricing stages" className="mt-5 grid grid-cols-2 gap-2 text-sm">
+            <li aria-current="step"><div className="mb-3 h-1.5 rounded-full bg-primary" /><p className="font-semibold text-fg">{price.lifetimePrice}</p><p className="mt-1 text-muted">First {SITE.earlyBirdLimit} licenses</p></li>
+            <li><div className="mb-3 h-1.5 rounded-full bg-border" /><p className="font-medium text-muted">{price.regularPrice}</p><p className="mt-1 text-muted">After that</p></li>
+          </ol>
+        </div>
+        <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-7 shadow-xl sm:p-9">
           <div>
-            <div className="inline-flex rounded-full bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-400">
-              Lifetime Licence · currently for Windows
+            <div className="flex items-start justify-between gap-3">
+              <div><h3 className="text-xl font-semibold text-fg">Scan My Disk Pro</h3><p className="mt-1 text-sm text-muted">Personal license for 1 Windows PC</p></div>
+              <span className="offer-label shrink-0">Early-bird</span>
             </div>
-            <p className="mt-3 text-sm text-white/60">{availabilitySentence()}</p>
-            <p className="mt-4 text-5xl font-bold tracking-tight text-white">
-              {SITE.lifetimePrice}
-              <span className="ml-2 text-lg font-medium text-white/50">one-time</span>
+            <p className="mt-8 flex items-baseline gap-3 text-6xl font-semibold tracking-tight text-fg">
+              {price.lifetimePrice}
+              <s className="text-2xl font-medium text-muted"><span className="sr-only">Price after the early-bird offer </span>{price.regularPrice}</s>
             </p>
-            <p className="mt-3 text-sm text-muted">Pay once. Zero recurring subscriptions, no account required.</p>
-            <a
-              href={BUY_HREF}
-              className="btn-primary group mt-8 !px-6 !py-3.5 !text-base shadow-[0_0_24px_rgba(255,255,255,0.2)]"
-            >
-              <span>Get {SITE.name} Pro · {SITE.lifetimePrice}</span>
-              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </a>
-            <p className="mt-3 text-xs text-white/45">One-time payment · 15-day refund guarantee</p>
+            <p className="mt-3 text-sm text-muted">One-time payment · no subscription</p>
           </div>
-          <ul className="grid content-start gap-3.5 sm:grid-cols-2">
+          <ul className="my-7 grid gap-3">
             {included.map((item) => (
-              <li key={item} className="flex gap-2.5 text-sm text-white/80">
-                <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-sky-500/15 text-sky-400">
-                  <Check className="size-3" />
-                </span>
+              <li key={item} className="flex gap-3 text-sm leading-relaxed text-fg">
+                <Check className="mt-0.5 size-4 shrink-0 text-primary" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
+            <a
+              href={BUY_HREF}
+              className="purchase-button group w-full"
+            >
+              <span>Buy Scan My Disk · {price.lifetimePrice}</span>
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </a>
+            <Link to="/license" className="purchase-button purchase-button-secondary mt-3 w-full">Already purchased? Download / License</Link>
+            <p className="mt-5 text-center text-xs leading-relaxed text-muted">License key delivered by email · 15-day refund guarantee</p>
+            <p className="mt-2 text-center text-xs text-muted">{availabilitySentence()}</p>
+            <PricingNote />
         </div>
       </div>
     </section>
@@ -548,17 +567,18 @@ function Faq() {
 }
 
 function Close() {
+  const price = useLocalPricing();
   return (
     <section className="px-6 pb-24">
       <div className="glow-ambient relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-b from-sky-500/10 via-white/[0.02] to-transparent px-6 py-16 text-center backdrop-blur-xl md:py-20">
         <h2 className="mx-auto mb-4 max-w-2xl text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl md:text-5xl">
-          Get your gigabytes back for {SITE.lifetimePrice}.
+          Get your gigabytes back for {price.lifetimePrice}.
         </h2>
         <p className="mx-auto mb-8 max-w-xl text-white/70">
           One payment, yours for good. No subscription, no account required, and your files never leave your PC.
         </p>
         <a href={BUY_HREF} className="btn-primary group !px-8 !py-4 !text-base shadow-[0_0_30px_rgba(255,255,255,0.25)]">
-          <span>Get {SITE.name} Pro · {SITE.lifetimePrice}</span>
+          <span>Get {SITE.name} Pro · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>
         <p className="mt-3 text-xs text-white/45">One-time payment · Lifetime licence, no recurring fees</p>

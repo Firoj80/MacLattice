@@ -1,3 +1,4 @@
+import { useLocalPricing } from "@/components/local-pricing";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { JoinShell } from "@/components/signup/join-shell";
@@ -45,6 +46,7 @@ const SHOTS = [
 ] as const;
 
 function WindowsPage() {
+  const price = useLocalPricing();
   return (
     <JoinShell>
       <JsonLd data={softwareJsonLd()} />
@@ -61,7 +63,7 @@ function WindowsPage() {
         <p className="mt-4 text-sm text-white/80">{availabilitySentence()}</p>
         <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <a href={BUY_HREF} className="btn-primary group !px-6 !py-3.5 !text-base">
-            <span>Get {SITE.name} for Windows · {SITE.lifetimePrice}</span>
+            <span>Get {SITE.name} for Windows · {price.lifetimePrice}</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </a>
           <Link to="/macos" className="text-sm font-medium text-white/70 hover:text-white">

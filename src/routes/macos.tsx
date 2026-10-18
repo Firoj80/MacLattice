@@ -1,3 +1,4 @@
+import { useLocalPricing } from "@/components/local-pricing";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { JoinShell } from "@/components/signup/join-shell";
 import { JsonLd } from "@/components/json-ld";
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/macos")({
 });
 
 function MacosPage() {
+  const price = useLocalPricing();
   const pageLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -71,7 +73,7 @@ function MacosPage() {
 
         {macOSAvailable() ? (
           <a href={BUY_HREF} className="btn-primary mt-8 inline-flex !px-6 !py-3">
-            Get {SITE.name} · {SITE.lifetimePrice}
+            Get {SITE.name} · {price.lifetimePrice}
           </a>
         ) : (
           <>
