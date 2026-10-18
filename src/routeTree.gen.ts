@@ -27,6 +27,7 @@ import { Route as WindowsRouteImport } from './routes/windows'
 import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
 import { Route as ApiCustomerPortalRouteImport } from './routes/api/customer-portal'
 import { Route as ApiDownloadRouteImport } from './routes/api/download'
+import { Route as ApiEarlyBirdRouteImport } from './routes/api/early-bird'
 import { Route as ApiPricingRouteImport } from './routes/api/pricing'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
@@ -129,6 +130,11 @@ const ApiDownloadRoute = ApiDownloadRouteImport.update({
   path: '/api/download',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiEarlyBirdRoute = ApiEarlyBirdRouteImport.update({
+  id: '/api/early-bird',
+  path: '/api/early-bird',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPricingRoute = ApiPricingRouteImport.update({
   id: '/api/pricing',
   path: '/api/pricing',
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -235,6 +242,7 @@ export interface FileRoutesByTo {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -267,6 +275,7 @@ export interface FileRoutesById {
   '/api/checkout': typeof ApiCheckoutRoute
   '/api/customer-portal': typeof ApiCustomerPortalRoute
   '/api/download': typeof ApiDownloadRoute
+  '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -300,6 +309,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
     | '/blog/'
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
     | '/blog'
@@ -362,6 +373,7 @@ export interface FileRouteTypes {
     | '/api/checkout'
     | '/api/customer-portal'
     | '/api/download'
+    | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
     | '/blog/'
@@ -394,6 +406,7 @@ export interface RootRouteChildren {
   ApiCheckoutRoute: typeof ApiCheckoutRoute
   ApiCustomerPortalRoute: typeof ApiCustomerPortalRoute
   ApiDownloadRoute: typeof ApiDownloadRoute
+  ApiEarlyBirdRoute: typeof ApiEarlyBirdRoute
   ApiPricingRoute: typeof ApiPricingRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -535,6 +548,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiDownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/early-bird': {
+      id: '/api/early-bird'
+      path: '/api/early-bird'
+      fullPath: '/api/early-bird'
+      preLoaderRoute: typeof ApiEarlyBirdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/pricing': {
       id: '/api/pricing'
       path: '/api/pricing'
@@ -634,6 +654,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiCheckoutRoute: ApiCheckoutRoute,
   ApiCustomerPortalRoute: ApiCustomerPortalRoute,
   ApiDownloadRoute: ApiDownloadRoute,
+  ApiEarlyBirdRoute: ApiEarlyBirdRoute,
   ApiPricingRoute: ApiPricingRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,

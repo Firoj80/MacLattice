@@ -1,5 +1,6 @@
 import { useLocalPricing } from "@/components/local-pricing";
 import { PricingNote } from "@/components/local-pricing";
+import { EarlyBirdProgress } from "@/components/early-bird-progress";
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
@@ -389,9 +390,10 @@ function Pricing() {
         </p>
         <div className="mx-auto mb-8 max-w-md">
           <p className="flex items-center justify-center gap-2 text-sm text-muted"><span className="size-2 shrink-0 rounded-full bg-primary" /><span><strong className="text-fg">{price.lifetimePrice}</strong> for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}</span></p>
-          <ol aria-label="Lifetime pricing stages" className="mt-5 grid grid-cols-2 gap-2 text-sm">
-            <li aria-current="step"><div className="mb-3 h-1.5 rounded-full bg-primary" /><p className="font-semibold text-fg">{price.lifetimePrice}</p><p className="mt-1 text-muted">First {SITE.earlyBirdLimit} licenses</p></li>
-            <li><div className="mb-3 h-1.5 rounded-full bg-border" /><p className="font-medium text-muted">{price.regularPrice}</p><p className="mt-1 text-muted">After that</p></li>
+          <EarlyBirdProgress />
+          <ol aria-label="Lifetime pricing stages" className="mt-4 grid grid-cols-2 gap-2 text-sm">
+            <li><p className="font-semibold text-fg">{price.lifetimePrice}</p><p className="mt-1 text-muted">First {SITE.earlyBirdLimit} licenses</p></li>
+            <li><p className="font-medium text-muted">{price.regularPrice}</p><p className="mt-1 text-muted">After that</p></li>
           </ol>
         </div>
         <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-7 shadow-xl sm:p-9">
