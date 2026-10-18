@@ -118,7 +118,7 @@ export function softwareJsonLd() {
         },
         description: PRODUCT_DESCRIPTION,
         screenshot: ogImage(),
-        softwareVersion: "0.1.9",
+        softwareVersion: "0.1.10",
         featureList: [
           "Disk usage visualization",
           "Storage visualizer",

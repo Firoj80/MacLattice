@@ -1,0 +1,17 @@
+{
+  "Version": "0.1.10",
+  "ReleasedAt": "2026-10-18",
+  "Added": [
+    "Automatic startup update checks with Update now, Update in background and Later choices.",
+    "Verified background downloads, progress, ready-to-install notifications and restart recovery.",
+    "Release notes history and a one-time What's new view after an upgrade."
+  ],
+  "Improved": [
+    "One shared updater for automatic and manual checks.",
+    "Installation waits for active tasks and staged cleanup items to be resolved; licenses and saved scans are retained."
+  ],
+  "Fixed": [
+    "Download deadline now covers the complete streamed response."
+  ],
+  "Summary": "Automatic update checks, verified background downloads and release notes. Existing licenses and saved scans are retained."
+}
