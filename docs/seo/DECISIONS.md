@@ -18,7 +18,9 @@ Read this before changing titles, index rules, or the Mac guides.
 
 ## 2026-10-19 — Mac guide claims corrected
 
-Changed product sentences in the old Mac guides only. They now say $5, Windows today, no free tier, macOS coming soon. Author on those posts is "Scan My Disk team". Titles, URLs, and Mac folder instructions were left as they were. Do not edit these posts again before 2026-11-16.
+Changed product sentences in the old Mac guides only. They now say $5, Windows today, no free tier, macOS coming soon. Titles, URLs, and Mac folder instructions were left as they were. Do not edit the product claims in these posts again before 2026-11-16.
+
+The owner set every byline to Firoj Alam on 2026-10-19. Do not change it back to "Scan My Disk team".
 
 ## Open flags
 

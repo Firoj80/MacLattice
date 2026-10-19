@@ -18,7 +18,7 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "scan-my-disk-windows-disk-space-analyzer",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title: "Scan My Disk Review: A $5 Windows Disk Space Analyzer That Makes You Look Before You Delete",
     tags: ["Windows", "Review", "Disk Analyzer", "Cleanup"],
@@ -28,7 +28,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "best-windows-disk-space-analyzers-windirstat-wiztree-treesize",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title: "Best Windows Disk Space Analyzers in 2026: Scan My Disk vs. WinDirStat, WizTree & TreeSize",
     tags: ["Windows", "Comparison", "Disk Analyzer"],
@@ -38,7 +38,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "clean-appdata-programdata-leftovers-windows",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title: "How to Safely Clean AppData and ProgramData Leftovers on Windows 10 & 11",
     tags: ["Windows", "AppData", "Cleanup"],
@@ -48,7 +48,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "shrink-docker-wsl2-ext4-vhdx-windows",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title: "Why Docker Desktop and WSL2 Eat 100GB+ on Windows (And How to Shrink ext4.vhdx Safely)",
     tags: ["Windows", "Docker", "WSL"],
@@ -58,7 +58,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "clean-developer-caches-node-modules-gradle-visual-studio-windows",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title:
       "The Developer's Windows Disk Cleanup Guide: Reclaim 50GB+ from node_modules, Gradle & Visual Studio Caches",
@@ -69,7 +69,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "find-delete-duplicate-files-windows-content-hashing",
-    author: "Scan My Disk team",
+    author: "Firoj Alam",
     date: "2026-10-15",
     title: "How to Find and Delete Duplicate Files on Windows 10 & 11 Using 3-Pass Content Hashing",
     tags: ["Windows", "Duplicates", "Cleanup"],
@@ -79,7 +79,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "android-emulator-cleanup",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-18",
     "title": "Android Studio is Eating 100GB of Your Mac. Here's How to Stop It.",
     "tags": [
@@ -93,7 +93,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "beginner-mac-cleanup",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2025-09-12",
     "title": "Where Did All My Mac Storage Go? (A No-BS Guide)",
     "tags": [
@@ -106,7 +106,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "clean-xcode-derived-data",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-28",
     "title": "The Hidden Cost of Xcode: How to Safely Reclaim 50GB+ from DerivedData",
     "tags": [
@@ -121,7 +121,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "cleanmymac-alternative",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2025-11-22",
     "title": "CleanMyMac X Has a Yearly Subscription. Here's Our Alternative.",
     "tags": [
@@ -134,7 +134,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "daisydisk-alternatives",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-02-08",
     "title": "DaisyDisk Alternatives: Free Disk Analyzers We've Actually Tested",
     "tags": [
@@ -147,7 +147,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "delete-duplicates-mac",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2025-11-05",
     "title": "Finding Duplicate Files on Mac Without Paying for an App",
     "tags": [
@@ -160,7 +160,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "delete-hidden-caches",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2025-10-25",
     "title": "~/Library is Where Your Mac Storage Goes to Hide",
     "tags": [
@@ -173,7 +173,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "docker-ios-cleanup",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-20",
     "title": "Docker and Xcode Are Eating Your SSD. Here's the Fix.",
     "tags": [
@@ -187,7 +187,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "grandperspective-vs-scanmydisk",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-02-08",
     "title": "GrandPerspective is Great. But It's Time for Something Modern.",
     "tags": [
@@ -200,7 +200,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "macos-system-data-guide",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-31",
     "title": "'Other' System Data Explained: The Developer's Guide",
     "tags": [
@@ -214,7 +214,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "npm-node-modules-cleanup",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-12",
     "title": "You Probably Have 50GB of node_modules You Forgot About",
     "tags": [
@@ -228,7 +228,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "other-volumes-container",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-02-08",
     "title": "What is 'Other Volumes in Container'? (And Why It's So Large)",
     "tags": [
@@ -241,7 +241,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "recursive-node-modules-cleaner",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-30",
     "title": "Node_Modules Black Hole: Recursively Finding and Cleaning Projects",
     "tags": [
@@ -256,7 +256,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "sequoia-disk-full",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-05",
     "title": "macOS Sequoia Update Made Your Disk Full? Here's What to Check.",
     "tags": [
@@ -269,7 +269,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "shrink-docker-mac-disk",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2026-01-29",
     "title": "Docker.raw: Why is my Mac out of space when Docker is empty?",
     "tags": [
@@ -284,7 +284,7 @@ export const posts: BlogPost[] = [
   },
   {
     "slug": "system-data-mystery",
-    "author": "Scan My Disk team",
+    "author": "Firoj Alam",
     "date": "2025-09-28",
     "title": "The Mystery of Mac 'System Data': 7 Folders You Can Actually Delete",
     "tags": [

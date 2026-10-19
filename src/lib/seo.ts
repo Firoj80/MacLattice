@@ -189,7 +189,7 @@ export function blogPostingJsonLd(post: {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
-    author: { "@type": "Organization", name: SITE.brand },
+    author: { "@type": "Person", name: post.author },
     publisher: {
       "@type": "Organization",
       name: SITE.brand,
