@@ -31,11 +31,11 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   },
   "daisydisk-alternatives": {
     description:
-      "Looking for a free DaisyDisk alternative for Mac? We tested GrandPerspective, Scan My Disk & more on M1/M2/M3. See which disk analyzer wins →",
+      "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $5 and available on Windows. macOS is coming soon.",
   },
   "grandperspective-vs-scanmydisk": {
     description:
-      "GrandPerspective is free but feels dated on Apple Silicon Macs. Compare speed, UI & features with a modern alternative. Both are free →",
+      "GrandPerspective is a free Mac disk visualizer. Scan My Disk is not a free Mac app. It is $5 for Windows today, and the Mac version is coming soon.",
   },
   "other-volumes-container": {
     description:
@@ -75,7 +75,7 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   },
   "cleanmymac-alternative": {
     description:
-      "Not everyone wants to pay a recurring fee to clean their hard drive. Here's why we built Scan My Disk as a one-time purchase alternative to CleanMyMac X.",
+      "Not everyone wants a yearly cleanup subscription. Scan My Disk is a $5 one-time Windows app. The macOS version is coming soon.",
   },
   "delete-duplicates-mac": {
     description:

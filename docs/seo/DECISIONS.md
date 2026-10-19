@@ -11,8 +11,17 @@ Read this before changing titles, index rules, or the Mac guides.
 - Do not disavow links. No backlink export and no manual action were available.
 - Do not polish titles again until Search Console has a baseline. Next work is factual fixes on the Mac guides, then Windows how-to coverage.
 
+## 2026-10-19 — Search Console baseline
+
+- Last 28 days through 17 October: 7 clicks, 172 impressions. Indexing snapshot on 12 October: 19 indexed, 19 discovered-not-indexed, 6 redirects, 1 proper canonical. Not a penalty.
+- Pages closest to page 1 were the older Mac guides. Windows guides had more impressions and weaker positions.
+
+## 2026-10-19 — Mac guide claims corrected
+
+Changed product sentences in the old Mac guides only. They now say $5, Windows today, no free tier, macOS coming soon. Author on those posts is "Scan My Disk team". Titles, URLs, and Mac folder instructions were left as they were. Do not edit these posts again before 2026-11-16.
+
 ## Open flags
 
-- Search Console is not connected. Index counts below are inferred.
+- Search Console is connected. The owner submitted the sitemap about 13 October 2026.
 - `/buy` is disallowed in robots.txt and 302s to Dodo. If Google already stored an old checkout URL, it cannot see a noindex tag while crawling is blocked.
 - Another project, github.com/belov-sergei/scan-my-disk, uses the same product name. Microsoft ScanDisk is a different old utility.
