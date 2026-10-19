@@ -1,0 +1,18 @@
+{
+  "Fixed": [
+    "Manual cleanup no longer opens scheduling settings.",
+    "Manual cleanup does not change the schedule or its last-run timestamp.",
+    "Repeated Build & dependency files clicks reuse one window."
+  ],
+  "Added": [
+    "Dedicated Temp, cache & logs review with explicit file selection and confirmation."
+  ],
+  "Version": "0.1.11",
+  "ReleasedAt": "2026-10-19",
+  "Summary": "Cleaner sidebar and separate manual versus scheduled cleanup. Existing licenses and saved scans are retained.",
+  "Improved": [
+    "Cleaner sidebar without Disk storage and More tools sections.",
+    "Automatic cleanup focuses on schedule, rules, preview and history.",
+    "Sidebar destinations and Settings actions verified."
+  ]
+}
