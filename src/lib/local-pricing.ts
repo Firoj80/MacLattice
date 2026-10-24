@@ -46,11 +46,15 @@ export function countryFromTimeZone(zone: string | undefined) {
 }
 
 export type LocalPrice = { currency: string; early: string; regular: string; localized: boolean };
+export const USD_PRICE: LocalPrice = { currency: "USD", early: "$5", regular: "$9.99", localized: false };
 export function priceFromPreview(preview: unknown, product: string): LocalPrice | undefined {
   const p = preview as { currency?: string; product_cart?: { product_id: string; quantity: number; og_currency?: string; og_price?: number; currency: string; discounted_price: number }[] } | null;
   if (!p || !/^[A-Z]{3}$/.test(p.currency ?? "") || !Array.isArray(p.product_cart)) return;
   const item = p.product_cart.find((entry) => entry.product_id === product && entry.quantity === 1);
-  if (!item || item.currency !== p.currency || item.og_currency !== "USD" || item.og_price !== 500 || !Number.isSafeInteger(item.discounted_price) || item.discounted_price <= 0) return;
+  if (!item || item.currency !== p.currency || !Number.isSafeInteger(item.discounted_price) || item.discounted_price <= 0) return;
+  // A dollar quote must still be the $5 catalogue price. A converted quote keeps
+  // Dodo's local amount even when it rewrites og_currency away from USD.
+  if (p.currency === "USD" && (item.og_currency !== "USD" || item.og_price !== 500)) return;
   try {
     const currency = p.currency!;
     const formatter = new Intl.NumberFormat("en", { style: "currency", currency, currencyDisplay: "narrowSymbol" });

@@ -3,9 +3,12 @@ import { SITE } from "@/data/site";
 import { countryFromTimeZone, pricingCountry, type LocalPrice } from "@/lib/local-pricing";
 
 const base = { lifetimePrice: SITE.lifetimePrice as string, regularPrice: SITE.regularPrice as string, localized: false, currency: "USD" };
+function shown(price: LocalPrice) {
+  return { lifetimePrice: price.early, regularPrice: price.regular, localized: price.localized, currency: price.currency };
+}
 const PricingContext = createContext(base);
-export function LocalPricingProvider({ children }: { children: ReactNode }) {
-  const [price, setPrice] = useState(base);
+export function LocalPricingProvider({ children, initial }: { children: ReactNode; initial?: LocalPrice }) {
+  const [price, setPrice] = useState(initial ? shown(initial) : base);
   useEffect(() => {
     const controller = new AbortController();
     let country: string | undefined;
@@ -21,7 +24,7 @@ export function LocalPricingProvider({ children }: { children: ReactNode }) {
       .then(async response => response.ok ? response.json() as Promise<LocalPrice> : undefined)
       .then(value => {
         if (value && /^[A-Z]{3}$/.test(value.currency) && typeof value.early === "string" && value.early.length < 40 && typeof value.regular === "string" && value.regular.length < 40) {
-          setPrice({ lifetimePrice: value.early, regularPrice: value.regular, localized: value.localized === true, currency: value.currency });
+          setPrice(shown(value));
         }
       }).catch(() => { /* A failed quote must never block the page or checkout. */ });
     return () => controller.abort();

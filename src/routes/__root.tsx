@@ -3,8 +3,10 @@ import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import appCss from "../styles.css?url";
 import { WebsiteAnalytics } from "@/components/website-analytics";
 import { LocalPricingProvider } from "@/components/local-pricing";
+import { getLocalPrice } from "@/lib/local-price";
 
 export const Route = createRootRoute({
+  loader: () => getLocalPrice().catch(() => ({ currency: "USD", early: "$5", regular: "$9.99", localized: false })),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -35,16 +37,19 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  component: () => (
+  component: function Root() {
+    const price = Route.useLoaderData();
+    return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body className="bg-bg font-sans text-fg antialiased">
-        <LocalPricingProvider><Outlet /></LocalPricingProvider>
+        <LocalPricingProvider initial={price}><Outlet /></LocalPricingProvider>
         <WebsiteAnalytics />
         <Scripts />
       </body>
     </html>
-  ),
+    );
+  },
 });
