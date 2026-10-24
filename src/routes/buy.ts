@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { rateLimit } from "@/lib/license-rate-limit";
 import { createDodoCheckout } from "@/lib/dodo";
+import { pricingCountry } from "@/lib/local-pricing";
 import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export const Route = createFileRoute("/buy")({
   server: {
@@ -15,7 +16,8 @@ export const Route = createFileRoute("/buy")({
             ))
           )
             return new Response("Please wait before trying again.", { status: 429 });
-          const s = await createDodoCheckout(request.headers.get("cookie"));
+          const country = pricingCountry(request.headers.get("x-vercel-ip-country"));
+          const s = await createDodoCheckout(request.headers.get("cookie"), country);
           return new Response(null, {
             status: 302,
             headers: { Location: s.url, "Set-Cookie": s.cookie, "Cache-Control": "no-store" },

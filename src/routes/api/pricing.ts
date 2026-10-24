@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { dodoRequest, providerConfig } from "@/lib/dodo-client";
-import { priceFromPreview, pricingCountry, type LocalPrice } from "@/lib/local-pricing";
+import { priceFromPreview, pricingCountry, currencyForCountry, type LocalPrice } from "@/lib/local-pricing";
 import { rateLimit } from "@/lib/license-rate-limit";
 
 const fallback: LocalPrice = { currency: "USD", early: "$5", regular: "$9.99", localized: false };
@@ -15,9 +15,11 @@ async function quote(country: string, identity: string) {
     try {
       const { product } = providerConfig();
       if (!await rateLimit("pricing", identity, 20)) return fallback;
+      const currency = currencyForCountry(country);
       const preview = await dodoRequest<unknown>("/checkouts/preview", {
         product_cart: [{ product_id: product, quantity: 1 }],
         billing_address: { country },
+        ...(currency ? { billing_currency: currency } : {}),
       });
       const price = priceFromPreview(preview, product) ?? fallback;
       cache.set(country, { until: Date.now() + 600_000, price });

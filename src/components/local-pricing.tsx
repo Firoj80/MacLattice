@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { SITE } from "@/data/site";
-import { pricingCountry, type LocalPrice } from "@/lib/local-pricing";
+import { countryFromTimeZone, pricingCountry, type LocalPrice } from "@/lib/local-pricing";
 
 const base = { lifetimePrice: SITE.lifetimePrice as string, regularPrice: SITE.regularPrice as string, localized: false, currency: "USD" };
 const PricingContext = createContext(base);
@@ -11,7 +11,7 @@ export function LocalPricingProvider({ children }: { children: ReactNode }) {
     let country: string | undefined;
     try {
       const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      country = ["Asia/Kolkata", "Asia/Calcutta"].includes(zone) ? "IN" : undefined;
+      country = countryFromTimeZone(zone);
       if (!country) for (const language of navigator.languages) {
         country = pricingCountry(new Intl.Locale(language).region);
         if (country) break;

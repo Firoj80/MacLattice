@@ -3,8 +3,10 @@ import { randomBytes, randomUUID, createHash } from "node:crypto";
 import { getSql } from "@/lib/db";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
 import { datafastVisitorId } from "@/lib/datafast-attribution";
-export async function createDodoCheckout(cookieHeader: string | null = null) {
+import { currencyForCountry } from "@/lib/local-pricing";
+export async function createDodoCheckout(cookieHeader: string | null = null, country?: string) {
   const visitorId = datafastVisitorId(cookieHeader);
+  const currency = currencyForCountry(country);
   const { product } = providerConfig(),
     id = randomUUID(),
     token = randomBytes(32).toString("base64url"),
@@ -13,6 +15,7 @@ export async function createDodoCheckout(cookieHeader: string | null = null) {
   await sql`insert into checkout_orders(id,access_hash) values (${id},${hash})`;
   const session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
     product_cart: [{ product_id: product, quantity: 1 }],
+    ...(currency ? { billing_currency: currency } : {}),
     return_url: `https://www.scanmydisk.com/thanks?order_id=${id}`,
     metadata: {
       order_id: id,

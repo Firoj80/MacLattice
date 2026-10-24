@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { rateLimit } from "@/lib/license-rate-limit";
 import { createDodoCheckout } from "@/lib/dodo";
+import { pricingCountry } from "@/lib/local-pricing";
 import { logCheckoutFailure } from "@/lib/checkout-diagnostics";
 export const Route = createFileRoute("/api/checkout")({
   server: {
@@ -15,7 +16,8 @@ export const Route = createFileRoute("/api/checkout")({
             ))
           )
             return Response.json({ error: "too_many_requests" }, { status: 429 });
-          const s = await createDodoCheckout(request.headers.get("cookie"));
+          const country = pricingCountry(request.headers.get("x-vercel-ip-country"));
+          const s = await createDodoCheckout(request.headers.get("cookie"), country);
           return Response.json(
             { url: s.url, provider: "dodo" },
             { headers: { "Set-Cookie": s.cookie, "Cache-Control": "no-store" } },
