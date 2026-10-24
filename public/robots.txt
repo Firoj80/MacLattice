@@ -3,5 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /buy
 Disallow: /thanks
+Disallow: /post-views
 
 Sitemap: https://www.scanmydisk.com/sitemap.xml

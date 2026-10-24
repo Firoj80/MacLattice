@@ -4,9 +4,11 @@ import { Search } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
 import { allTags, posts } from "@/data/blog";
 import { pageHead } from "@/lib/seo";
+import { listPostViews } from "@/lib/post-views";
 import { formatDate } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/")({
+  loader: () => listPostViews().catch(() => []),
   component: BlogIndex,
   head: () =>
     pageHead({
@@ -18,6 +20,8 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
+  const viewRows = Route.useLoaderData();
+  const views = new Map(viewRows.map((row) => [row.slug, row.views]));
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState<string | null>(null);
 
@@ -114,6 +118,9 @@ function BlogIndex() {
                       <time className="text-[12px] font-medium text-muted" dateTime={post.date}>
                         {formatDate(post.date)}
                       </time>
+                      <span className="text-[12px] font-medium text-muted tabular-nums">
+                        {(views.get(post.slug) ?? 0).toLocaleString()} views
+                      </span>
                       <div className="flex gap-2">
                         {post.tags.slice(0, 2).map((t) => (
                           <span
@@ -148,6 +155,11 @@ function BlogIndex() {
             )}
           </div>
         </div>
+        <p className="mt-10 text-center text-sm text-muted">
+          <Link to="/post-views" className="hover:text-fg">
+            See view counts
+          </Link>
+        </p>
       </div>
     </SiteShell>
   );

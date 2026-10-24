@@ -17,6 +17,7 @@ import { Route as LicenseRouteImport } from './routes/license'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MacosRouteImport } from './routes/macos'
 import { Route as PayRouteImport } from './routes/pay'
+import { Route as PostViewsRouteImport } from './routes/post-views'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -78,6 +79,11 @@ const MacosRoute = MacosRouteImport.update({
 const PayRoute = PayRouteImport.update({
   id: '/pay',
   path: '/pay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostViewsRoute = PostViewsRouteImport.update({
+  id: '/post-views',
+  path: '/post-views',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -200,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
+  '/post-views': typeof PostViewsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -232,6 +239,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
+  '/post-views': typeof PostViewsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/macos': typeof MacosRoute
   '/pay': typeof PayRoute
+  '/post-views': typeof PostViewsRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -299,6 +308,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/macos'
     | '/pay'
+    | '/post-views'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/macos'
     | '/pay'
+    | '/post-views'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -363,6 +374,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/macos'
     | '/pay'
+    | '/post-views'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -396,6 +408,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MacosRoute: typeof MacosRoute
   PayRoute: typeof PayRoute
+  PostViewsRoute: typeof PostViewsRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
@@ -476,6 +489,13 @@ declare module '@tanstack/react-router' {
       path: '/pay'
       fullPath: '/pay'
       preLoaderRoute: typeof PayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/post-views': {
+      id: '/post-views'
+      path: '/post-views'
+      fullPath: '/post-views'
+      preLoaderRoute: typeof PostViewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -644,6 +664,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MacosRoute: MacosRoute,
   PayRoute: PayRoute,
+  PostViewsRoute: PostViewsRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,

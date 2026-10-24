@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { BlogCta } from "@/components/blog-cta";
@@ -9,6 +10,7 @@ import { getPost, isMacStorageGuide, relatedPosts } from "@/data/blog";
 import { SITE } from "@/data/site";
 import { blogPostingJsonLd, pageHead } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
+import { recordPostView } from "@/lib/post-views";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -58,6 +60,21 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function BlogPostPage() {
   const { post, related } = Route.useLoaderData();
+  const [views, setViews] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    recordPostView({ data: post.slug })
+      .then((result) => {
+        if (!cancelled) setViews(result.views);
+      })
+      .catch(() => {
+        if (!cancelled) setViews(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [post.slug]);
 
   return (
     <SiteShell>
@@ -86,6 +103,14 @@ function BlogPostPage() {
             <span className="font-medium text-fg">{post.author}</span>
             <span className="h-1 w-1 rounded-full bg-fg/20" />
             <time dateTime={post.date}>{formatDate(post.date)}</time>
+            {views !== null ? (
+              <>
+                <span className="h-1 w-1 rounded-full bg-fg/20" />
+                <span className="tabular-nums">
+                  {views.toLocaleString()} {views === 1 ? "view" : "views"}
+                </span>
+              </>
+            ) : null}
           </div>
           {isMacStorageGuide(post.slug) ? (
             <p className="mb-8 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted">
