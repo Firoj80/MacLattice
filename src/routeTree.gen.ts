@@ -40,6 +40,7 @@ import { Route as ApiLicenseDeactivateRouteImport } from './routes/api/license/d
 import { Route as ApiLicenseOrderRouteImport } from './routes/api/license/order'
 import { Route as ApiLicenseRecoverRouteImport } from './routes/api/license/recover'
 import { Route as ApiLicenseValidateRouteImport } from './routes/api/license/validate'
+import { Route as ApiMdSplatRouteImport } from './routes/api/md/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -196,6 +197,11 @@ const ApiLicenseValidateRoute = ApiLicenseValidateRouteImport.update({
   path: '/api/license/validate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMdSplatRoute = ApiMdSplatRouteImport.update({
+  id: '/api/md/$',
+  path: '/api/md/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -229,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
   '/api/license/validate': typeof ApiLicenseValidateRoute
+  '/api/md/$': typeof ApiMdSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -262,6 +269,7 @@ export interface FileRoutesByTo {
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
   '/api/license/validate': typeof ApiLicenseValidateRoute
+  '/api/md/$': typeof ApiMdSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -296,6 +304,7 @@ export interface FileRoutesById {
   '/api/license/order': typeof ApiLicenseOrderRoute
   '/api/license/recover': typeof ApiLicenseRecoverRoute
   '/api/license/validate': typeof ApiLicenseValidateRoute
+  '/api/md/$': typeof ApiMdSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -331,6 +340,7 @@ export interface FileRouteTypes {
     | '/api/license/order'
     | '/api/license/recover'
     | '/api/license/validate'
+    | '/api/md/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -364,6 +374,7 @@ export interface FileRouteTypes {
     | '/api/license/order'
     | '/api/license/recover'
     | '/api/license/validate'
+    | '/api/md/$'
   id:
     | '__root__'
     | '/'
@@ -397,6 +408,7 @@ export interface FileRouteTypes {
     | '/api/license/order'
     | '/api/license/recover'
     | '/api/license/validate'
+    | '/api/md/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -431,6 +443,7 @@ export interface RootRouteChildren {
   ApiLicenseOrderRoute: typeof ApiLicenseOrderRoute
   ApiLicenseRecoverRoute: typeof ApiLicenseRecoverRoute
   ApiLicenseValidateRoute: typeof ApiLicenseValidateRoute
+  ApiMdSplatRoute: typeof ApiMdSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -652,6 +665,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLicenseValidateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/md/$': {
+      id: '/api/md/$'
+      path: '/api/md/$'
+      fullPath: '/api/md/$'
+      preLoaderRoute: typeof ApiMdSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -687,16 +707,18 @@ const rootRouteChildren: RootRouteChildren = {
   ApiLicenseOrderRoute: ApiLicenseOrderRoute,
   ApiLicenseRecoverRoute: ApiLicenseRecoverRoute,
   ApiLicenseValidateRoute: ApiLicenseValidateRoute,
+  ApiMdSplatRoute: ApiMdSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }

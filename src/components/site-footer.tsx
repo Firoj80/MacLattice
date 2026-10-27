@@ -1,8 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { BrandMark } from "@/components/brand";
 import { CodeHypeBadge } from "@/components/codehype-badge";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
+import { markdownPathFor } from "@/lib/md/negotiate";
+import { absUrl } from "@/lib/seo";
 
 const linkClass = "text-sm text-muted transition-colors hover:text-fg";
 
@@ -23,6 +25,8 @@ function Item({ item }: { item: NavItem }) {
 }
 
 export function SiteFooter() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const markdown = markdownPathFor(pathname);
   return (
     <footer className="border-t border-border px-6 py-12">
       <div className="mx-auto max-w-6xl">
@@ -67,6 +71,11 @@ export function SiteFooter() {
           <p className="text-xs text-muted">
             © 2026 {SITE.name}. Owned and operated by {SITE.name} team.
           </p>
+          {markdown ? (
+            <a href={absUrl(markdown)} className="text-xs text-muted hover:text-fg">
+              View as Markdown
+            </a>
+          ) : null}
         </div>
       </div>
     </footer>

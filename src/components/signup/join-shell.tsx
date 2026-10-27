@@ -1,11 +1,13 @@
 import { useState, type ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { HeaderBuy } from "@/components/header-buy";
 import { BrandMark } from "@/components/brand";
 import { CodeHypeBadge } from "@/components/codehype-badge";
 import { FOOTER_LEGAL, FOOTER_PRODUCT, FOOTER_SUPPORT, MAIN_NAV, type NavItem } from "@/data/nav";
 import { SITE } from "@/data/site";
+import { markdownPathFor } from "@/lib/md/negotiate";
+import { absUrl } from "@/lib/seo";
 
 export function JoinShell({ children }: { children: ReactNode; compact?: boolean }) {
   return (
@@ -78,6 +80,8 @@ function JoinHeader() {
 }
 
 function JoinFooter() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const markdown = markdownPathFor(pathname);
   const col = "flex flex-col gap-2.5 text-sm text-muted";
   const link = "hover:text-fg";
   return (
@@ -116,6 +120,13 @@ function JoinFooter() {
       <p className="mx-auto mt-10 max-w-6xl text-sm text-muted">
         © {new Date().getFullYear()} {SITE.name}
       </p>
+      {markdown ? (
+        <p className="mx-auto mt-3 max-w-6xl">
+          <a href={absUrl(markdown)} className="text-xs text-muted hover:text-fg">
+            View as Markdown
+          </a>
+        </p>
+      ) : null}
     </footer>
   );
 }

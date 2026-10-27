@@ -58,6 +58,7 @@ export function pageHead({
   const image = ogImage();
   const socialTitle = ogTitle ?? title;
   const socialDescription = ogDescription ?? description;
+  const markdownHref = absUrl(path === "/" ? "/index.md" : `${path}.md`);
   const robots = index ? "index, follow" : "noindex, nofollow";
 
   return {
@@ -94,8 +95,17 @@ export function pageHead({
       { name: "twitter:image", content: image },
       { name: "twitter:image:alt", content: OG_IMAGE_ALT },
       ...(published ? [{ property: "article:published_time", content: published }] : []),
+      ...(index ? [{ name: "ai-summary", content: description }] : []),
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      ...(index
+        ? [
+            { rel: "alternate", type: "text/markdown", href: markdownHref },
+            { rel: "describedby", href: absUrl("/llms.txt") },
+          ]
+        : []),
+    ],
   };
 }
 

@@ -1,4 +1,92 @@
+# keep in sync with /llms.txt and /ai.txt
+# Machine-readable map: https://www.scanmydisk.com/llms.txt
+# AI usage policy: https://www.scanmydisk.com/ai.txt
+
 User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: CCBot
+Allow: /
+Disallow: /api/
+Disallow: /buy
+Disallow: /thanks
+Disallow: /post-views
+
+User-agent: Bytespider
 Allow: /
 Disallow: /api/
 Disallow: /buy
