@@ -90,7 +90,14 @@ function JoinFooter() {
         <div>
           <BrandMark size="sm" />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">{SITE.tagline}</p>
-          <CodeHypeBadge />
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <CodeHypeBadge className="inline-block max-w-[180px]" />
+            {pathname === "/" ? (
+              <a href="https://www.scrolllaunch.com/products/scanmydisk?ref=badge" target="_blank" rel="noopener">
+                <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width="220" height="48" loading="lazy" />
+              </a>
+            ) : null}
+          </div>
         </div>
         <div>
           <h4 className="mb-3 text-sm font-semibold text-fg">Product</h4>
@@ -120,13 +127,6 @@ function JoinFooter() {
       <p className="mx-auto mt-10 max-w-6xl text-sm text-muted">
         © {new Date().getFullYear()} {SITE.name}
       </p>
-      {pathname === "/" ? (
-        <p className="mx-auto mt-6 max-w-6xl">
-          <a href="https://www.scrolllaunch.com/products/scanmydisk?ref=badge" target="_blank" rel="noopener">
-            <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width="220" height="48" loading="lazy" />
-          </a>
-        </p>
-      ) : null}
       {markdown ? (
         <p className="mx-auto mt-3 max-w-6xl">
           <a href={absUrl(markdown)} className="text-xs text-muted hover:text-fg">
