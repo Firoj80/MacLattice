@@ -2,19 +2,25 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
+import { JsonLd } from "@/components/json-ld";
 import { allTags, posts } from "@/data/blog";
-import { pageHead } from "@/lib/seo";
+import { pageHead, absUrl } from "@/lib/seo";
 import { listPostViews } from "@/lib/post-views";
 import { formatDate } from "@/lib/utils";
+import { defaultGuides, guideListLede, guideListTitle, sortGuides } from "@/lib/research/study";
+
+const guides = defaultGuides();
+const listTitle = guideListTitle(guides);
+const listLede = guideListLede(guides);
+const ranked = sortGuides(guides);
 
 export const Route = createFileRoute("/blog/")({
   loader: () => listPostViews().catch(() => []),
   component: BlogIndex,
   head: () =>
     pageHead({
-      title: "Disk Space Guides | ScanMyDisk",
-      description:
-        "Guides for finding what is using disk space. ScanMyDisk is available now for Windows 10 and 11. The macOS version is coming soon.",
+      title: listTitle,
+      description: listLede,
       path: "/blog",
     }),
 });
@@ -27,29 +33,45 @@ function BlogIndex() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return [...posts]
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .filter((p) => {
-        if (tag && !p.tags.includes(tag)) return false;
+    return ranked
+      .map((guide) => posts.find((item) => item.slug === guide.slug))
+      .filter((post): post is (typeof posts)[number] => Boolean(post))
+      .filter((post) => {
+        if (tag && !post.tags.includes(tag)) return false;
         if (!q) return true;
         return (
-          p.title.toLowerCase().includes(q) ||
-          p.excerpt.toLowerCase().includes(q) ||
-          p.tags.some((t) => t.toLowerCase().includes(q))
+          post.title.toLowerCase().includes(q) ||
+          post.excerpt.toLowerCase().includes(q) ||
+          post.tags.some((item) => item.toLowerCase().includes(q))
         );
       });
   }, [query, tag]);
 
   return (
     <SiteShell>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: listTitle,
+          numberOfItems: ranked.length,
+          itemListOrder: "https://schema.org/ItemListOrderDescending",
+          itemListElement: ranked.map((guide, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: guide.title,
+            url: absUrl(`/blog/${guide.slug}`),
+          })),
+        }}
+      />
       <div className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-16 text-center">
-          <h1 className="font-display mb-6 text-4xl font-medium tracking-tight text-fg md:text-5xl">
-            Disk space <span className="text-primary">guides</span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-xl text-muted">
-            Guides for finding what is using disk space. ScanMyDisk is available now for Windows 10
-            and 11. The macOS version is coming soon.
+          <h1 className="font-display mb-6 text-4xl font-medium tracking-tight text-fg md:text-5xl">{listTitle}</h1>
+          <p className="mx-auto max-w-2xl text-xl text-muted">{listLede}</p>
+          <p className="mt-4 text-sm">
+            <a href="/research/guides" className="text-muted underline-offset-2 hover:text-fg hover:underline">
+              How this count is calculated
+            </a>
           </p>
         </header>
 

@@ -145,7 +145,7 @@ export const JOIN_FAQ = [
   ...PLATFORM_FAQ,
   {
     q: "What does Scan My Disk actually do?",
-    a: "It scans a drive or folder and maps every byte, then gives you eight ways to look at the result — folders, sunburst, flame, bubbles, mind map, top sizes, age map and treemap. From there you can find duplicates, compare saved scans, run a cleanup preset, uninstall leftovers, or stage files for review.",
+    a: `It scans a drive or folder and maps every byte, then gives you ${JOIN_VIEWS.length} ways to look at the result — ${JOIN_VIEWS.map((view) => view.name.toLowerCase()).slice(0, -1).join(", ")} and ${JOIN_VIEWS[JOIN_VIEWS.length - 1]?.name.toLowerCase()}. From there you can find duplicates, compare saved scans, run a cleanup preset, uninstall leftovers, or stage files for review.`,
   },
   {
     q: "Do I need an account?",

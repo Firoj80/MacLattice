@@ -5,6 +5,8 @@ import { JsonLd } from "@/components/json-ld";
 import { PLATFORM_FAQ, SITE, availabilitySentence, macOSAvailable } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 import { absUrl, faqJsonLd, pageHead } from "@/lib/seo";
+import { AtAGlance } from "@/components/at-a-glance";
+import { macGlanceRows } from "@/lib/research/study";
 
 const TITLE = macOSAvailable()
   ? "ScanMyDisk for macOS"
@@ -55,6 +57,12 @@ function MacosPage() {
             : "The macOS version is in development and is not available yet."}
         </p>
         <p className="mt-4 text-sm text-white/80">{availabilitySentence()}</p>
+        <div className="mt-6">
+          <AtAGlance rows={macGlanceRows()} />
+          <p className="mt-3 text-sm text-white/60">
+            <a href="/research/product" className="underline-offset-2 hover:underline">Product facts</a>
+          </p>
+        </div>
 
         <h2 className="mt-12 text-2xl font-semibold text-white">
           {macOSAvailable() ? "What it includes" : "What the Mac version is planned to include"}

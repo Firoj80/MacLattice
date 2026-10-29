@@ -4,19 +4,20 @@ import { SITE, availabilitySentence, macOSAvailable } from "@/data/site";
 import { HOME_DESCRIPTION } from "@/lib/seo";
 import { absoluteLinks, bullets, linkList, pageDoc } from "@/lib/md/format";
 import { blogSeoDescription } from "@/data/blog-seo";
+import { defaultGuides, guideListLede, guideListTitle, guideStudy, productStudy, researchStudies, sortGuides, studyMarkdown } from "@/lib/research/study";
 
 export type MarkdownPage = {
   path: string;
   title: string;
   summary: string;
-  group: "core" | "guides" | "legal";
+  group: "core" | "guides" | "legal" | "research";
   updated?: string;
   markdown: string;
 };
 
 const windowsFeatures = [
   "Disk usage analyzer for Windows 11 and Windows 10",
-  "Storage visualizer with eight views, including a treemap",
+  "Storage visualizer with " + JOIN_VIEWS.length + " views, including a treemap",
   "Find large files and folders on a Windows PC",
   "Duplicate detection that compares file contents",
   "Saved scan comparison so you can see what grew",
@@ -57,7 +58,7 @@ function home(): MarkdownPage {
     "",
     toolkit.map(([title, bodyText]) => `### ${title}\n\n${bodyText}`).join("\n\n"),
     "",
-    "## Eight views",
+    `## ${JOIN_VIEWS.length} views`,
     "",
     JOIN_VIEWS.map((view) => `- **${view.name}.** ${view.body}`).join("\n"),
     "",
@@ -107,7 +108,7 @@ function windows(): MarkdownPage {
     "",
     bullets(windowsFeatures),
     "",
-    "## Eight views",
+    `## ${JOIN_VIEWS.length} views`,
     "",
     JOIN_VIEWS.map((view) => `- **${view.name}.** ${view.body}`).join("\n"),
   ].join("\n");
@@ -176,21 +177,30 @@ function macos(): MarkdownPage {
 
 function blogIndex(): MarkdownPage {
   const path = "/blog";
-  const summary = "Guides for finding what is using disk space. ScanMyDisk is available now for Windows 10 and 11. The macOS version is coming soon.";
-  const items = [...posts]
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .map((post) => ({ title: post.title, path: `/blog/${post.slug}`, summary: post.excerpt }));
+  const guides = defaultGuides();
+  const title = guideListTitle(guides);
+  const summary = guideListLede(guides);
+  const items = sortGuides(guides).map((post) => ({
+    title: post.title,
+    path: `/blog/${post.slug}`,
+    summary: posts.find((item) => item.slug === post.slug)?.excerpt,
+  }));
   return {
     path,
-    title: "Disk space guides",
+    title,
     summary,
     group: "guides",
+    updated: guideStudy(guides).updated,
     markdown: pageDoc({
-      title: "Disk space guides",
+      title,
       summary,
       path,
+      updated: guideStudy(guides).updated,
       body: linkList(items),
-      related: [{ title: "Home", path: "/" }],
+      related: [
+        { title: "Guide statistics", path: "/research/guides" },
+        { title: "Home", path: "/" },
+      ],
     }),
   };
 }
@@ -334,11 +344,67 @@ function refunds(): MarkdownPage {
   };
 }
 
+function researchPage(study: ReturnType<typeof guideStudy>, related: { title: string; path: string }[]): MarkdownPage {
+  return {
+    path: study.path,
+    title: study.title,
+    summary: study.description,
+    group: "research",
+    updated: study.updated,
+    markdown: pageDoc({
+      title: study.title,
+      summary: study.description,
+      path: study.path,
+      updated: study.updated,
+      body: studyMarkdown(study),
+      related,
+    }),
+  };
+}
+
+function researchIndex(): MarkdownPage {
+  const studies = researchStudies();
+  const path = "/research";
+  const summary = "Counts from ScanMyDisk's public guide catalog and product feature list. Not disk-scan telemetry.";
+  return {
+    path,
+    title: "ScanMyDisk Research",
+    summary,
+    group: "research",
+    updated: studies.find((study) => study.updated)?.updated,
+    markdown: pageDoc({
+      title: "ScanMyDisk Research",
+      summary,
+      path,
+      updated: studies.find((study) => study.updated)?.updated,
+      body: linkList(studies.map((study) => ({ title: study.title, path: study.path, summary: study.summary }))),
+      related: studies.map((study) => ({ title: study.title, path: study.path })),
+    }),
+  };
+}
+
+function researchGuides(): MarkdownPage {
+  return researchPage(guideStudy(), [
+    { title: "All guides", path: "/blog" },
+    { title: "Product facts", path: "/research/product" },
+  ]);
+}
+
+function researchProduct(): MarkdownPage {
+  return researchPage(productStudy(), [
+    { title: "Guide statistics", path: "/research/guides" },
+    { title: "Home", path: "/" },
+  ]);
+}
+
 const STATIC: Record<string, () => MarkdownPage> = {
   "/": home,
   "/windows": windows,
   "/macos": macos,
   "/blog": blogIndex,
+  "/research": researchIndex,
+  "/research/guides": researchGuides,
+  "/research/product": researchProduct,
   "/contact": contact,
   "/license": license,
   "/terms": terms,
@@ -360,11 +426,11 @@ export function listMarkdownPages(): MarkdownPage[] {
     .sort((a, b) => b.date.localeCompare(a.date))
     .map((post) => blogPost(post.slug))
     .filter((page): page is MarkdownPage => Boolean(page));
-  return [...pages.filter((page) => page.group === "core"), ...pages.filter((page) => page.group === "guides"), ...guides, ...pages.filter((page) => page.group === "legal")];
+  return [...pages.filter((page) => page.group === "core"), ...pages.filter((page) => page.group === "research"), ...pages.filter((page) => page.group === "guides"), ...guides, ...pages.filter((page) => page.group === "legal")];
 }
 
 /** Public HTML routes that must have a renderer, plus routes we deliberately skip. */
-export const COVERED_PATHS = ["/", "/windows", "/macos", "/blog", "/contact", "/license", "/terms", "/privacy", "/refund-policy"] as const;
+export const COVERED_PATHS = ["/", "/windows", "/macos", "/blog", "/research", "/research/guides", "/research/product", "/contact", "/license", "/terms", "/privacy", "/refund-policy"] as const;
 
 export const SKIPPED_PATHS: { path: string; reason: string }[] = [
   { path: "/pricing", reason: "301 to /#pricing. Pricing is on the homepage markdown." },

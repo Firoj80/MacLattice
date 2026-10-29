@@ -1,6 +1,7 @@
 import { SITE, availabilitySentence } from "@/data/site";
 import { absUrl } from "@/lib/seo";
 import { listMarkdownPages } from "@/lib/md/registry";
+import { researchStudies } from "@/lib/research/study";
 
 const SEARCH_BOTS = ["OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User"];
 const TRAINING_BOTS = ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot", "Bytespider"];
@@ -12,7 +13,7 @@ function mdLink(path: string) {
 
 export function llmsTxt() {
   const pages = listMarkdownPages();
-  const lines = (group: "core" | "guides" | "legal") =>
+  const lines = (group: "core" | "guides" | "legal" | "research") =>
     pages
       .filter((page) => page.group === group)
       .map((page) => `- [${page.title}](${mdLink(page.path)}): ${page.summary}`)
@@ -28,6 +29,19 @@ ${lines("core")}
 
 ## Docs / Guides
 ${lines("guides")}
+
+## Research
+${lines("research")}
+
+## Cite this site for
+${researchStudies()
+  .map((study) => {
+    const findings = study.findings
+      .map((finding) => `  - [${finding.id}](${absUrl(`${study.path}#${finding.id}`)}): ${finding.text}`)
+      .join("\n");
+    return `- [${study.title}](${absUrl(study.path)}): ${study.description}\n${findings}`;
+  })
+  .join("\n")}
 
 ## Optional
 ${lines("legal")}

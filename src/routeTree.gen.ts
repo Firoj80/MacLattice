@@ -32,6 +32,9 @@ import { Route as ApiEarlyBirdRouteImport } from './routes/api/early-bird'
 import { Route as ApiPricingRouteImport } from './routes/api/pricing'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as ResearchIndexRouteImport } from './routes/research/index'
+import { Route as ResearchGuidesRouteImport } from './routes/research/guides'
+import { Route as ResearchProductRouteImport } from './routes/research/product'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiDodoWebhookRouteImport } from './routes/api/dodo/webhook'
 import { Route as ApiLicenseActivateRouteImport } from './routes/api/license/activate'
@@ -157,6 +160,21 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchGuidesRoute = ResearchGuidesRouteImport.update({
+  id: '/research/guides',
+  path: '/research/guides',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchProductRoute = ResearchProductRouteImport.update({
+  id: '/research/product',
+  path: '/research/product',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -226,7 +244,10 @@ export interface FileRoutesByFullPath {
   '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/research/guides': typeof ResearchGuidesRoute
+  '/research/product': typeof ResearchProductRoute
   '/blog/': typeof BlogIndexRoute
+  '/research/': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
@@ -260,7 +281,10 @@ export interface FileRoutesByTo {
   '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/research/guides': typeof ResearchGuidesRoute
+  '/research/product': typeof ResearchProductRoute
   '/blog': typeof BlogIndexRoute
+  '/research': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
@@ -295,7 +319,10 @@ export interface FileRoutesById {
   '/api/early-bird': typeof ApiEarlyBirdRoute
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/research/guides': typeof ResearchGuidesRoute
+  '/research/product': typeof ResearchProductRoute
   '/blog/': typeof BlogIndexRoute
+  '/research/': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/dodo/webhook': typeof ApiDodoWebhookRoute
   '/api/license/activate': typeof ApiLicenseActivateRoute
@@ -331,7 +358,10 @@ export interface FileRouteTypes {
     | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
+    | '/research/guides'
+    | '/research/product'
     | '/blog/'
+    | '/research/'
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
@@ -365,7 +395,10 @@ export interface FileRouteTypes {
     | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
+    | '/research/guides'
+    | '/research/product'
     | '/blog'
+    | '/research'
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
@@ -399,7 +432,10 @@ export interface FileRouteTypes {
     | '/api/early-bird'
     | '/api/pricing'
     | '/blog/$slug'
+    | '/research/guides'
+    | '/research/product'
     | '/blog/'
+    | '/research/'
     | '/api/auth/$'
     | '/api/dodo/webhook'
     | '/api/license/activate'
@@ -434,7 +470,10 @@ export interface RootRouteChildren {
   ApiEarlyBirdRoute: typeof ApiEarlyBirdRoute
   ApiPricingRoute: typeof ApiPricingRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  ResearchGuidesRoute: typeof ResearchGuidesRoute
+  ResearchProductRoute: typeof ResearchProductRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ResearchIndexRoute: typeof ResearchIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiDodoWebhookRoute: typeof ApiDodoWebhookRoute
   ApiLicenseActivateRoute: typeof ApiLicenseActivateRoute
@@ -609,6 +648,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/guides': {
+      id: '/research/guides'
+      path: '/research/guides'
+      fullPath: '/research/guides'
+      preLoaderRoute: typeof ResearchGuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/product': {
+      id: '/research/product'
+      path: '/research/product'
+      fullPath: '/research/product'
+      preLoaderRoute: typeof ResearchProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -698,7 +758,10 @@ const rootRouteChildren: RootRouteChildren = {
   ApiEarlyBirdRoute: ApiEarlyBirdRoute,
   ApiPricingRoute: ApiPricingRoute,
   BlogSlugRoute: BlogSlugRoute,
+  ResearchGuidesRoute: ResearchGuidesRoute,
+  ResearchProductRoute: ResearchProductRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ResearchIndexRoute: ResearchIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiDodoWebhookRoute: ApiDodoWebhookRoute,
   ApiLicenseActivateRoute: ApiLicenseActivateRoute,

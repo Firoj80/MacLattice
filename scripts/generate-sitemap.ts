@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { posts } from "../src/data/blog.ts";
+import { guideStudy } from "../src/lib/research/study.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +23,12 @@ const staticRoutes = [
 ];
 
 function generateSitemap() {
+  const guideDate = guideStudy().updated;
+  const researchRoutes = [
+    { path: "/research", priority: 0.6, changefreq: "monthly", lastmod: guideDate },
+    { path: "/research/guides", priority: 0.7, changefreq: "monthly", lastmod: guideDate },
+    { path: "/research/product", priority: 0.6, changefreq: "monthly" },
+  ];
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
@@ -30,6 +37,15 @@ function generateSitemap() {
     xml += `  <url>\n`;
     xml += `    <loc>${BASE_URL}${route.path === "/" ? "/" : route.path}</loc>\n`;
     xml += `    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n`;
+    xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
+    xml += `    <priority>${route.priority.toFixed(1)}</priority>\n`;
+    xml += `  </url>\n`;
+  }
+
+  for (const route of researchRoutes) {
+    xml += `  <url>\n`;
+    xml += `    <loc>${BASE_URL}${route.path}</loc>\n`;
+    if (route.lastmod) xml += `    <lastmod>${route.lastmod}</lastmod>\n`;
     xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
     xml += `    <priority>${route.priority.toFixed(1)}</priority>\n`;
     xml += `  </url>\n`;

@@ -38,7 +38,7 @@ export function isSkippedPath(pathname: string) {
   return SKIP_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
-const MARKDOWN_PAGES = new Set(["/", "/windows", "/macos", "/blog", "/contact", "/license", "/terms", "/privacy", "/refund-policy"]);
+const MARKDOWN_PAGES = new Set(["/", "/windows", "/macos", "/blog", "/contact", "/license", "/terms", "/privacy", "/refund-policy", "/research", "/research/guides", "/research/product"]);
 
 /** Path of the markdown twin, or null when this HTML page has no renderer. */
 export function markdownPathFor(pathname: string) {

@@ -20,6 +20,7 @@ export const FOOTER_PRODUCT: NavItem[] = [
   { to: "/", hash: "pricing", label: "Pricing" },
   { href: "/buy", label: "Buy licence" },
   { to: "/blog", label: "Blog" },
+  { href: "/research", label: "Research" },
   { href: "/windows", label: "Windows — Available Now" },
   { href: "/macos", label: macOSAvailable() ? "macOS — Available Now" : "macOS — Coming Soon" },
   { href: "/blog/clean-appdata-programdata-leftovers-windows", label: "Uninstall leftovers" },

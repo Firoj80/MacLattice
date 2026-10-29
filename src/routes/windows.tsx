@@ -7,10 +7,11 @@ import { JOIN_VIEWS } from "@/data/join";
 import { PLATFORM_FAQ, SITE, availabilitySentence, macOSAvailable } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 import { faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
+import { AtAGlance } from "@/components/at-a-glance";
+import { windowsGlanceRows } from "@/lib/research/study";
 
 const TITLE = "Windows Disk Space Analyzer | ScanMyDisk";
-const DESCRIPTION =
-  "ScanMyDisk is a Windows disk space analyzer and storage visualizer for Windows 10 and Windows 11. Find large files, duplicates and caches. macOS version coming soon.";
+const DESCRIPTION = `ScanMyDisk is a Windows disk space analyzer and storage visualizer for Windows 10 and Windows 11 with ${JOIN_VIEWS.length} views. Find large files, duplicates and caches. macOS version coming soon.`;
 
 export const Route = createFileRoute("/windows")({
   component: WindowsPage,
@@ -60,6 +61,12 @@ function WindowsPage() {
           ScanMyDisk is a visual disk space analyzer and storage visualizer for Windows 10 and Windows 11.
           See what is using the disk, find large files, duplicates and caches, and review cleanup before anything is removed.
         </p>
+        <div className="mt-6 max-w-2xl">
+          <AtAGlance rows={windowsGlanceRows()} />
+          <p className="mt-3 text-sm text-white/60">
+            <a href="/research/product" className="underline-offset-2 hover:underline">Product facts</a>
+          </p>
+        </div>
         <p className="mt-4 text-sm text-white/80">{availabilitySentence()}</p>
         <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <a href={BUY_HREF} className="btn-primary group !px-6 !py-3.5 !text-base">
@@ -87,7 +94,7 @@ function WindowsPage() {
           <ul className="grid gap-3 sm:grid-cols-2">
             {[
               "Disk usage analyzer for Windows 11 and Windows 10",
-              "Storage visualizer with eight views, including a treemap",
+              "Storage visualizer with " + JOIN_VIEWS.length + " views, including a treemap",
               "Find large files and folders on a Windows PC",
               "Duplicate detection that compares file contents",
               "Saved scan comparison so you can see what grew",
