@@ -437,47 +437,6 @@ export function researchStudies() {
   return [guideStudy(), productStudy()];
 }
 
-export function productGlanceRows() {
-  const available = Object.values(PLATFORMS)
-    .filter((platform) => platform.status === "available")
-    .map((platform) => platform.name);
-  const soon = Object.values(PLATFORMS)
-    .filter((platform) => platform.status === "coming-soon")
-    .map((platform) => platform.name);
-  return [
-    { label: "Views", value: String(JOIN_VIEWS.length) },
-    { label: "Available", value: available.join(", ") || "None" },
-    { label: "Coming soon", value: soon.join(", ") || "None" },
-    { label: "Price", value: priceFact() },
-    { label: "Scans", value: "On the device. Files are not uploaded." },
-  ];
-}
-
-export function windowsGlanceRows() {
-  return [
-    { label: "Status", value: "Available" },
-    { label: "Systems", value: "Windows 10 and Windows 11" },
-    { label: "Views", value: String(JOIN_VIEWS.length) },
-    { label: "Price", value: priceFact() },
-    { label: "Scans", value: "On the PC. Files are not uploaded." },
-  ];
-}
-
-export function macGlanceRows() {
-  const available = Object.values(PLATFORMS).some((platform) => platform.id === "macos" && platform.status === "available");
-  return [
-    { label: "Status", value: available ? "Available" : "Coming soon" },
-    { label: "Download", value: available ? "Available" : "No Mac download" },
-    { label: "Windows", value: "Available now" },
-    { label: "Price", value: priceFact() },
-  ];
-}
-
-export function homeFactDescription() {
-  const soon = Object.values(PLATFORMS).some((platform) => platform.id === "macos" && platform.status === "coming-soon");
-  return `ScanMyDisk is a disk space analyzer with ${JOIN_VIEWS.length} views. Available for Windows 10 and Windows 11.${soon ? " macOS is coming soon." : ""} Catalogue price ${priceFact()}. Scanning stays on the device.`;
-}
-
 export function studyMarkdown(study: Study) {
   const lines = [study.description, ""];
   lines.push("## Findings", "");

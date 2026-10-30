@@ -24,13 +24,11 @@ import { JsonLd } from "@/components/json-ld";
 import { JOIN_FAQ, JOIN_VIEWS } from "@/data/join";
 import { SITE, availabilitySentence } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
-import { HOME_TITLE, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
-import { AtAGlance } from "@/components/at-a-glance";
-import { homeFactDescription, productGlanceRows } from "@/lib/research/study";
+import { HOME_DESCRIPTION, HOME_TITLE, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   component: SignupLanding,
-  head: () => pageHead({ title: HOME_TITLE, description: homeFactDescription(), path: "/" }),
+  head: () => pageHead({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: "/" }),
 });
 
 function SignupLanding() {
@@ -75,14 +73,6 @@ function Hero() {
         ScanMyDisk is a visual disk space analyzer. It maps large files, duplicates, caches and cleanup
         opportunities so you can see what is using the disk. Early-bird lifetime access is {price.lifetimePrice} for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}.
       </p>
-      <div className="mx-auto mb-8 max-w-2xl">
-        <AtAGlance rows={productGlanceRows()} />
-        <p className="mt-3 text-sm text-muted">
-          <a href="/research/product" className="underline-offset-2 hover:underline">Product facts</a>
-          {" · "}
-          <a href="/research/guides" className="underline-offset-2 hover:underline">Guide statistics</a>
-        </p>
-      </div>
       <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
           href={BUY_HREF}
