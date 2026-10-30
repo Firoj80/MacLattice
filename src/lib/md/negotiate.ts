@@ -30,7 +30,7 @@ export function prefersMarkdown(accept: string | null) {
   return markdown > html;
 }
 
-const SKIP_PREFIXES = ["/api/", "/_next/", "/.well-known/"];
+const SKIP_PREFIXES = ["/api/", "/_next/", "/.well-known/", "/sitemap/"];
 const SKIP_EXACT = new Set(["/llms.txt", "/llms-full.txt", "/ai.txt", "/robots.txt", "/sitemap.xml"]);
 
 export function isSkippedPath(pathname: string) {

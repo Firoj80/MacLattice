@@ -1,8 +1,10 @@
 import { createMiddleware, createStart } from "@tanstack/react-start";
+import { indexNowKeyBody } from "@/lib/indexnow";
 import { aiTxt, llmsFullTxt, llmsTxt, robotsTxt } from "@/lib/md/discovery";
 import { markdownForRequest } from "@/lib/md/http";
 import { renderMarkdownPage } from "@/lib/md/registry";
 import { absUrl } from "@/lib/seo";
+import { serveSitemap } from "@/lib/sitemap";
 
 function plain(body: string | null, cache: string) {
   return new Response(body, {
@@ -29,6 +31,20 @@ const aiReadable = createMiddleware().server(async ({ next, request }) => {
       ? "public, s-maxage=86400, stale-while-revalidate=604800"
       : "public, s-maxage=86400, stale-while-revalidate=604800";
     return plain(method === "HEAD" ? null : file(), cache);
+  }
+  if (["GET", "HEAD"].includes(method)) {
+    const key = indexNowKeyBody(url.pathname);
+    if (key) return plain(method === "HEAD" ? null : key, "public, max-age=3600");
+    const sitemap = serveSitemap(url.pathname);
+    if (sitemap) {
+      return new Response(method === "HEAD" || sitemap.status !== 200 ? null : sitemap.body, {
+        status: sitemap.status,
+        headers: {
+          "Content-Type": "application/xml; charset=utf-8",
+          "Cache-Control": sitemap.status === 200 ? "public, s-maxage=3600, stale-while-revalidate=86400" : "no-store",
+        },
+      });
+    }
   }
   const markdown = markdownForRequest(url, method, request.headers.get("accept"));
   if (markdown) return markdown;
