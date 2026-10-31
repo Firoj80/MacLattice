@@ -10,7 +10,6 @@ import {
   guideStudy,
   nearestPercent,
   platformSentence,
-  productStudy,
   sortGuides,
   tagSpreadSentence,
   yearSentence,
@@ -125,22 +124,4 @@ test("tag bands do not overlap", () => {
   const text = tagSpreadSentence([...once, ...multi]);
   assert.match(text, /12 of 20 tags \(60%\) appear on one guide/);
   assert.match(text, /8 of 20 tags \(40%\) appear on two or more guides/);
-});
-
-test("product facts are counts without percentages", () => {
-  const study = productStudy();
-  assert.equal(study.findings.length, 4);
-  assert.match(study.findings.find((item) => item.id === "view-count").text, /8 disk views/);
-  assert.match(study.findings.find((item) => item.id === "toolkit-count").text, /12 items/);
-  assert.match(study.findings.find((item) => item.id === "platforms").text, /Windows is available/);
-  assert.match(study.findings.find((item) => item.id === "platforms").text, /macOS is coming soon/);
-  assert.match(study.findings.find((item) => item.id === "price").text, /\$5 for the first 20 licenses, then \$9\.99/);
-  for (const finding of study.findings) assert.doesNotMatch(finding.text, /\(\d+%\)/);
-  assert.equal(study.updated, undefined);
-  assert.ok(study.title.length <= 60);
-  const ids = [...study.findings.map((item) => item.id), ...study.faqs.map((item) => item.id)];
-  assert.equal(new Set(ids).size, ids.length);
-  for (const faq of study.faqs) {
-    assert.ok(study.findings.some((finding) => finding.text === faq.answer));
-  }
 });

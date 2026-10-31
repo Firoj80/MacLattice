@@ -100,10 +100,10 @@ test("fixture sections are valid and skip drafts, noindex, and future posts", ()
   assert.equal(locs.some((loc) => loc.includes("draft-guide")), false);
   assert.equal(locs.some((loc) => loc.includes("hidden-guide")), false);
   assert.equal(locs.some((loc) => loc.includes("scheduled-guide")), false);
-  assert.equal(locs.includes(`${HOST}/research/product`), true);
-  const product = built.sections.find((section) => section.path === "/sitemap/research.xml").xml;
-  assert.match(product, new RegExp(`<loc>${HOST}/research/guides</loc>\\s*<lastmod>2026-05-02</lastmod>`));
-  assert.doesNotMatch(product, new RegExp(`<loc>${HOST}/research/product</loc>\\s*<lastmod>`));
+  assert.equal(locs.includes(`${HOST}/research/product`), false);
+  const research = built.sections.find((section) => section.path === "/sitemap/research.xml").xml;
+  assert.match(research, new RegExp(`<loc>${HOST}/research/guides</loc>\\s*<lastmod>2026-05-02</lastmod>`));
+  assert.doesNotMatch(research, /research\/product/);
   const pages = built.sections.find((section) => section.path === "/sitemap/pages.xml").xml;
   assert.doesNotMatch(pages, new RegExp(`<loc>${HOST}/</loc>\\s*<lastmod>`));
   assert.match(pages, new RegExp(`<loc>${HOST}/privacy</loc>\\s*<lastmod>2026-10-13</lastmod>`));
@@ -129,7 +129,7 @@ test("live sitemap lists the public catalog only", () => {
   assert.equal(new Set(locs).size, locs.length);
   assert.equal(locs.filter((loc) => loc.includes("/blog/")).length, posts.length);
   assert.equal(built.sections.find((section) => section.path === "/sitemap/pages.xml").urls.length, 9);
-  assert.equal(built.sections.find((section) => section.path === "/sitemap/research.xml").urls.length, 3);
+  assert.equal(built.sections.find((section) => section.path === "/sitemap/research.xml").urls.length, 2);
   assert.equal(built.sections.find((section) => section.path === "/sitemap/posts.xml").urls.length, posts.length);
   for (const path of EXCLUDED) assert.equal(locs.includes(path.startsWith("http") ? path : `${HOST}${path}`), false);
   for (const url of urls) {

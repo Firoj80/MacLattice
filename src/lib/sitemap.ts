@@ -17,7 +17,6 @@ const PAGE_PATHS = ["/", "/windows", "/macos", "/blog", "/contact", "/license", 
 const RESEARCH_PATHS = [
   { path: "/research", dated: true },
   { path: "/research/guides", dated: true },
-  { path: "/research/product", dated: false },
 ] as const;
 
 export type SitemapPost = {

@@ -1,6 +1,5 @@
 import { isMacStorageGuide, posts } from "@/data/blog";
-import { JOIN_TOOLKIT, JOIN_VIEWS } from "@/data/join";
-import { PLATFORMS, SITE } from "@/data/site";
+import { SITE } from "@/data/site";
 import { absUrl } from "@/lib/seo";
 
 export const MIN_SHARE = 20;
@@ -367,74 +366,8 @@ function tagTotals(rows: readonly GuideRow[]) {
   return [...tagMap.values()];
 }
 
-export function priceFact() {
-  return `${SITE.lifetimePrice} for the first ${SITE.earlyBirdLimit} licenses, then ${SITE.regularPrice}`;
-}
-
-export function productStudy(): Study {
-  const views = JOIN_VIEWS.map((view) => view.name);
-  const tools = JOIN_TOOLKIT.map((item) => item.name);
-  const platforms = Object.values(PLATFORMS);
-  const platformText = `The catalog lists ${platforms.length} platforms. ${platforms
-    .map((platform) => `${platform.name} is ${platform.status === "available" ? "available" : "coming soon"}`)
-    .join(". ")}.`;
-  const viewText = `The homepage lists ${views.length} disk views: ${joinAnd(views)}.`;
-  const toolText = `The homepage toolkit lists ${tools.length} items: ${joinAnd(tools)}.`;
-  const priceText = `The catalogue price is ${priceFact()}.`;
-  const findings = [
-    finding("view-count", viewText),
-    finding("toolkit-count", toolText),
-    finding("platforms", platformText),
-    finding("price", priceText),
-  ].filter((item): item is Finding => Boolean(item));
-  const year = guideStudy().updated?.slice(0, 4);
-  const title = `ScanMyDisk Product Facts${year ? ` ${year}` : ""}: ${views.length} Views`;
-  return {
-    path: "/research/product",
-    title,
-    description: `${viewText} ${platformText} ${priceText}`,
-    summary: viewText,
-    findings,
-    faqs: [
-      faq("faq-views", "How many disk views does ScanMyDisk list?", viewText),
-      faq("faq-platforms", "Which platforms does the catalog mark as available?", platformText),
-      faq("faq-price", "What is the ScanMyDisk catalogue price?", priceText),
-    ].filter((item): item is StudyFaq => Boolean(item)),
-    tables: [
-      {
-        id: "views",
-        title: "Disk views",
-        headers: ["#", "View"],
-        rows: views.map((name, index) => [String(index + 1), name]),
-      },
-      {
-        id: "toolkit",
-        title: "Toolkit items",
-        headers: ["#", "Item"],
-        rows: tools.map((name, index) => [String(index + 1), name]),
-      },
-      {
-        id: "platforms",
-        title: "Platforms",
-        headers: ["Platform", "Status"],
-        rows: platforms.map((platform) => [platform.name, platform.status === "available" ? "Available" : "Coming soon"]),
-      },
-    ],
-    methodology: [
-      "Source: the feature lists and platform flags the homepage, Windows page, and macOS page render. This is a catalog census, not a user study.",
-      "Included: each named view, each toolkit item, each platform flag, and the catalogue price fields.",
-      "Excluded: cleanup preset names that appear only in prose, sales counts, and anything measured on a customer's disk. Shares are not calculated, because each of these lists has fewer than 20 rows.",
-      "The title year is the year of the newest published guide. The feature list has no measurement date, so this page does not give one.",
-      "The sentences follow the lists. If a platform flag changes, the sentence changes.",
-    ],
-    citation: `ScanMyDisk. ${title}. ${absUrl("/research/product")}. Catalog facts, no measurement date.`,
-    variables: ["disk view", "toolkit item", "platform status", "catalogue price"],
-    lists: [],
-  };
-}
-
 export function researchStudies() {
-  return [guideStudy(), productStudy()];
+  return [guideStudy()];
 }
 
 export function studyMarkdown(study: Study) {

@@ -4,7 +4,7 @@ import { researchStudies } from "@/lib/research/study";
 import { pageHead } from "@/lib/seo";
 
 const studies = researchStudies();
-const description = "Counts from ScanMyDisk's public guide catalog and product feature list. Not disk-scan telemetry.";
+const description = "Counts from ScanMyDisk's public guide catalog. Not disk-scan telemetry.";
 
 export const Route = createFileRoute("/research/")({
   component: ResearchIndex,

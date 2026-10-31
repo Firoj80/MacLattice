@@ -4,7 +4,7 @@ import { SITE, availabilitySentence, macOSAvailable } from "@/data/site";
 import { HOME_DESCRIPTION } from "@/lib/seo";
 import { absoluteLinks, bullets, linkList, pageDoc } from "@/lib/md/format";
 import { blogSeoDescription } from "@/data/blog-seo";
-import { defaultGuides, guideListLede, guideListTitle, guideStudy, productStudy, researchStudies, sortGuides, studyMarkdown } from "@/lib/research/study";
+import { defaultGuides, guideListLede, guideListTitle, guideStudy, researchStudies, sortGuides, studyMarkdown } from "@/lib/research/study";
 
 export type MarkdownPage = {
   path: string;
@@ -365,7 +365,7 @@ function researchPage(study: ReturnType<typeof guideStudy>, related: { title: st
 function researchIndex(): MarkdownPage {
   const studies = researchStudies();
   const path = "/research";
-  const summary = "Counts from ScanMyDisk's public guide catalog and product feature list. Not disk-scan telemetry.";
+  const summary = "Counts from ScanMyDisk's public guide catalog. Not disk-scan telemetry.";
   return {
     path,
     title: "ScanMyDisk Research",
@@ -386,14 +386,6 @@ function researchIndex(): MarkdownPage {
 function researchGuides(): MarkdownPage {
   return researchPage(guideStudy(), [
     { title: "All guides", path: "/blog" },
-    { title: "Product facts", path: "/research/product" },
-  ]);
-}
-
-function researchProduct(): MarkdownPage {
-  return researchPage(productStudy(), [
-    { title: "Guide statistics", path: "/research/guides" },
-    { title: "Home", path: "/" },
   ]);
 }
 
@@ -404,7 +396,6 @@ const STATIC: Record<string, () => MarkdownPage> = {
   "/blog": blogIndex,
   "/research": researchIndex,
   "/research/guides": researchGuides,
-  "/research/product": researchProduct,
   "/contact": contact,
   "/license": license,
   "/terms": terms,
@@ -430,7 +421,7 @@ export function listMarkdownPages(): MarkdownPage[] {
 }
 
 /** Public HTML routes that must have a renderer, plus routes we deliberately skip. */
-export const COVERED_PATHS = ["/", "/windows", "/macos", "/blog", "/research", "/research/guides", "/research/product", "/contact", "/license", "/terms", "/privacy", "/refund-policy"] as const;
+export const COVERED_PATHS = ["/", "/windows", "/macos", "/blog", "/research", "/research/guides", "/contact", "/license", "/terms", "/privacy", "/refund-policy"] as const;
 
 export const SKIPPED_PATHS: { path: string; reason: string }[] = [
   { path: "/pricing", reason: "301 to /#pricing. Pricing is on the homepage markdown." },

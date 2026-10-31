@@ -34,7 +34,6 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ResearchGuidesRouteImport } from './routes/research/guides'
-import { Route as ResearchProductRouteImport } from './routes/research/product'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiDodoWebhookRouteImport } from './routes/api/dodo/webhook'
 import { Route as ApiLicenseActivateRouteImport } from './routes/api/license/activate'
@@ -170,11 +169,6 @@ const ResearchGuidesRoute = ResearchGuidesRouteImport.update({
   path: '/research/guides',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResearchProductRoute = ResearchProductRouteImport.update({
-  id: '/research/product',
-  path: '/research/product',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -245,7 +239,6 @@ export interface FileRoutesByFullPath {
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/research/guides': typeof ResearchGuidesRoute
-  '/research/product': typeof ResearchProductRoute
   '/blog/': typeof BlogIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -282,7 +275,6 @@ export interface FileRoutesByTo {
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/research/guides': typeof ResearchGuidesRoute
-  '/research/product': typeof ResearchProductRoute
   '/blog': typeof BlogIndexRoute
   '/research': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -320,7 +312,6 @@ export interface FileRoutesById {
   '/api/pricing': typeof ApiPricingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/research/guides': typeof ResearchGuidesRoute
-  '/research/product': typeof ResearchProductRoute
   '/blog/': typeof BlogIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -359,7 +350,6 @@ export interface FileRouteTypes {
     | '/api/pricing'
     | '/blog/$slug'
     | '/research/guides'
-    | '/research/product'
     | '/blog/'
     | '/research/'
     | '/api/auth/$'
@@ -396,7 +386,6 @@ export interface FileRouteTypes {
     | '/api/pricing'
     | '/blog/$slug'
     | '/research/guides'
-    | '/research/product'
     | '/blog'
     | '/research'
     | '/api/auth/$'
@@ -433,7 +422,6 @@ export interface FileRouteTypes {
     | '/api/pricing'
     | '/blog/$slug'
     | '/research/guides'
-    | '/research/product'
     | '/blog/'
     | '/research/'
     | '/api/auth/$'
@@ -471,7 +459,6 @@ export interface RootRouteChildren {
   ApiPricingRoute: typeof ApiPricingRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ResearchGuidesRoute: typeof ResearchGuidesRoute
-  ResearchProductRoute: typeof ResearchProductRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ResearchIndexRoute: typeof ResearchIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -662,13 +649,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchGuidesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/research/product': {
-      id: '/research/product'
-      path: '/research/product'
-      fullPath: '/research/product'
-      preLoaderRoute: typeof ResearchProductRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -759,7 +739,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPricingRoute: ApiPricingRoute,
   BlogSlugRoute: BlogSlugRoute,
   ResearchGuidesRoute: ResearchGuidesRoute,
-  ResearchProductRoute: ResearchProductRoute,
   BlogIndexRoute: BlogIndexRoute,
   ResearchIndexRoute: ResearchIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
