@@ -97,9 +97,9 @@ function JoinFooter() {
                 <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width="220" height="48" loading="lazy" />
               </a>
             ) : null}
-            <a href="https://ais-dev-rb36cogneiwaeitle5mkml-299152950257.asia-southeast1.run.app" target="_blank" rel="noopener">
+            <a href="https://www.picmacapps.store" target="_blank" rel="noopener">
               <img
-                src="https://ais-dev-rb36cogneiwaeitle5mkml-299152950257.asia-southeast1.run.app/badge.svg"
+                src="https://www.picmacapps.store/badge.svg"
                 alt="Featured on PickMacApps"
                 width={200}
                 height={54}
