@@ -4,6 +4,7 @@ export function isGrokEmbedderOrigin(origin: string): boolean {
     if (url.protocol !== "https:" && url.protocol !== "http:") return false;
     const host = url.hostname.toLowerCase();
     if (host === "grok.com" || host.endsWith(".grok.com")) return true;
+    if (host.endsWith(".google.com") || host.endsWith(".googleusercontent.com") || host.endsWith(".run.app")) return true;
     if (host === "localhost" || host === "127.0.0.1" || host === "[::1]") return true;
     return false;
   } catch {
@@ -13,7 +14,7 @@ export function isGrokEmbedderOrigin(origin: string): boolean {
 
 export function isSandboxPreviewGuestHost(hostname: string): boolean {
   const host = hostname.toLowerCase();
-  return host === "grok-sandbox.com" || host.endsWith(".grok-sandbox.com");
+  return host === "grok-sandbox.com" || host.endsWith(".grok-sandbox.com") || host.endsWith(".run.app");
 }
 
 function isRemintPreviewPair(guestHost: string, parentHost: string): boolean {

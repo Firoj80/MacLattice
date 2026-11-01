@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, Copy, Check, Download, Loader2, RefreshCw, ArrowRight, ShieldCheck } from "lucide-react";
+import { Copy, Check, Download, Loader2, RefreshCw, ArrowRight, ShieldCheck } from "lucide-react";
 import { JoinShell } from "@/components/signup/join-shell";
 import { pageHead } from "@/lib/seo";
 import { startInstallerDownload } from "@/lib/installer-download";

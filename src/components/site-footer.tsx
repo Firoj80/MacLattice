@@ -36,7 +36,21 @@ export function SiteFooter() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
               {SITE.tagline}
             </p>
-            <CodeHypeBadge />
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <CodeHypeBadge className="inline-block max-w-[180px]" />
+              <a href="https://www.scrolllaunch.com/products/scanmydisk?ref=badge" target="_blank" rel="noopener">
+                <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width={220} height={48} loading="lazy" />
+              </a>
+              <a href="/" target="_blank" rel="noopener">
+                <img
+                  src="/badge.svg"
+                  alt="Featured on PickMacApps"
+                  width={200}
+                  height={54}
+                  loading="lazy"
+                />
+              </a>
+            </div>
           </div>
 
           <div>

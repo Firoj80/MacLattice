@@ -1,6 +1,5 @@
 import { useLocalPricing } from "@/components/local-pricing";
 import { ArrowRight } from "lucide-react";
-import { SITE } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 
 export function HeaderBuy({ className = "" }: { className?: string }) {

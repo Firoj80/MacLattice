@@ -1,6 +1,5 @@
 import { useLocalPricing } from "@/components/local-pricing";
 import { Check } from "lucide-react";
-import { SITE } from "@/data/site";
 import { BUY_HREF } from "@/lib/buy";
 
 const FEATURES = [

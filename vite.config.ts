@@ -146,8 +146,9 @@ function authPopupPlugin(): Plugin {
 export default defineConfig(({ command, isPreview }) => ({
   server: {
     host: "0.0.0.0",
-    port: 8080,
+    port: 3000,
     strictPort: true,
+    allowedHosts: true,
     watch: { ignored: ["**/.vercel/**", "**/.nitro/**", "**/artifacts/**", "**/screenshots/**"] },
   },
   preview: {
