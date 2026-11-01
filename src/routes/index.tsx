@@ -78,7 +78,7 @@ function Hero() {
           href={BUY_HREF}
           className="purchase-button group"
         >
-          <span>Get {SITE.name} Pro · {price.lifetimePrice}</span>
+          <span>Get Now · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>
         <Link to="/license" className="purchase-button purchase-button-secondary">
@@ -580,7 +580,7 @@ function Close() {
           One payment, yours for good. No subscription, no account required, and your files never leave your PC.
         </p>
         <a href={BUY_HREF} className="btn-primary group !px-8 !py-4 !text-base shadow-[0_0_30px_rgba(255,255,255,0.25)]">
-          <span>Get {SITE.name} Pro · {price.lifetimePrice}</span>
+          <span>Get Now · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>
         <p className="mt-3 text-xs text-white/45">One-time payment · Lifetime licence, no recurring fees</p>
