@@ -12,6 +12,8 @@ import { defaultGuides, guideListLede, guideListTitle, sortGuides } from "@/lib/
 const guides = defaultGuides();
 const listTitle = guideListTitle(guides);
 const listLede = guideListLede(guides);
+const BLOG_META_DESCRIPTION =
+  "Practical disk space analyzer guides, C: drive cleanup tips, and visual storage tool comparisons for Windows 10 & 11 by ScanMyDisk.";
 const ranked = sortGuides(guides);
 
 export const Route = createFileRoute("/blog/")({
@@ -19,8 +21,8 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
   head: () =>
     pageHead({
-      title: listTitle,
-      description: listLede,
+      title: `${listTitle} | ScanMyDisk`,
+      description: BLOG_META_DESCRIPTION,
       path: "/blog",
     }),
 });
