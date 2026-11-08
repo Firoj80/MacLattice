@@ -97,14 +97,6 @@ function JoinFooter() {
                 <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width="220" height="48" loading="lazy" />
               </a>
             ) : null}
-            <a href="https://www.picmacapps.store" target="_blank" rel="noopener">
-              <img
-                src="https://www.picmacapps.store/badge.svg"
-                alt="Featured on PickMacApps"
-                width={200}
-                height={54}
-              />
-            </a>
           </div>
         </div>
         <div>
