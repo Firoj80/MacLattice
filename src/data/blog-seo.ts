@@ -29,6 +29,21 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
     description:
       "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
   },
+  "windirstat-alternative-windows-11": {
+    title: "Best WinDirStat Alternatives for Windows 11 in 2026 (Free & Paid)",
+    description:
+      "WinDirStat still works on Windows 11 but it shows its age. Compare the best alternatives: Scan My Disk (8 views, $5), WizTree (MFT speed, free), TreeSize Free, and SpaceSniffer.",
+  },
+  "cleanmymac-alternative-windows": {
+    title: "CleanMyMac Alternative for Windows (2026): What Covers the Same Jobs",
+    description:
+      "No Windows version of CleanMyMac exists. Scan My Disk covers disk visualization, duplicate finding, app leftover cleaning & system monitor for $5 one-time vs $35/year.",
+  },
+  "c-drive-full-windows-11-cleanup-guide": {
+    title: "C: Drive Full for No Reason? 10 Hidden Storage Drains on Windows 11",
+    description:
+      "Your C: drive is 95% full but you can't see why. Discover the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to WSL2 vhdx—and how to reclaim 20–80 GB.",
+  },
   "daisydisk-alternatives": {
     description:
       "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $5 and available on Windows. macOS is coming soon.",

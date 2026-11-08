@@ -4,6 +4,9 @@ import { devCachesBody } from "./win-posts/clean-developer-caches-node-modules-g
 import { duplicatesBody } from "./win-posts/find-delete-duplicate-files-windows-content-hashing.ts";
 import { dockerVhdxBody } from "./win-posts/shrink-docker-wsl2-ext4-vhdx-windows.ts";
 import { analyzersBody } from "./win-posts/best-windows-disk-space-analyzers-windirstat-wiztree-treesize.ts";
+import { windirstatAlternativeBody } from "./win-posts/windirstat-alternative-windows-11.ts";
+import { cleanmymacAlternativeBody } from "./win-posts/cleanmymac-alternative-windows.ts";
+import { cDriveFullBody } from "./win-posts/c-drive-full-windows-11-cleanup-guide.ts";
 
 export type BlogPost = {
   slug: string;
@@ -76,6 +79,36 @@ export const posts: BlogPost[] = [
     excerpt:
       "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
     body: duplicatesBody,
+  },
+  {
+    slug: "windirstat-alternative-windows-11",
+    author: "Firoj Alam",
+    date: "2026-11-01",
+    title: "Best WinDirStat Alternatives for Windows 11 in 2026 (Free & Paid)",
+    tags: ["Windows", "Comparison", "Disk Analyzer", "WinDirStat"],
+    excerpt:
+      "WinDirStat still works on Windows 11 but it shows its age. This guide compares the best WinDirStat alternatives in 2026—faster scans, more view modes, and built-in duplicate detection.",
+    body: windirstatAlternativeBody,
+  },
+  {
+    slug: "cleanmymac-alternative-windows",
+    author: "Firoj Alam",
+    date: "2026-11-01",
+    title: "CleanMyMac Alternative for Windows: What Actually Covers the Same Jobs in 2026",
+    tags: ["Windows", "Comparison", "Cleanup", "CleanMyMac"],
+    excerpt:
+      "There's no CleanMyMac for Windows. But Scan My Disk covers disk visualization, duplicate finding, app leftover cleaning, and a system monitor for a one-time $5—no subscription required.",
+    body: cleanmymacAlternativeBody,
+  },
+  {
+    slug: "c-drive-full-windows-11-cleanup-guide",
+    author: "Firoj Alam",
+    date: "2026-11-01",
+    title: "C: Drive Full for No Reason? 10 Hidden Storage Drains on Windows 11 (And How to Fix Them)",
+    tags: ["Windows", "C: Drive", "Cleanup", "Storage"],
+    excerpt:
+      "Your C: drive is 95% full but you can't see why. This guide uncovers the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to developer caches—and shows how to reclaim 20–80 GB.",
+    body: cDriveFullBody,
   },
   {
     "slug": "android-emulator-cleanup",
@@ -308,6 +341,9 @@ const WINDOWS_GUIDE_SLUGS = new Set([
   "shrink-docker-wsl2-ext4-vhdx-windows",
   "clean-developer-caches-node-modules-gradle-visual-studio-windows",
   "find-delete-duplicate-files-windows-content-hashing",
+  "windirstat-alternative-windows-11",
+  "cleanmymac-alternative-windows",
+  "c-drive-full-windows-11-cleanup-guide",
 ]);
 
 /** Older posts are macOS storage guides. They are not a Mac download page. */

@@ -1,6 +1,6 @@
 import { useLocalPricing } from "@/components/local-pricing";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 import { JoinShell } from "@/components/signup/join-shell";
 import { JsonLd } from "@/components/json-ld";
 import { JOIN_VIEWS } from "@/data/join";
@@ -61,7 +61,12 @@ function WindowsPage() {
         </p>
         <p className="mt-4 text-sm text-white/80">{availabilitySentence()}</p>
         <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <a href={BUY_HREF} className="btn-primary group !px-6 !py-3.5 !text-base">
+          <a
+            href={BUY_HREF}
+            data-ml-goal="checkout_click"
+            data-ml-goal-plan="pro"
+            className="btn-primary group !px-6 !py-3.5 !text-base"
+          >
             <span>Get {SITE.name} for Windows · {price.lifetimePrice}</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </a>
@@ -113,6 +118,107 @@ function WindowsPage() {
                 <figcaption className="px-3 py-2 text-sm font-medium text-white">{view.name}</figcaption>
               </figure>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Comparison</p>
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">How ScanMyDisk compares to alternatives</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-white/70">
+              Classic tools like WinDirStat and WizTree show raw file sizes. ScanMyDisk combines 8 interactive map modes, duplicate content hashing, and developer cache cleanup under a one-time $5 license.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-white/10 glass-card">
+            <table className="w-full min-w-[640px] text-left text-sm">
+              <thead className="border-b border-white/10 bg-white/5 text-xs font-semibold text-white/90">
+                <tr>
+                  <th className="px-5 py-4">Capability</th>
+                  <th className="px-5 py-4 text-sky-400">ScanMyDisk</th>
+                  <th className="px-5 py-4 text-white/70">WinDirStat</th>
+                  <th className="px-5 py-4 text-white/70">WizTree</th>
+                  <th className="px-5 py-4 text-white/70">TreeSize Free</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5 text-white/80">
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Visual Map Modes</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">8 Views (Treemap, Sunburst, Flame, Bubbles, Mind Map, Folders, Top Sizes, Age Map)</td>
+                  <td className="px-5 py-3.5 text-white/60">1 (Treemap)</td>
+                  <td className="px-5 py-3.5 text-white/60">2 (Tree + Treemap)</td>
+                  <td className="px-5 py-3.5 text-white/60">1 (Folder Tree)</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Duplicate Detection</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">
+                    <span className="inline-flex items-center gap-1.5"><Check className="size-4 text-sky-400" /> 3-Pass Content Hash</span>
+                  </td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> None</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> None</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> Paid tier only</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Developer Presets (node_modules, Gradle, Docker VHDX)</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">
+                    <span className="inline-flex items-center gap-1.5"><Check className="size-4 text-sky-400" /> Built-in</span>
+                  </td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">App Leftover Cleaner (AppData / ProgramData)</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">
+                    <span className="inline-flex items-center gap-1.5"><Check className="size-4 text-sky-400" /> Yes</span>
+                  </td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Scan Snapshots (Diff what grew)</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">
+                    <span className="inline-flex items-center gap-1.5"><Check className="size-4 text-sky-400" /> Yes</span>
+                  </td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> Paid tier only</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Live System Resource Monitor</td>
+                  <td className="px-5 py-3.5 font-semibold text-sky-400">
+                    <span className="inline-flex items-center gap-1.5"><Check className="size-4 text-sky-400" /> CPU, RAM, Disk</span>
+                  </td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                  <td className="px-5 py-3.5 text-white/60"><X className="size-4 text-white/40 inline" /> No</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3.5 font-medium text-white">Pricing Model</td>
+                  <td className="px-5 py-3.5 font-bold text-sky-400">{price.lifetimePrice} Lifetime (one-time)</td>
+                  <td className="px-5 py-3.5 text-white/70">Free (open-source)</td>
+                  <td className="px-5 py-3.5 text-white/70">Free for personal use</td>
+                  <td className="px-5 py-3.5 text-white/70">Free / $29.95+ Pro</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 text-center">
+            <h3 className="text-xl font-bold text-white">Ready to reclaim your Windows SSD?</h3>
+            <p className="max-w-md text-sm text-white/70">15-day refund guarantee. Runs 100% offline. Files stay on your machine.</p>
+            <a
+              href={BUY_HREF}
+              data-ml-goal="checkout_click"
+              data-ml-goal-plan="pro"
+              className="btn-primary group !px-7 !py-3.5 !text-base"
+            >
+              <span>Get {SITE.name} for Windows · {price.lifetimePrice}</span>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
         </div>
       </section>
