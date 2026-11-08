@@ -509,22 +509,40 @@ function Views() {
 function Guides() {
   const cards = [
     {
-      kicker: "Uninstall",
-      title: "Uninstall apps properly",
-      body: "Remove an app and the residual caches it leaves behind.",
-      slug: "clean-appdata-programdata-leftovers-windows",
+      kicker: "WinDirStat Alternative",
+      title: "WinDirStat vs Modern Analyzers",
+      body: "Compare 8 visual maps and fast scans to classic 2000s treemaps.",
+      slug: "windirstat-alternative-windows-11",
     },
     {
-      kicker: "Free up space",
-      title: "Free up space",
-      body: "Where a full disk actually goes, and how to get the space back.",
-      slug: "find-delete-duplicate-files-windows-content-hashing",
+      kicker: "C: Drive Cleanup",
+      title: "C: Drive Full for No Reason?",
+      body: "Uncover 10 hidden storage eaters from hibernate to dev caches.",
+      slug: "c-drive-full-windows-11-cleanup-guide",
     },
     {
-      kicker: "System Data",
-      title: "Inspect System Data",
-      body: "What the hidden system folders hold, and which ones you can delete.",
-      slug: "shrink-docker-wsl2-ext4-vhdx-windows",
+      kicker: "CleanMyMac Alternative",
+      title: "CleanMyMac for Windows",
+      body: "Disk visualizer, duplicate finding and app leftovers for $5 lifetime.",
+      slug: "cleanmymac-alternative-windows",
+    },
+    {
+      kicker: "Duplicate Videos",
+      title: "Delete Duplicate Video Files",
+      body: "Safe 3-pass content hashing for 4K video footage and renders.",
+      slug: "find-duplicate-video-files-windows-11",
+    },
+    {
+      kicker: "PC Gaming SSD",
+      title: "Free Up Space for Steam Games",
+      body: "Purge orphaned workshop mods, shader caches, and crash dumps.",
+      slug: "free-up-disk-space-pc-gaming-steam-windows",
+    },
+    {
+      kicker: "Developer Drains",
+      title: "Developer Disk Cleanup Guide",
+      body: "Reclaim 50GB+ from dormant node_modules, Gradle, and WSL2 vhdx.",
+      slug: "clean-developer-caches-node-modules-gradle-visual-studio-windows",
     },
   ];
   return (
