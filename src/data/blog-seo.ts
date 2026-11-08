@@ -30,27 +30,27 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
       "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
   },
   "windirstat-alternative-windows-11": {
-    title: "Best WinDirStat Alternatives for Windows 11 in 2026 (Free & Paid)",
+    title: "WinDirStat Alternative for Windows 11: 8 Fast Visual Maps & $5 Lifetime (2026)",
     description:
       "WinDirStat still works on Windows 11 but it shows its age. Compare the best alternatives: Scan My Disk (8 views, $5), WizTree (MFT speed, free), TreeSize Free, and SpaceSniffer.",
   },
   "cleanmymac-alternative-windows": {
-    title: "CleanMyMac Alternative for Windows (2026): What Covers the Same Jobs",
+    title: "CleanMyMac Alternative for Windows 11: 8 Visual Maps & $5 Lifetime (2026)",
     description:
       "No Windows version of CleanMyMac exists. Scan My Disk covers disk visualization, duplicate finding, app leftover cleaning & system monitor for $5 one-time vs $35/year.",
   },
   "c-drive-full-windows-11-cleanup-guide": {
-    title: "C: Drive Full for No Reason? 10 Hidden Storage Drains on Windows 11",
+    title: "C: Drive Full for No Reason on Windows 11? How to Safely Find Hidden Space (2026)",
     description:
       "Your C: drive is 95% full but you can't see why. Discover the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to WSL2 vhdx—and how to reclaim 20–80 GB.",
   },
   "find-duplicate-video-files-windows-11": {
-    title: "How to Find & Delete Duplicate Video Files on Windows 10/11 (3-Pass Hashing)",
+    title: "Find Duplicate Video Files on Windows 11: 3-Pass Hashing & $5 Lifetime (2026)",
     description:
       "Video files chew through SSDs faster than anything else. Learn why filename duplicate cleaners fail, how 3-pass content hashing works, and how to recover 50GB+ safely.",
   },
   "free-up-disk-space-pc-gaming-steam-windows": {
-    title: "How to Free Up SSD Space on Windows for PC Gaming (Steam & Shaders)",
+    title: "Free Up SSD Space on Windows for PC Gaming: Steam, Shaders & $5 Tool (2026)",
     description:
       "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB.",
   },

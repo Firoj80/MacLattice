@@ -122,8 +122,9 @@ export function softwareJsonLd() {
         operatingSystem: operatingSystems(),
         offers: {
           "@type": "Offer",
-          price: "5",
+          price: "5.00",
           priceCurrency: "USD",
+          priceValidUntil: "2026-12-31",
           description: "One-time lifetime licence for $5",
         },
         description: PRODUCT_DESCRIPTION,
@@ -155,6 +156,38 @@ export function softwareJsonLd() {
       },
     ],
   };
+}
+
+export function extractFaqsFromMarkdown(markdown: string): { q: string; a: string }[] {
+  const faqMatch = markdown.match(/(?:^|\n)## (?:[^\n]*FAQ[^\n]*|Frequently Asked Questions[^\n]*)\s*\n([\s\S]*)$/i);
+  if (!faqMatch) return [];
+
+  const section = faqMatch[1];
+  const items: { q: string; a: string }[] = [];
+  const questionBlocks = section.split(/(?:^|\n)###\s+/);
+
+  for (const block of questionBlocks) {
+    const trimmed = block.trim();
+    if (!trimmed) continue;
+    const newlineIndex = trimmed.indexOf("\n");
+    if (newlineIndex === -1) continue;
+
+    const q = trimmed.slice(0, newlineIndex).trim().replace(/\?+$/, "?");
+    const rawAnswer = trimmed.slice(newlineIndex + 1).trim();
+
+    // Clean markdown formatting (links, bold, code) for plain text schema answer
+    const a = rawAnswer
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[`*#]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (q && a) {
+      items.push({ q, a });
+    }
+  }
+
+  return items;
 }
 
 export function faqJsonLd(items: readonly { q: string; a: string }[] = PLATFORM_FAQ) {

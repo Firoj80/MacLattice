@@ -8,7 +8,7 @@ import { SiteShell } from "@/components/site-shell";
 import { blogSeoDescription, blogSeoTitle } from "@/data/blog-seo";
 import { getPost, isMacStorageGuide, relatedPosts } from "@/data/blog";
 import { SITE } from "@/data/site";
-import { blogPostingJsonLd, pageHead } from "@/lib/seo";
+import { blogPostingJsonLd, extractFaqsFromMarkdown, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { recordPostView } from "@/lib/post-views";
 
@@ -76,8 +76,11 @@ function BlogPostPage() {
     };
   }, [post.slug]);
 
+  const faqs = extractFaqsFromMarkdown(post.body);
+
   return (
     <SiteShell>
+      <JsonLd data={softwareJsonLd()} />
       <JsonLd
         data={blogPostingJsonLd({
           title: post.title,
@@ -87,6 +90,7 @@ function BlogPostPage() {
           author: post.author,
         })}
       />
+      {faqs.length > 0 ? <JsonLd data={faqJsonLd(faqs)} /> : null}
       <article className="mx-auto max-w-3xl px-6 py-12">
         <Link
           to="/blog"
