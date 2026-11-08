@@ -44,6 +44,16 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
     description:
       "Your C: drive is 95% full but you can't see why. Discover the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to WSL2 vhdx—and how to reclaim 20–80 GB.",
   },
+  "find-duplicate-video-files-windows-11": {
+    title: "How to Find & Delete Duplicate Video Files on Windows 10/11 (3-Pass Hashing)",
+    description:
+      "Video files chew through SSDs faster than anything else. Learn why filename duplicate cleaners fail, how 3-pass content hashing works, and how to recover 50GB+ safely.",
+  },
+  "free-up-disk-space-pc-gaming-steam-windows": {
+    title: "How to Free Up SSD Space on Windows for PC Gaming (Steam & Shaders)",
+    description:
+      "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB.",
+  },
   "daisydisk-alternatives": {
     description:
       "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $5 and available on Windows. macOS is coming soon.",

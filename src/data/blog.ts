@@ -7,6 +7,8 @@ import { analyzersBody } from "./win-posts/best-windows-disk-space-analyzers-win
 import { windirstatAlternativeBody } from "./win-posts/windirstat-alternative-windows-11.ts";
 import { cleanmymacAlternativeBody } from "./win-posts/cleanmymac-alternative-windows.ts";
 import { cDriveFullBody } from "./win-posts/c-drive-full-windows-11-cleanup-guide.ts";
+import { duplicateVideosBody } from "./win-posts/find-duplicate-video-files-windows-11.ts";
+import { gameDiskCleanupBody } from "./win-posts/free-up-disk-space-pc-gaming-steam-windows.ts";
 
 export type BlogPost = {
   slug: string;
@@ -109,6 +111,26 @@ export const posts: BlogPost[] = [
     excerpt:
       "Your C: drive is 95% full but you can't see why. This guide uncovers the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to developer caches—and shows how to reclaim 20–80 GB.",
     body: cDriveFullBody,
+  },
+  {
+    slug: "find-duplicate-video-files-windows-11",
+    author: "Firoj Alam",
+    date: "2026-11-02",
+    title: "How to Safely Find and Delete Duplicate Video Files on Windows 10 & 11",
+    tags: ["Windows", "Duplicates", "Video Editing", "Cleanup"],
+    excerpt:
+      "Video files chew through SSDs faster than anything else. Learn why filename duplicate finders fail on video files, how 3-pass content hashing works, and how to reclaim 50GB+ safely.",
+    body: duplicateVideosBody,
+  },
+  {
+    slug: "free-up-disk-space-pc-gaming-steam-windows",
+    author: "Firoj Alam",
+    date: "2026-11-02",
+    title: "How to Free Up SSD Space on Windows for PC Gaming (Steam, Shader Caches & Mods)",
+    tags: ["Windows", "Gaming", "Steam", "Cleanup"],
+    excerpt:
+      "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB without reinstalling.",
+    body: gameDiskCleanupBody,
   },
   {
     "slug": "android-emulator-cleanup",
@@ -344,6 +366,8 @@ const WINDOWS_GUIDE_SLUGS = new Set([
   "windirstat-alternative-windows-11",
   "cleanmymac-alternative-windows",
   "c-drive-full-windows-11-cleanup-guide",
+  "find-duplicate-video-files-windows-11",
+  "free-up-disk-space-pc-gaming-steam-windows",
 ]);
 
 /** Older posts are macOS storage guides. They are not a Mac download page. */
