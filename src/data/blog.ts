@@ -9,6 +9,8 @@ import { cleanmymacAlternativeBody } from "./win-posts/cleanmymac-alternative-wi
 import { cDriveFullBody } from "./win-posts/c-drive-full-windows-11-cleanup-guide.ts";
 import { duplicateVideosBody } from "./win-posts/find-duplicate-video-files-windows-11.ts";
 import { gameDiskCleanupBody } from "./win-posts/free-up-disk-space-pc-gaming-steam-windows.ts";
+import { spacesnifferAlternativeBody } from "./win-posts/spacesniffer-alternative-windows-11.ts";
+import { daisydiskWindowsAlternativeBody } from "./win-posts/daisydisk-for-windows-alternative.ts";
 
 export type BlogPost = {
   slug: string;
@@ -131,6 +133,26 @@ export const posts: BlogPost[] = [
     excerpt:
       "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB without reinstalling.",
     body: gameDiskCleanupBody,
+  },
+  {
+    slug: "spacesniffer-alternative-windows-11",
+    author: "Firoj Alam",
+    date: "2026-11-03",
+    title: "Best SpaceSniffer Alternatives for Windows 11 in 2026 (Free & Modern)",
+    tags: ["Windows", "Comparison", "Disk Analyzer", "SpaceSniffer"],
+    excerpt:
+      "SpaceSniffer hasn't been updated since 2016. Discover the best modern alternatives for Windows 11 with dark mode, multiple visual maps, and duplicate detection.",
+    body: spacesnifferAlternativeBody,
+  },
+  {
+    slug: "daisydisk-for-windows-alternative",
+    author: "Firoj Alam",
+    date: "2026-11-03",
+    title: "DaisyDisk for Windows: The Best Alternatives with Sunburst Maps in 2026",
+    tags: ["Windows", "Comparison", "Disk Analyzer", "DaisyDisk"],
+    excerpt:
+      "There is no official DaisyDisk for Windows. Discover how Scan My Disk brings interactive sunburst disk visualization and 3-pass duplicate detection to Windows 10 & 11.",
+    body: daisydiskWindowsAlternativeBody,
   },
   {
     "slug": "android-emulator-cleanup",
@@ -368,6 +390,8 @@ const WINDOWS_GUIDE_SLUGS = new Set([
   "c-drive-full-windows-11-cleanup-guide",
   "find-duplicate-video-files-windows-11",
   "free-up-disk-space-pc-gaming-steam-windows",
+  "spacesniffer-alternative-windows-11",
+  "daisydisk-for-windows-alternative",
 ]);
 
 /** Older posts are macOS storage guides. They are not a Mac download page. */

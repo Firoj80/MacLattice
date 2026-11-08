@@ -54,6 +54,16 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
     description:
       "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB.",
   },
+  "spacesniffer-alternative-windows-11": {
+    title: "SpaceSniffer Alternative for Windows 11: 8 Visual Maps & $5 Lifetime (2026)",
+    description:
+      "SpaceSniffer hasn't been updated since 2016. Discover modern Windows 11 alternatives with dark mode, radial sunbursts, and 3-pass duplicate detection for $5.",
+  },
+  "daisydisk-for-windows-alternative": {
+    title: "DaisyDisk for Windows 11: Sunburst Maps & $5 Lifetime Alternative (2026)",
+    description:
+      "Looking for DaisyDisk on Windows? Scan My Disk brings beautiful interactive sunburst disk visualization and 3-pass duplicate detection to Windows 10 & 11 for $5.",
+  },
   "daisydisk-alternatives": {
     description:
       "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $5 and available on Windows. macOS is coming soon.",
