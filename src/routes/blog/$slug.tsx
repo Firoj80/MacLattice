@@ -8,7 +8,7 @@ import { SiteShell } from "@/components/site-shell";
 import { blogSeoDescription, blogSeoTitle } from "@/data/blog-seo";
 import { getPost, isMacStorageGuide, relatedPosts } from "@/data/blog";
 import { SITE } from "@/data/site";
-import { blogPostingJsonLd, extractFaqsFromMarkdown, faqJsonLd, pageHead, softwareJsonLd } from "@/lib/seo";
+import { blogPostingJsonLd, extractFaqsFromMarkdown, faqJsonLd, ogImage, pageHead, softwareJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { recordPostView } from "@/lib/post-views";
 
@@ -42,6 +42,7 @@ export const Route = createFileRoute("/blog/$slug")({
       type: "article",
       published: post.date,
       ogTitle: post.title,
+      image: ogImage(post.slug),
     });
   },
   component: BlogPostPage,

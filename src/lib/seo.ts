@@ -29,9 +29,11 @@ export function absUrl(path = "/") {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-export function ogImage() {
-  // New path on purpose. X caches the old /og.jpg DissectMac card forever
-  // because that file is served with Cache-Control: immutable.
+export function ogImage(slug?: string) {
+  if (slug) {
+    return absUrl(`/api/og?slug=${encodeURIComponent(slug)}`);
+  }
+  // Fallback / default social card
   return absUrl("/x-share-v3.jpg");
 }
 
@@ -44,6 +46,7 @@ export function pageHead({
   ogTitle,
   ogDescription,
   index = true,
+  image: customImage,
 }: {
   title: string;
   description: string;
@@ -53,9 +56,10 @@ export function pageHead({
   ogTitle?: string;
   ogDescription?: string;
   index?: boolean;
+  image?: string;
 }) {
   const url = absUrl(path);
-  const image = ogImage();
+  const image = customImage ?? ogImage();
   const socialTitle = ogTitle ?? title;
   const socialDescription = ogDescription ?? description;
   const markdownHref = absUrl(path === "/" ? "/index.md" : `${path}.md`);
@@ -82,7 +86,7 @@ export function pageHead({
       { property: "og:image:secure_url", content: image },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:type", content: image.includes("/api/og") ? "image/svg+xml" : "image/jpeg" },
       { property: "og:image:alt", content: OG_IMAGE_ALT },
       { property: "og:type", content: type },
       { name: "twitter:card", content: "summary_large_image" },
