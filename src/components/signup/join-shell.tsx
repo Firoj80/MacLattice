@@ -97,6 +97,9 @@ function JoinFooter() {
                 <img src="https://www.scrolllaunch.com/api/badge/scanmydisk" alt="Featured on ScrollLaunch" width="220" height="48" loading="lazy" />
               </a>
             ) : null}
+            <a href="https://findly.tools/scan-my-disk?utm_source=scan-my-disk" target="_blank" rel="noopener noreferrer">
+              <img src="https://findly.tools/badges/findly-tools-badge-dark.svg" alt="Featured on Findly.tools" width={175} height={55} />
+            </a>
           </div>
         </div>
         <div>
