@@ -2,10 +2,17 @@ export { verifyDodoSignature } from "@/lib/webhook-signature";
 import { randomBytes, randomUUID, createHash } from "node:crypto";
 import { getSql } from "@/lib/db";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
-import { datafastVisitorId } from "@/lib/datafast-attribution";
 import { currencyForCountry } from "@/lib/local-pricing";
-export async function createDodoCheckout(cookieHeader: string | null = null, country?: string) {
-  const visitorId = datafastVisitorId(cookieHeader);
+import { extractMinilyticsAttribution, type MinilyticsAttribution } from "@/lib/minilytics-attribution";
+export async function createDodoCheckout(
+  cookieHeader: string | null = null,
+  country?: string,
+  fallbackAttribution?: Partial<MinilyticsAttribution>,
+) {
+  const { ml_visitor_id, ml_session_id } = extractMinilyticsAttribution(
+    cookieHeader,
+    fallbackAttribution,
+  );
   const currency = currencyForCountry(country);
   const { product } = providerConfig(),
     id = randomUUID(),
@@ -20,7 +27,8 @@ export async function createDodoCheckout(cookieHeader: string | null = null, cou
     metadata: {
       order_id: id,
       platform: "windows",
-      ...(visitorId ? { datafast_visitor_id: visitorId } : {}),
+      ml_visitor_id: ml_visitor_id ?? "",
+      ml_session_id: ml_session_id ?? "",
     },
   });
   if (new URL(session.checkout_url).protocol !== "https:") throw new Error("Invalid checkout URL.");

@@ -17,7 +17,19 @@ export const Route = createFileRoute("/buy")({
           )
             return new Response("Please wait before trying again.", { status: 429 });
           const country = pricingCountry(request.headers.get("x-vercel-ip-country"));
-          const s = await createDodoCheckout(request.headers.get("cookie"), country);
+          const url = new URL(request.url);
+          const ml_visitor_id =
+            url.searchParams.get("ml_vid") ||
+            url.searchParams.get("ml_visitor_id") ||
+            undefined;
+          const ml_session_id =
+            url.searchParams.get("ml_sid") ||
+            url.searchParams.get("ml_session_id") ||
+            undefined;
+          const s = await createDodoCheckout(request.headers.get("cookie"), country, {
+            ml_visitor_id,
+            ml_session_id,
+          });
           return new Response(null, {
             status: 302,
             headers: { Location: s.url, "Set-Cookie": s.cookie, "Cache-Control": "no-store" },

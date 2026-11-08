@@ -7,6 +7,8 @@ export function HeaderBuy({ className = "" }: { className?: string }) {
   return (
     <a
       href={BUY_HREF}
+      data-ml-goal="checkout_click"
+      data-ml-goal-plan="pro"
       className={`purchase-button group !min-h-11 !px-4 !text-xs sm:!text-sm ${className}`}
     >
       <span>Get Now · {price.lifetimePrice}</span>

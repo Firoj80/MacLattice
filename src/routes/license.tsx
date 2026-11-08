@@ -56,6 +56,7 @@ function LicensePage() {
             <div className="mt-8">
               <a
                 href="/api/download"
+                data-ml-goal="start_trial"
                 className="btn-primary group w-full !py-3.5 !text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 <span>Download Windows Setup (.exe)</span>

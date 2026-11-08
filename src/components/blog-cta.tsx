@@ -18,6 +18,8 @@ export function BlogCta() {
             </p>
             <a
               href={BUY_HREF}
+              data-ml-goal="checkout_click"
+              data-ml-goal-plan="pro"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-medium text-primary-fg shadow-lg transition-all hover:brightness-110 md:w-auto"
             >
               Buy licence · {price.lifetimePrice}

@@ -54,6 +54,8 @@ export function BuyLicenseCard() {
           </p>
           <a
             href={BUY_HREF}
+            data-ml-goal="checkout_click"
+            data-ml-goal-plan="pro"
             className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
           >
             Buy Lifetime Licence in {price.lifetimePrice}

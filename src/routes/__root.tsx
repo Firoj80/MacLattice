@@ -43,6 +43,11 @@ export const Route = createRootRoute({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script
+          defer
+          data-website-id="1f5a3f5u4g5d5l6u"
+          src="https://minilytics.firojstats.workers.dev/js/script.js"
+        />
       </head>
       <body className="bg-bg font-sans text-fg antialiased">
         <LocalPricingProvider initial={price}><Outlet /></LocalPricingProvider>

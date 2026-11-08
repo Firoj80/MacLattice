@@ -50,6 +50,7 @@ function SignedInPanel({ name }: { name: string }) {
       </p>
       <a
         href="#pricing"
+        data-ml-goal="pricing_cta"
         className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98]"
       >
         Get lifetime access — {price.lifetimePrice}
@@ -83,6 +84,7 @@ function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
           callbackURL: CALLBACK,
         });
         if (err) throw new Error(err.message || "Could not create the account.");
+        window.minilytics?.("goal", "signup_completed");
       } else {
         const { error: err } = await authClient.signIn.email({
           email: email.trim(),
@@ -91,7 +93,14 @@ function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
         });
         if (err) throw new Error(err.message || "Could not sign in.");
       }
-      await authClient.getSession();
+      const session = await authClient.getSession();
+      if (session?.data?.user) {
+        window.minilytics?.("identify", {
+          user_id: session.data.user.id,
+          email: session.data.user.email,
+          name: session.data.user.name,
+        });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -118,6 +127,7 @@ function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
             <button
               key={p.providerId}
               type="button"
+              data-ml-goal="signup_click"
               onClick={() => signIn(p.providerId, { callbackURL: CALLBACK })}
               className="inline-flex h-12 items-center justify-center rounded-xl border border-border bg-bg text-sm font-semibold text-fg transition-colors hover:bg-fg/4"
             >
@@ -163,6 +173,7 @@ function AuthForm({ initialMode }: { initialMode: "signup" | "signin" }) {
         ) : null}
         <button
           type="submit"
+          data-ml-goal={mode === "signup" ? "signup_click" : "login_click"}
           disabled={busy || !authEnabled}
           className={cn(
             "inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-fg transition-transform duration-150 hover:brightness-110 active:scale-[0.98] disabled:opacity-60",

@@ -14,6 +14,8 @@ export function DownloadButton({
   return (
     <a
       href={BUY_HREF}
+      data-ml-goal="checkout_click"
+      data-ml-goal-plan="pro"
       className={cn(
         "inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-medium whitespace-nowrap text-bg bg-fg transition-all hover:bg-fg/90",
         className,
@@ -36,7 +38,7 @@ export function AccountCta({
   className?: string;
 }) {
   return (
-    <a href={BUY_HREF} className={className}>
+    <a href={BUY_HREF} data-ml-goal="checkout_click" data-ml-goal-plan="pro" className={className}>
       {children ?? "Buy licence"}
     </a>
   );

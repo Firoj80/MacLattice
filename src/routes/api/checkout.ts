@@ -17,7 +17,21 @@ export const Route = createFileRoute("/api/checkout")({
           )
             return Response.json({ error: "too_many_requests" }, { status: 429 });
           const country = pricingCountry(request.headers.get("x-vercel-ip-country"));
-          const s = await createDodoCheckout(request.headers.get("cookie"), country);
+          let bodyAttribution: { ml_visitor_id?: string; ml_session_id?: string } | undefined;
+          try {
+            const body = (await request.clone().json()) as Record<string, unknown>;
+            if (body && typeof body === "object") {
+              bodyAttribution = {
+                ml_visitor_id:
+                  typeof body.ml_visitor_id === "string" ? body.ml_visitor_id : undefined,
+                ml_session_id:
+                  typeof body.ml_session_id === "string" ? body.ml_session_id : undefined,
+              };
+            }
+          } catch {
+            // body is not JSON or empty
+          }
+          const s = await createDodoCheckout(request.headers.get("cookie"), country, bodyAttribution);
           return Response.json(
             { url: s.url, provider: "dodo" },
             { headers: { "Set-Cookie": s.cookie, "Cache-Control": "no-store" } },

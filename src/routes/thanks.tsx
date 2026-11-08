@@ -149,6 +149,7 @@ function ThanksPage() {
                 <a
                   href={download}
                   download="ScanMyDisk-Setup-x64.exe"
+                  data-ml-goal="download_click"
                   className="btn-primary group mt-4 w-full !py-3.5 !text-sm shadow-[0_0_24px_rgba(255,255,255,0.2)]"
                 >
                   <Download className="size-4" />
@@ -158,6 +159,7 @@ function ThanksPage() {
               ) : (
                 <a
                   href="/api/download"
+                  data-ml-goal="download_click"
                   className="btn-primary group mt-4 w-full !py-3.5 !text-sm shadow-[0_0_24px_rgba(255,255,255,0.2)]"
                 >
                   <Download className="size-4" />

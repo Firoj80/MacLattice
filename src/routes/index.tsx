@@ -53,7 +53,7 @@ function SignupLanding() {
 function EarlyBirdBanner() {
   const price = useLocalPricing();
   return (
-    <a href="#pricing" className="offer-pill" aria-label={`Early bird ${price.lifetimePrice}, then ${price.regularPrice}. View pricing.`}>
+    <a href="#pricing" data-ml-goal="pricing_cta" className="offer-pill" aria-label={`Early bird ${price.lifetimePrice}, then ${price.regularPrice}. View pricing.`}>
       <span className="offer-label">Early-bird</span>
       <span><strong className="font-semibold text-fg">{price.lifetimePrice}</strong><span className="text-muted">, then </span><s className="text-muted">{price.regularPrice}</s></span>
       <ArrowRight className="size-3.5 text-muted" />
@@ -76,12 +76,14 @@ function Hero() {
       <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
           href={BUY_HREF}
+          data-ml-goal="checkout_click"
+          data-ml-goal-plan="pro"
           className="purchase-button group"
         >
           <span>Get Now · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>
-        <Link to="/license" className="purchase-button purchase-button-secondary">
+        <Link to="/license" data-ml-goal="download_click" className="purchase-button purchase-button-secondary">
           <Download className="size-4 text-sky-400" />
           <span>Download / License</span>
         </Link>
@@ -418,6 +420,8 @@ function Pricing() {
           </ul>
             <a
               href={BUY_HREF}
+              data-ml-goal="checkout_click"
+              data-ml-goal-plan="pro"
               className="purchase-button group w-full"
             >
               <span>Buy Scan My Disk · {price.lifetimePrice}</span>
@@ -579,7 +583,12 @@ function Close() {
         <p className="mx-auto mb-8 max-w-xl text-white/70">
           One payment, yours for good. No subscription, no account required, and your files never leave your PC.
         </p>
-        <a href={BUY_HREF} className="btn-primary group !px-8 !py-4 !text-base shadow-[0_0_30px_rgba(255,255,255,0.25)]">
+        <a
+          href={BUY_HREF}
+          data-ml-goal="checkout_click"
+          data-ml-goal-plan="pro"
+          className="btn-primary group !px-8 !py-4 !text-base shadow-[0_0_30px_rgba(255,255,255,0.25)]"
+        >
           <span>Get Now · {price.lifetimePrice}</span>
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
         </a>

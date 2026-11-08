@@ -1,34 +1,17 @@
 import { useEffect } from "react";
-import { useRouterState } from "@tanstack/react-router";
-import { datafastPageUrl } from "@/lib/datafast-attribution";
-
-let clientPromise: Promise<Awaited<ReturnType<typeof import("datafast").initDataFast>>> | undefined;
-let lastPath: string | undefined;
+import { useCurrentUserState } from "@/lib/auth/use-current-user";
 
 export function WebsiteAnalytics() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const { user, isPending } = useCurrentUserState();
 
   useEffect(() => {
-    // Keep previews out of production analytics; initialize only in the browser.
-    if (!['scanmydisk.com', 'www.scanmydisk.com'].includes(window.location.hostname)) return;
-    let cancelled = false;
-    clientPromise ??= import("datafast").then(({ initDataFast }) => initDataFast({
-      websiteId: "dfid_JjIOQMyebuP5FTXMMJieU",
-      domain: "www.scanmydisk.com",
-      autoCapturePageviews: false,
-    }));
-    void clientPromise.then(async (client) => {
-      if (cancelled || lastPath === pathname) return;
-      lastPath = pathname;
-      // Checkout query strings contain order identifiers; never track full URLs.
-      await client.trackScreen(pathname, { href: datafastPageUrl(window.location.href) });
-    }).catch(() => {
-      // Analytics failures must not interrupt checkout or the website.
-      clientPromise = undefined;
-      lastPath = undefined;
+    if (isPending || !user || user.isDevFallback) return;
+    window.minilytics?.("identify", {
+      user_id: user.id,
+      email: user.primaryEmail ?? undefined,
+      name: user.displayName ?? undefined,
     });
-    return () => { cancelled = true; };
-  }, [pathname]);
+  }, [user, isPending]);
 
   return null;
 }

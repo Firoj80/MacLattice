@@ -57,16 +57,16 @@ function PrivacyPage() {
       </LegalSection>
       <LegalSection title="4. Website Analytics">
         <p>
-          We use DataFast to understand website visits and navigation. Its SDK processes
-          page paths, referring websites, browser and device information, and visitor
-          and session identifiers stored in your browser. Analytics requests also
-          expose network information such as your IP address to the service.
-          We do not send your license key, purchase email, scanned files, or checkout
-          order query parameters as analytics events. Website analytics is separate
-          from local disk scanning in the Windows app.
-          We also pass the DataFast visitor identifier to Dodo Payments in checkout
-          metadata so completed payments can be attributed to referring websites
-          and marketing campaigns in DataFast.
+          We use Minilytics, a privacy-friendly self-hosted analytics platform, to understand
+          website visits and navigation. Its script processes page paths, referring websites,
+          browser and device information, and first-party visitor and session identifiers
+          stored in your browser. Analytics requests also expose network information such
+          as your IP address to the service. We do not send your license key, purchase email,
+          scanned files, or checkout order query parameters as analytics events. Website
+          analytics is separate from local disk scanning in the Windows app.
+          We also pass the Minilytics visitor and session identifiers to Dodo Payments in
+          checkout metadata so completed payments can be attributed to referring websites
+          and marketing campaigns.
         </p>
       </LegalSection>      <LegalSection title="5. Third-Party Services">
         <p>We use the following trusted third-party services:</p>
@@ -76,7 +76,7 @@ function PrivacyPage() {
             management.
           </li>
           <li>
-            <strong>DataFast:</strong> For website traffic and navigation analytics.
+            <strong>Minilytics:</strong> For privacy-friendly website traffic and navigation analytics.
           </li>
         </ul>
       </LegalSection>
