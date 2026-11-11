@@ -1,6 +1,14 @@
 /** Log configuration presence and error category, never credentials or buyer data. */
 export function logCheckoutFailure(error: unknown) {
   const code = error && typeof error === "object" && "code" in error ? error.code : undefined;
+  const providerCode =
+    error && typeof error === "object" && "providerCode" in error && typeof error.providerCode === "string"
+      ? error.providerCode
+      : undefined;
+  const providerMessage =
+    error && typeof error === "object" && "providerMessage" in error && typeof error.providerMessage === "string"
+      ? error.providerMessage
+      : undefined;
   console.error("[checkout] unavailable", {
     databaseConfigured: Boolean(process.env.DATABASE_URL?.trim()),
     apiKeyConfigured: Boolean(process.env.DODO_PAYMENTS_API_KEY?.trim()),
@@ -8,5 +16,7 @@ export function logCheckoutFailure(error: unknown) {
     modeValid: ["test_mode", "live_mode"].includes(process.env.DODO_PAYMENTS_ENV?.trim() ?? ""),
     databaseCode: typeof code === "string" && /^[0-9A-Z]{5}$/.test(code) ? code : undefined,
     providerStatus: error instanceof Error ? /^Payment provider request failed \((\d{3})\)\.$/.exec(error.message)?.[1] : undefined,
+    providerCode,
+    providerMessage,
   });
 }

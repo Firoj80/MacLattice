@@ -32,7 +32,24 @@ export async function dodoRequest<T>(path: string, body?: unknown): Promise<T> {
     body: body === undefined ? undefined : JSON.stringify(body),
     signal: AbortSignal.timeout(15000),
   });
-  if (!r.ok) throw new Error(`Payment provider request failed (${r.status}).`);
+  if (!r.ok) {
+    let providerCode: string | undefined;
+    let providerMessage: string | undefined;
+    try {
+      const err = (await r.json()) as { code?: unknown; message?: unknown };
+      if (typeof err?.code === "string") providerCode = err.code.slice(0, 64);
+      if (typeof err?.message === "string") providerMessage = err.message.slice(0, 200);
+    } catch {
+      // ignore non-JSON provider error bodies
+    }
+    const err = new Error(`Payment provider request failed (${r.status}).`) as Error & {
+      providerCode?: string;
+      providerMessage?: string;
+    };
+    if (providerCode) err.providerCode = providerCode;
+    if (providerMessage) err.providerMessage = providerMessage;
+    throw err;
+  }
   const text = await r.text();
   return (text ? JSON.parse(text) : undefined) as T;
 }
