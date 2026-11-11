@@ -26,6 +26,11 @@
       "source": "/login",
       "destination": "/buy",
       "permanent": true
+    },
+    {
+      "source": "/research/product",
+      "destination": "/research",
+      "permanent": true
     }
   ],
   "headers": [

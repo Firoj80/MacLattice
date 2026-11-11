@@ -179,11 +179,6 @@ function BlogIndex() {
             )}
           </div>
         </div>
-        <p className="mt-10 text-center text-sm text-muted">
-          <Link to="/post-views" className="hover:text-fg">
-            See view counts
-          </Link>
-        </p>
       </div>
     </SiteShell>
   );
