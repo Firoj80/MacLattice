@@ -20,9 +20,8 @@ export async function createDodoCheckout(
     hash = createHash("sha256").update(token).digest("hex");
   const sql = await getSql();
   await sql`insert into checkout_orders(id,access_hash) values (${id},${hash})`;
-  const session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
+  const payload = {
     product_cart: [{ product_id: product, quantity: 1 }],
-    ...(currency ? { billing_currency: currency } : {}),
     return_url: `https://www.scanmydisk.com/thanks?order_id=${id}`,
     metadata: {
       order_id: id,
@@ -30,7 +29,28 @@ export async function createDodoCheckout(
       ml_visitor_id: ml_visitor_id ?? "",
       ml_session_id: ml_session_id ?? "",
     },
-  });
+  };
+  let session: { checkout_url: string; session_id: string };
+  try {
+    session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
+      ...payload,
+      ...(currency ? { billing_currency: currency } : {}),
+    });
+  } catch (error) {
+    // Retry in default product currency if Dodo rejects the visitor's billing_currency with 422.
+    if (
+      currency &&
+      error instanceof Error &&
+      error.message === "Payment provider request failed (422)."
+    ) {
+      session = await dodoRequest<{ checkout_url: string; session_id: string }>(
+        "/checkouts",
+        payload,
+      );
+    } else {
+      throw error;
+    }
+  }
   if (new URL(session.checkout_url).protocol !== "https:") throw new Error("Invalid checkout URL.");
   await sql`update checkout_orders set session_id=${session.session_id} where id=${id}`;
   return {
