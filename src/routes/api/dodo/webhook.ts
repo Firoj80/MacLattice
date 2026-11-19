@@ -25,7 +25,7 @@ export const Route = createFileRoute("/api/dodo/webhook")({
           await handleDodoEvent(payload, request.headers.get("webhook-id")!);
           return new Response("ok");
         } catch (error) {
-          logCheckoutFailure(error);
+          logCheckoutFailure(error, "webhook");
           return new Response("Event processing failed; retry required", { status: 503 });
         }
       },
