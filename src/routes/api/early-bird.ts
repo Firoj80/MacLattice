@@ -22,7 +22,8 @@ export const Route = createFileRoute("/api/early-bird")({ server: { handlers: { 
     }
     // Only aggregate counts leave the server. No customer, payment or license identifiers.
     return Response.json(data, { headers: { "Cache-Control": "no-store" } });
-  } catch {
+  } catch (err) {
+    console.error("[early-bird] 503 —", err instanceof Error ? err.message : String(err));
     return Response.json({ error: "Sales count is temporarily unavailable." }, { status: 503, headers: { "Cache-Control": "no-store" } });
   }
 } } } });
