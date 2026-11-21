@@ -54,7 +54,7 @@ flowchart TD
 5. **Review Before You Delete:** ScanMyDisk highlights the original file path and lets you preview file details, creation timestamps, and paths.
 6. **Send to Cleanup Queue:** Staged files are moved safely to the native **Windows Recycle Bin**. Nothing is permanently destroyed behind your back.
 
-[**Get Scan My Disk for Windows ($5 Lifetime) →**](/buy)
+[**Get Scan My Disk for Windows ($6.99 Lifetime) →**](/buy)
 
 ---
 
@@ -96,5 +96,5 @@ No. In each duplicate group, ScanMyDisk retains one primary original file and on
 No. ScanMyDisk uses byte-for-byte content hashing to find **true identical duplicates** (files with the exact same binary data). It does not perform perceptual video analysis (which compares visual similarity of different re-encoded videos). This ensures 100% precision with zero accidental deletions of compressed web versions vs high-res masters.
 
 ### Is ScanMyDisk a subscription?
-No. ScanMyDisk is a **one-time $5 lifetime license** valid on Windows 10 & 11 with a 15-day refund guarantee.
+No. ScanMyDisk is a **one-time $6.99 lifetime license** valid on Windows 10 & 11 with a 15-day refund guarantee.
 `;

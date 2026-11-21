@@ -6,7 +6,7 @@ import { LocalPricingProvider } from "@/components/local-pricing";
 import { getLocalPrice } from "@/lib/local-price";
 
 export const Route = createRootRoute({
-  loader: () => getLocalPrice().catch(() => ({ currency: "USD", early: "$5", regular: "$9.99", localized: false })),
+  loader: () => getLocalPrice().catch(() => ({ currency: "USD", early: "$6.99", regular: "$9.99", localized: false })),
   head: () => ({
     meta: [
       { charSet: "utf-8" },

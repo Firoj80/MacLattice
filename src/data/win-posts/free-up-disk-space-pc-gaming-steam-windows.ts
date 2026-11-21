@@ -82,7 +82,7 @@ If no game is currently downloading or updating in your Steam client, these fold
 
 ## Side-by-Side Comparison: Reclaiming Game Storage Manually vs Scan My Disk
 
-| Task | Manual Explorer Spelunking | With Scan My Disk ($5 Lifetime) |
+| Task | Manual Explorer Spelunking | With Scan My Disk ($6.99 Lifetime) |
 |---|---|---|
 | Spot 100 GB game installs | Click through each launcher library | **Treemap / Sunburst** instantly highlights massive folders |
 | Find forgotten old games | Check Steam, Epic, Battle.net, GOG, Xbox app separately | **Age Map** highlights games untouched for > 6 months |
@@ -114,5 +114,5 @@ When you first launch a game after clearing shader caches, it may take an extra 
 **No.** \`steamapps\\common\` is where your actual installed Steam games live. Only delete individual game subfolders if you want to uninstall that specific game, or better yet, uninstall it through the Steam client interface.
 
 ### Is Scan My Disk compatible with Windows 11 and Windows 10?
-Yes. Scan My Disk runs natively on 64-bit Windows 10 and Windows 11, operates 100% offline with zero telemetry, and costs a **one-time $5 lifetime payment**.
+Yes. Scan My Disk runs natively on 64-bit Windows 10 and Windows 11, operates 100% offline with zero telemetry, and costs a **one-time $6.99 lifetime payment**.
 `;

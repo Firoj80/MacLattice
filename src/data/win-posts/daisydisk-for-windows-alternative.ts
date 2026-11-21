@@ -58,9 +58,9 @@ Just like DaisyDisk's collector drawer, Scan My Disk stages all files in a **Cle
 | AppData / Junk Leftovers | ❌ No | **✅ Yes** | ❌ No |
 | Developer Presets (\`node_modules\`, etc.) | ❌ No | **✅ Yes** | ❌ No |
 | Cleanup Staging Queue | ✅ Yes | **✅ Yes** | ❌ No |
-| License Price | \$9.99 | **\$5.00 Lifetime** | Free |
+| License Price | \$9.99 | **\$6.99 Lifetime** | Free |
 
-[**Get Scan My Disk for Windows ($5 Lifetime) →**](/buy)
+[**Get Scan My Disk for Windows ($6.99 Lifetime) →**](/buy)
 
 ---
 
@@ -70,7 +70,7 @@ Just like DaisyDisk's collector drawer, Scan My Disk stages all files in a **Cle
 No. DaisyDisk relies heavily on native macOS AppKit and Metal rendering frameworks. It cannot be run on Windows via emulators or compatibility layers.
 
 ### Is Scan My Disk a subscription?
-No. Scan My Disk costs a **one-time $5 payment** for a lifetime license with free updates and a 15-day money-back guarantee.
+No. Scan My Disk costs a **one-time $6.99 payment** for a lifetime license with free updates and a 15-day money-back guarantee.
 
 ### Does Scan My Disk work on Windows 11?
 Yes. Scan My Disk is built natively for 64-bit Windows 10 and Windows 11 with dark mode and high-DPI monitor support.

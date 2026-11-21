@@ -5,7 +5,7 @@ export const SITE = {
   origin: "https://www.scanmydisk.com",
   tagline: "A visual disk space analyzer. See what’s eating your disk space.",
   email: "support@scanmydisk.com",
-  lifetimePrice: "$5",
+  lifetimePrice: "$6.99",
   regularPrice: "$9.99",
   earlyBirdLimit: 20,
   /** Windows build is what we sell today. macOS is planned, not shipping. */

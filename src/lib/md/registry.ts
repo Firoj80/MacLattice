@@ -46,7 +46,7 @@ function home(): MarkdownPage {
   const body = [
     availabilitySentence(),
     "",
-    `Catalogue price: ${SITE.lifetimePrice} early bird for the first ${SITE.earlyBirdLimit} licenses, then ${SITE.regularPrice}. One payment. No subscription and no account. Checkout may show a local currency.`,
+    `Catalogue price: ${SITE.lifetimePrice} early bird for the first ${SITE.earlyBirdLimit} licenses, then ${SITE.regularPrice}. One payment. No subscription and no account.`,
     "",
     "Scanning stays on the device.",
     "",

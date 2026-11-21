@@ -37,7 +37,7 @@ export const Route = createFileRoute("/api/og")({
         const titleParam = url.searchParams.get("title");
 
         let displayTitle = "ScanMyDisk — Visual Disk Space Analyzer";
-        let displayKicker = "Windows 10 & 11 • 8 Visual Maps • $5 Lifetime";
+        let displayKicker = "Windows 10 & 11 • 8 Visual Maps • $6.99 Lifetime";
 
         if (slug) {
           const post = getPost(slug);
@@ -113,7 +113,7 @@ export const Route = createFileRoute("/api/og")({
 
     <!-- Badge 3: Price -->
     <rect x="432" y="0" width="160" height="42" rx="12" fill="rgba(56, 189, 248, 0.12)" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1" />
-    <text x="452" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#38bdf8">$5 Lifetime</text>
+    <text x="452" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#38bdf8">$6.99 Lifetime</text>
 
     <!-- Right Side Domain -->
     <text x="1040" y="28" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#94a3b8">scanmydisk.com</text>

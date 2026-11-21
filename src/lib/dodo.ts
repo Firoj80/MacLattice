@@ -2,18 +2,16 @@ export { verifyDodoSignature } from "@/lib/webhook-signature";
 import { randomBytes, randomUUID, createHash } from "node:crypto";
 import { getSql } from "@/lib/db";
 import { dodoRequest, providerConfig, type ProviderLicense } from "@/lib/dodo-client";
-import { currencyForCountry } from "@/lib/local-pricing";
 import { extractMinilyticsAttribution, type MinilyticsAttribution } from "@/lib/minilytics-attribution";
 export async function createDodoCheckout(
   cookieHeader: string | null = null,
-  country?: string,
+  _country?: string,
   fallbackAttribution?: Partial<MinilyticsAttribution>,
 ) {
   const { ml_visitor_id, ml_session_id } = extractMinilyticsAttribution(
     cookieHeader,
     fallbackAttribution,
   );
-  const currency = currencyForCountry(country);
   const { product } = providerConfig(),
     id = randomUUID(),
     token = randomBytes(32).toString("base64url"),
@@ -30,27 +28,10 @@ export async function createDodoCheckout(
       ml_session_id: ml_session_id ?? "",
     },
   };
-  let session: { checkout_url: string; session_id: string };
-  try {
-    session = await dodoRequest<{ checkout_url: string; session_id: string }>("/checkouts", {
-      ...payload,
-      ...(currency ? { billing_currency: currency } : {}),
-    });
-  } catch (error) {
-    // Retry in default product currency if Dodo rejects the visitor's billing_currency with 422.
-    if (
-      currency &&
-      error instanceof Error &&
-      error.message === "Payment provider request failed (422)."
-    ) {
-      session = await dodoRequest<{ checkout_url: string; session_id: string }>(
-        "/checkouts",
-        payload,
-      );
-    } else {
-      throw error;
-    }
-  }
+  const session = await dodoRequest<{ checkout_url: string; session_id: string }>(
+    "/checkouts",
+    payload,
+  );
   if (new URL(session.checkout_url).protocol !== "https:") throw new Error("Invalid checkout URL.");
   await sql`update checkout_orders set session_id=${session.session_id} where id=${id}`;
   return {
