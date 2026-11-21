@@ -1,0 +1,16 @@
+{
+  "Version": "0.1.12",
+  "ReleasedAt": "2026-11-21",
+  "Summary": "Free disk scanning and analysis mode. License key is now only required when cleaning or recycling files.",
+  "Added": [
+    "Scan for free: Full disk inspection, heavy file browsing, and storage breakdown available immediately without requiring a license key.",
+    "Integrated unlock modal when initiating cleanup or recycling actions."
+  ],
+  "Improved": [
+    "Non-blocking startup experience so new users can verify app functionality and test scans immediately.",
+    "Clear status pill indicating 'Free Scanner · Unlock Clean' when running in evaluation mode."
+  ],
+  "Fixed": [
+    "Clarified Windows SmartScreen untrusted publisher guidance."
+  ]
+}

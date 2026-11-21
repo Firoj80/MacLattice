@@ -44,7 +44,7 @@ function LicensePage() {
               <div className="mt-5 space-y-2 text-xs text-white/70">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-sky-400" />
-                  <span>Version 0.1.11 · Native x64 build</span>
+                  <span>Version 0.1.12 · Native x64 build</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-sky-400" />
