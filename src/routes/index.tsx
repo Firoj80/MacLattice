@@ -383,54 +383,116 @@ function Pricing() {
   ];
   return (
     <section id="pricing" className="border-t border-white/10 px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-3xl">
         <h2 className="mb-3 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
           One price. Every tool. Yours for good.
         </h2>
-        <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-white/60">
+        <p className="mx-auto mb-10 max-w-xl text-center text-base text-white/60 sm:text-lg">
           Early bird: {price.lifetimePrice} for the first {SITE.earlyBirdLimit} licenses. Then {price.regularPrice}. No renewal.
         </p>
-        <div className="mx-auto mb-8 max-w-md">
-          <p className="flex items-center justify-center gap-2 text-sm text-muted"><span className="size-2 shrink-0 rounded-full bg-primary" /><span><strong className="text-fg">{price.lifetimePrice}</strong> for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}</span></p>
-          <EarlyBirdProgress />
-          <ol aria-label="Lifetime pricing stages" className="mt-4 grid grid-cols-2 gap-2 text-sm">
-            <li><p className="font-semibold text-fg">{price.lifetimePrice}</p><p className="mt-1 text-muted">First {SITE.earlyBirdLimit} licenses</p></li>
-            <li><p className="font-medium text-muted">{price.regularPrice}</p><p className="mt-1 text-muted">After that</p></li>
-          </ol>
-        </div>
-        <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-7 shadow-xl sm:p-9">
-          <div>
-            <div className="flex items-start justify-between gap-3">
-              <div><h3 className="text-xl font-semibold text-fg">Scan My Disk Pro</h3><p className="mt-1 text-sm text-muted">Personal license for 1 Windows PC</p></div>
+
+        {/* Unified Pricing Card: all components share the exact same width */}
+        <div className="relative mx-auto w-full overflow-hidden rounded-3xl border border-white/15 bg-slate-950/80 shadow-2xl backdrop-blur-xl">
+          {/* Integrated Early-Bird Header */}
+          <div className="border-b border-white/10 bg-gradient-to-b from-sky-500/10 via-sky-500/5 to-transparent p-6 sm:p-8">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="relative flex size-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex size-2.5 rounded-full bg-emerald-500" />
+                </span>
+                <span className="text-xs font-semibold tracking-wider text-sky-400 uppercase">
+                  Early-Bird Offer
+                </span>
+              </div>
+              <span className="rounded-full border border-sky-400/20 bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-300">
+                First {SITE.earlyBirdLimit} Licenses Only
+              </span>
+            </div>
+
+            <p className="mt-3 text-sm text-white/70">
+              <strong className="font-semibold text-white">{price.lifetimePrice}</strong> for the first {SITE.earlyBirdLimit} licenses, then {price.regularPrice}
+            </p>
+
+            <EarlyBirdProgress className="mt-3" />
+
+            {/* Stages Grid (Same width) */}
+            <ol aria-label="Lifetime pricing stages" className="mt-4 grid grid-cols-2 gap-3 text-sm">
+              <li className="flex flex-col justify-between rounded-2xl border border-sky-400/40 bg-sky-500/15 p-4 shadow-inner">
+                <div>
+                  <span className="text-xs font-medium text-sky-300">Stage 1 · First {SITE.earlyBirdLimit} licenses</span>
+                  <p className="mt-1 text-2xl font-bold tracking-tight text-white">{price.lifetimePrice}</p>
+                </div>
+                <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400">
+                  <span className="size-1.5 rounded-full bg-emerald-400" /> Active Now
+                </span>
+              </li>
+              <li className="flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <div>
+                  <span className="text-xs font-medium text-white/50">Stage 2 · After that</span>
+                  <p className="mt-1 text-2xl font-bold tracking-tight text-white/50">{price.regularPrice}</p>
+                </div>
+                <span className="mt-2 text-[11px] font-medium text-white/40">Standard price</span>
+              </li>
+            </ol>
+          </div>
+
+          {/* Card Body */}
+          <div className="p-6 sm:p-9">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h3 className="text-2xl font-bold text-white sm:text-3xl">Scan My Disk Pro</h3>
+                <p className="mt-1 text-sm text-white/60">Personal license for 1 Windows PC</p>
+              </div>
               <span className="offer-label shrink-0">Early-bird</span>
             </div>
-            <p className="mt-8 flex items-baseline gap-3 text-6xl font-semibold tracking-tight text-fg">
-              {price.lifetimePrice}
-              <s className="text-2xl font-medium text-muted"><span className="sr-only">Price after the early-bird offer </span>{price.regularPrice}</s>
-            </p>
-            <p className="mt-3 text-sm text-muted">One-time payment · no subscription</p>
+
+            <div className="mt-6 flex flex-wrap items-baseline gap-3">
+              <span className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
+                {price.lifetimePrice}
+              </span>
+              <s className="text-2xl font-medium text-white/40">
+                <span className="sr-only">Price after the early-bird offer </span>
+                {price.regularPrice}
+              </s>
+            </div>
+            <p className="mt-2 text-sm text-white/60">One-time payment · no subscription</p>
+
+            <div className="my-7 border-t border-white/10" />
+
+            <h4 className="mb-4 text-xs font-semibold tracking-wider text-sky-400 uppercase">
+              Everything included
+            </h4>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {included.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-white/80">
+                  <Check className="mt-0.5 size-4 shrink-0 text-sky-400" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 space-y-3">
+              <a
+                href={BUY_HREF}
+                data-ml-goal="initiate_checkout"
+                data-ml-goal-plan="pro"
+                className="purchase-button group w-full !bg-sky-500 !text-slate-950 hover:!bg-sky-400"
+              >
+                <span>Buy Scan My Disk · {price.lifetimePrice}</span>
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+              <Link to="/license" className="purchase-button purchase-button-secondary w-full">
+                Already purchased? Download / License
+              </Link>
+            </div>
+
+            <div className="mt-6 space-y-1 text-center text-xs text-white/50">
+              <p>License key delivered by email · 15-day refund guarantee</p>
+              <p>{availabilitySentence()}</p>
+              <PricingNote />
+            </div>
           </div>
-          <ul className="my-7 grid gap-3">
-            {included.map((item) => (
-              <li key={item} className="flex gap-3 text-sm leading-relaxed text-fg">
-                <Check className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-            <a
-              href={BUY_HREF}
-              data-ml-goal="initiate_checkout"
-              data-ml-goal-plan="pro"
-              className="purchase-button group w-full"
-            >
-              <span>Buy Scan My Disk · {price.lifetimePrice}</span>
-              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </a>
-            <Link to="/license" className="purchase-button purchase-button-secondary mt-3 w-full">Already purchased? Download / License</Link>
-            <p className="mt-5 text-center text-xs leading-relaxed text-muted">License key delivered by email · 15-day refund guarantee</p>
-            <p className="mt-2 text-center text-xs text-muted">{availabilitySentence()}</p>
-            <PricingNote />
         </div>
       </div>
     </section>

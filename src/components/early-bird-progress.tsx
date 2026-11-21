@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SITE } from "@/data/site";
 import { earlyBirdSales, type EarlyBirdSales } from "@/lib/early-bird";
 
-export function EarlyBirdProgress() {
+export function EarlyBirdProgress({ className = "mt-5" }: { className?: string } = {}) {
   const [sales, setSales] = useState<EarlyBirdSales | null>(null);
   const [unavailable, setUnavailable] = useState(false);
   useEffect(() => {
@@ -31,7 +31,7 @@ export function EarlyBirdProgress() {
   }, []);
 
   return (
-    <div className="mt-5">
+    <div className={className}>
       <div className="mb-3 flex items-center justify-between gap-3 text-sm" aria-live="polite" aria-atomic="true">
         <span className="font-semibold tabular-nums text-fg">{sales ? `${sales.claimed}/${sales.limit} licenses sold` : unavailable ? "Sales count unavailable" : "Checking live sales…"}</span>
         {sales && <span className="text-muted">{sales.remaining === 0 ? "All claimed" : `${sales.remaining} remaining`}</span>}
