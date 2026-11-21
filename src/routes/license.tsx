@@ -44,11 +44,15 @@ function LicensePage() {
               <div className="mt-5 space-y-2 text-xs text-white/70">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-sky-400" />
-                  <span>Version 0.1.5 · Native x64 build</span>
+                  <span>Version 0.1.11 · Native x64 build</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 text-sky-400" />
                   <span>100% offline scanning capable</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="size-4 text-sky-400" />
+                  <span>Free to scan &amp; visualize any drive</span>
                 </div>
               </div>
             </div>
@@ -56,15 +60,31 @@ function LicensePage() {
             <div className="mt-8">
               <a
                 href="/api/download"
-                data-ml-goal="start_trial"
+                data-ml-goal="download_installer"
                 className="btn-primary group w-full !py-3.5 !text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 <span>Download Windows Setup (.exe)</span>
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </a>
-              <p className="mt-2.5 text-center text-[11px] text-muted">
-                Tip: If Windows SmartScreen pops up, click <em>More info</em> then <em>Run anyway</em>.
-              </p>
+
+              {/* SmartScreen guidance & trust card */}
+              <div className="mt-4 rounded-2xl border border-sky-500/20 bg-sky-500/5 p-4 text-left text-xs">
+                <div className="flex items-center gap-2 font-medium text-sky-300">
+                  <ShieldCheck className="size-4 shrink-0 text-sky-400" />
+                  <span>First-time Windows installation:</span>
+                </div>
+                <p className="mt-1.5 leading-relaxed text-white/70">
+                  Because ScanMyDisk is a fresh release, Windows SmartScreen may ask for confirmation once:
+                </p>
+                <div className="mt-2.5 flex items-center gap-2 text-[11px] font-medium text-white/90">
+                  <span className="rounded-md border border-white/10 bg-white/10 px-2 py-0.5">1. More info</span>
+                  <span className="text-muted">→</span>
+                  <span className="rounded-md border border-sky-400/30 bg-sky-500/20 px-2 py-0.5 text-sky-300">2. Run anyway</span>
+                </div>
+                <p className="mt-2.5 text-[11px] text-white/50">
+                  ✓ 100% Clean installer · Zero telemetry · Files never leave your PC
+                </p>
+              </div>
             </div>
           </div>
 

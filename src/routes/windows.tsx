@@ -63,7 +63,7 @@ function WindowsPage() {
         <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <a
             href={BUY_HREF}
-            data-ml-goal="checkout_click"
+            data-ml-goal="initiate_checkout"
             data-ml-goal-plan="pro"
             className="btn-primary group !px-6 !py-3.5 !text-base"
           >
@@ -212,7 +212,7 @@ function WindowsPage() {
             <p className="max-w-md text-sm text-white/70">15-day refund guarantee. Runs 100% offline. Files stay on your machine.</p>
             <a
               href={BUY_HREF}
-              data-ml-goal="checkout_click"
+              data-ml-goal="initiate_checkout"
               data-ml-goal-plan="pro"
               className="btn-primary group !px-7 !py-3.5 !text-base"
             >
