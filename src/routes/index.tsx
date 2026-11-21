@@ -115,7 +115,7 @@ function Hero() {
           <span className="rounded bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-400">Windows</span>
         </div>
         <img
-          src="/windows-real-scan.webp"
+          src="/windows-real-scan.webp?v=0.1.12"
           alt="ScanMyDisk Windows disk analyzer treemap"
           width={1680}
           height={882}
@@ -203,7 +203,7 @@ const FEATURE_TABS = [
     icon: HardDrive,
     title: "See exactly where your disk space goes",
     body: "Scan your full PC, your user profile, or any custom folder. Explore an interactive treemap sized strictly by disk usage, inspect individual files, and review selected items in Cleanup Queue before removing them.",
-    image: "/windows-views/treemap.webp",
+    image: "/windows-views/treemap.webp?v=0.1.12",
     alt: "ScanMyDisk Windows disk analyzer treemap",
     caption: "Actual Windows app · real System32 scan",
   },
@@ -213,7 +213,7 @@ const FEATURE_TABS = [
     icon: Layers,
     title: "Manage installed Windows applications",
     body: "Browse installed apps with high-res icons and measured sizes. For supported apps, launch the Windows or vendor uninstaller and choose whether to keep app data or review selected leftovers for removal.",
-    image: "/windows-features/applications.webp",
+    image: "/windows-features/applications.webp?v=0.1.12",
     alt: "ScanMyDisk storage visualizer on Windows 11",
     caption: "Actual Windows app · installed applications",
   },
@@ -223,7 +223,7 @@ const FEATURE_TABS = [
     icon: Copy,
     title: "Find matching copies. Choose what to keep.",
     body: "Find identical files across your scan using three-pass content hashing. Choose a copy to keep, then review the redundant copies in Cleanup Queue before taking action.",
-    image: "/windows-features/duplicates.webp",
+    image: "/windows-features/duplicates.webp?v=0.1.12",
     alt: "Actual Scan My Disk duplicate review interface with an example matching file group",
     caption: "Actual Windows app · example duplicate group",
   },
@@ -233,7 +233,7 @@ const FEATURE_TABS = [
     icon: Camera,
     title: "See how your folders change over time",
     body: "Save a lightweight scan snapshot and compare earlier and later scans of the same location. Immediately spot which folders grew or shrank over time.",
-    image: "/windows-features/snapshots.webp",
+    image: "/windows-features/snapshots.webp?v=0.1.12",
     alt: "Actual Scan My Disk snapshot comparison interface with example saved scans",
     caption: "Actual Windows app · example snapshot comparison",
   },
@@ -243,7 +243,7 @@ const FEATURE_TABS = [
     icon: Activity,
     title: "See what is using your PC right now",
     body: "Watch real-time CPU usage, memory pressure, network rates, and free volume space. Search the process list and sort by resource footprint to detect performance bottlenecks.",
-    image: "/windows-features/monitor.webp",
+    image: "/windows-features/monitor.webp?v=0.1.12",
     alt: "ScanMyDisk Windows disk usage monitor",
     caption: "Actual Windows app · live system monitor",
   },

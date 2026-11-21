@@ -4,42 +4,42 @@ export const JOIN_VIEWS = [
   {
     name: "Folders",
     body: "Browse folder cards with their sizes and item counts, then open a folder to explore deeper.",
-    image: "/windows-views/folders.webp",
+    image: "/windows-views/folders.webp?v=0.1.12",
   },
   {
     name: "Sunburst",
     body: "Rings radiating from the scan root so nested weight is obvious at a glance.",
-    image: "/windows-views/sunburst.webp",
+    image: "/windows-views/sunburst.webp?v=0.1.12",
   },
   {
     name: "Flame",
     body: "Follow stacked folder levels, with wider blocks showing where more disk space is used.",
-    image: "/windows-views/flame.webp",
+    image: "/windows-views/flame.webp?v=0.1.12",
   },
   {
     name: "Bubbles",
     body: "Compare relative sizes with nested circles. Large circles make the biggest items stand out.",
-    image: "/windows-views/bubbles.webp",
+    image: "/windows-views/bubbles.webp?v=0.1.12",
   },
   {
     name: "Mind Map",
     body: "Follow branches from your scan root, with dots and links showing relative storage weight.",
-    image: "/windows-views/mind-map.webp",
+    image: "/windows-views/mind-map.webp?v=0.1.12",
   },
   {
     name: "Top Sizes",
     body: "The biggest items, ranked. Skip the hunt and start with the worst offenders.",
-    image: "/windows-views/top-sizes.webp",
+    image: "/windows-views/top-sizes.webp?v=0.1.12",
   },
   {
     name: "Age Map",
     body: "Group storage by last-modified date and review large, older files. Age reflects modification, not last access.",
-    image: "/windows-views/age-map.webp",
+    image: "/windows-views/age-map.webp?v=0.1.12",
   },
   {
     name: "Treemap",
     body: "See nested files and folders as rectangles sized by disk usage. Select a block to inspect it.",
-    image: "/windows-views/treemap.webp",
+    image: "/windows-views/treemap.webp?v=0.1.12",
   },
 ] as const;
 
@@ -47,17 +47,17 @@ export const JOIN_TOOLKIT = [
   {
     name: "Complete app uninstaller",
     body: "Every app listed with its true footprint — the program plus caches, settings, and logs. Uninstall the whole set, not just the shortcut.",
-    image: "/feature-uninstaller.webp",
+    image: "/windows-features/applications.webp?v=0.1.12",
   },
   {
     name: "Leftover cleanup",
     body: "Find orphaned Application Support, containers, and preference files from apps you deleted years ago. Reclaim that space in one review.",
-    image: "/join-presets.webp",
+    image: "/join-presets.webp?v=0.1.12",
   },
   {
     name: "Intelligent search",
     body: "Search the scan in seconds, including folders the file manager usually hides.",
-    image: "/feature-search.webp",
+    image: "/feature-search.webp?v=0.1.12",
   },
   {
     name: "Quick Wins on arrival",
@@ -82,12 +82,12 @@ export const JOIN_TOOLKIT = [
   {
     name: "Real-time monitoring",
     body: "Watch CPU load, memory pressure, and network activity while a heavy build is running so you can see what is actually bottlenecking the machine.",
-    image: "/monitoring.webp",
+    image: "/windows-features/monitor.webp?v=0.1.12",
   },
   {
     name: "Beautiful themes",
     body: "Forest, Ocean, and Aurora. Themes that stay readable in dark mode.",
-    image: "/foresttheme.webp",
+    image: "/foresttheme.webp?v=0.1.12",
   },
   {
     name: "Blazing native scan",
@@ -110,7 +110,7 @@ export const JOIN_SIGNATURE = [
       "See every extra copy of the same file, grouped in one place.",
       "Delete the unnecessary copies safely after you review the set.",
     ],
-    image: "/join-dupes.webp",
+    image: "/windows-features/duplicates.webp?v=0.1.12",
     imageAlt: "Scan My Disk duplicate groups with size bars and keep/delete actions",
   },
   {
@@ -123,7 +123,7 @@ export const JOIN_SIGNATURE = [
       "Compare it against a later scan whenever the drive fills up.",
       "See new files, deleted files, size up or down, and the folder doing the damage.",
     ],
-    image: "/join-compare.webp",
+    image: "/windows-features/snapshots.webp?v=0.1.12",
     imageAlt: "Scan My Disk comparing two scans with new growth highlighted",
   },
   {
@@ -136,7 +136,7 @@ export const JOIN_SIGNATURE = [
       "Developer Cleanup — node_modules, build caches, and other project leftovers.",
       "Cache Cleanup and Large Junk Cleanup for the heavy, obvious waste.",
     ],
-    image: "/join-presets.webp",
+    image: "/join-presets.webp?v=0.1.12",
     imageAlt: "Scan My Disk cleanup presets: Safe, Developer, Cache, Large Junk",
   },
 ] as const;

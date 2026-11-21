@@ -27,7 +27,7 @@ export function BlogCta() {
           </div>
           <div className="relative aspect-video w-full flex-1 overflow-hidden rounded-xl border border-border shadow-xl md:aspect-auto md:h-[240px]">
             <img
-              src="/windows-real-scan.webp"
+              src="/windows-real-scan.webp?v=0.1.12"
               alt="ScanMyDisk Windows disk analyzer treemap"
               width={1200}
               height={673}

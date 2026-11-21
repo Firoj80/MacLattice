@@ -23,22 +23,22 @@ export const Route = createFileRoute("/windows")({
 
 const SHOTS = [
   {
-    src: "/windows-real-scan.webp",
+    src: "/windows-real-scan.webp?v=0.1.12",
     alt: "ScanMyDisk Windows disk analyzer treemap",
     caption: "Treemap of a real Windows scan",
   },
   {
-    src: "/windows-features/applications.webp",
+    src: "/windows-features/applications.webp?v=0.1.12",
     alt: "ScanMyDisk storage visualizer on Windows 11",
     caption: "Installed applications on Windows 11",
   },
   {
-    src: "/windows-features/monitor.webp",
+    src: "/windows-features/monitor.webp?v=0.1.12",
     alt: "ScanMyDisk Windows disk usage monitor",
     caption: "Live disk and system monitor",
   },
   {
-    src: "/windows-features/duplicates.webp",
+    src: "/windows-features/duplicates.webp?v=0.1.12",
     alt: "ScanMyDisk Windows duplicate file review",
     caption: "Duplicate groups on Windows",
   },

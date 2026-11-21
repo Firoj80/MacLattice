@@ -44,6 +44,15 @@
       ]
     },
     {
+      "source": "/(windows-real-scan|windows-views|windows-features|blog/review|app-screenshot|feature-uninstaller|monitoring|join-dupes|join-compare)(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.(webp|png|jpg|jpeg|svg|ico|woff2)",
       "headers": [
         {
