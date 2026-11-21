@@ -107,7 +107,7 @@ function WindowsPage() {
             {JOIN_VIEWS.map((view) => (
               <figure key={view.name} className="overflow-hidden rounded-xl border border-white/10">
                 <img
-                  src={view.image}
+                  src={view.thumbnail}
                   alt={`ScanMyDisk Windows disk usage ${view.name} view`}
                   width={560}
                   height={350}

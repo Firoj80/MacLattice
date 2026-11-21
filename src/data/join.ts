@@ -5,41 +5,49 @@ export const JOIN_VIEWS = [
     name: "Folders",
     body: "Browse folder cards with their sizes and item counts, then open a folder to explore deeper.",
     image: "/windows-views/folders.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-folders.webp?v=0.1.12",
   },
   {
     name: "Sunburst",
     body: "Rings radiating from the scan root so nested weight is obvious at a glance.",
     image: "/windows-views/sunburst.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-sunburst.webp?v=0.1.12",
   },
   {
     name: "Flame",
     body: "Follow stacked folder levels, with wider blocks showing where more disk space is used.",
     image: "/windows-views/flame.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-flame.webp?v=0.1.12",
   },
   {
     name: "Bubbles",
     body: "Compare relative sizes with nested circles. Large circles make the biggest items stand out.",
     image: "/windows-views/bubbles.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-bubbles.webp?v=0.1.12",
   },
   {
     name: "Mind Map",
     body: "Follow branches from your scan root, with dots and links showing relative storage weight.",
     image: "/windows-views/mind-map.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-mind-map.webp?v=0.1.12",
   },
   {
     name: "Top Sizes",
     body: "The biggest items, ranked. Skip the hunt and start with the worst offenders.",
     image: "/windows-views/top-sizes.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-top-sizes.webp?v=0.1.12",
   },
   {
     name: "Age Map",
     body: "Group storage by last-modified date and review large, older files. Age reflects modification, not last access.",
     image: "/windows-views/age-map.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-age-map.webp?v=0.1.12",
   },
   {
     name: "Treemap",
     body: "See nested files and folders as rectangles sized by disk usage. Select a block to inspect it.",
     image: "/windows-views/treemap.webp?v=0.1.12",
+    thumbnail: "/windows-views/thumb-treemap.webp?v=0.1.12",
   },
 ] as const;
 

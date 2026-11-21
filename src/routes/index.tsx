@@ -1,7 +1,7 @@
 import { useLocalPricing } from "@/components/local-pricing";
 import { PricingNote } from "@/components/local-pricing";
 import { EarlyBirdProgress } from "@/components/early-bird-progress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Check,
@@ -119,6 +119,7 @@ function Hero() {
           alt="ScanMyDisk Windows disk analyzer treemap"
           width={1680}
           height={882}
+          loading="eager"
           fetchPriority="high"
           decoding="async"
           className="h-auto w-full rounded-lg"
@@ -253,6 +254,14 @@ function ScanSeeClear() {
   const [active, setActive] = useState<(typeof FEATURE_TABS)[number]["id"]>("treemap");
   const panel = FEATURE_TABS.find((tab) => tab.id === active) ?? FEATURE_TABS[0];
 
+  useEffect(() => {
+    // In-memory preloading: keeps all tab images ready in RAM for instant, 0-latency tab switching
+    FEATURE_TABS.forEach((tab) => {
+      const img = new Image();
+      img.src = tab.image;
+    });
+  }, []);
+
   return (
     <section className="border-t border-white/10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
@@ -308,16 +317,22 @@ function ScanSeeClear() {
             <p className="text-base leading-relaxed text-white/70 md:text-lg">{panel.body}</p>
           </div>
           <figure className="glass-card order-1 overflow-hidden rounded-2xl border border-white/15 p-2 shadow-2xl lg:order-2">
-            <img
-              key={panel.id}
-              src={panel.image}
-              alt={panel.alt}
-              width={1680}
-              height={panel.id === "treemap" ? 882 : 1050}
-              loading="lazy"
-              decoding="async"
-              className="h-auto w-full rounded-xl"
-            />
+            <div className="relative aspect-[1680/1050] w-full overflow-hidden rounded-xl bg-slate-900/60">
+              {FEATURE_TABS.map((tab) => (
+                <img
+                  key={tab.id}
+                  src={tab.image}
+                  alt={tab.alt}
+                  width={1680}
+                  height={1050}
+                  loading={tab.id === "treemap" ? "eager" : "lazy"}
+                  decoding="async"
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+                    tab.id === active ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+                  }`}
+                />
+              ))}
+            </div>
             <figcaption className="flex flex-wrap items-center justify-between gap-2 px-3 pt-3 pb-1 text-xs text-muted">
               <span>{panel.caption}</span>
               <a
@@ -528,7 +543,7 @@ function Views() {
                   aria-label={`View full ${view.name} screenshot`}
                 >
                   <img
-                    src={view.image}
+                    src={view.thumbnail}
                     alt={`ScanMyDisk Windows disk usage ${view.name} view`}
                     width={560}
                     height={350}
