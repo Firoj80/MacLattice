@@ -11,6 +11,8 @@ import { duplicateVideosBody } from "./win-posts/find-duplicate-video-files-wind
 import { gameDiskCleanupBody } from "./win-posts/free-up-disk-space-pc-gaming-steam-windows.ts";
 import { spacesnifferAlternativeBody } from "./win-posts/spacesniffer-alternative-windows-11.ts";
 import { daisydiskWindowsAlternativeBody } from "./win-posts/daisydisk-for-windows-alternative.ts";
+import { programDataGuideBody } from "./win-posts/what-is-programdata-windows-11-safe-to-delete.ts";
+import { appDataLocalGuideBody } from "./win-posts/appdata-local-locallow-safe-to-delete-windows-11.ts";
 
 export type BlogPost = {
   slug: string;
@@ -23,6 +25,26 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "appdata-local-locallow-safe-to-delete-windows-11",
+    author: "Firoj Alam",
+    date: "2026-11-22",
+    title: "AppData\\Local & LocalLow in Windows 11: What Is Actually Safe to Delete?",
+    tags: ["Windows", "AppData", "Cleanup", "C: Drive", "LocalLow"],
+    excerpt:
+      "AppData eating 50–100 GB of your C: drive? See which AppData\\Local and LocalLow folders are safe to delete (Temp, CrashDumps, D3DSCache, Packages) and clean safely.",
+    body: appDataLocalGuideBody,
+  },
+  {
+    slug: "what-is-programdata-windows-11-safe-to-delete",
+    author: "Firoj Alam",
+    date: "2026-11-22",
+    title: "What Is C:\\ProgramData (%ProgramData%) in Windows 11 — and What Is Actually Safe to Delete?",
+    tags: ["Windows", "ProgramData", "Cleanup", "C: Drive"],
+    excerpt:
+      "Is C:\\ProgramData eating your C: drive? Learn what %ProgramData% does in Windows 10 & 11, which subfolders are safe to clean (Package Cache, USOPrivate, Search), and what never to delete.",
+    body: programDataGuideBody,
+  },
   {
     slug: "scan-my-disk-windows-disk-space-analyzer",
     author: "Firoj Alam",
@@ -37,10 +59,10 @@ export const posts: BlogPost[] = [
     slug: "best-windows-disk-space-analyzers-windirstat-wiztree-treesize",
     author: "Firoj Alam",
     date: "2026-10-15",
-    title: "Best Windows Disk Space Analyzers in 2026: Scan My Disk vs. WinDirStat, WizTree & TreeSize",
+    title: "WinDirStat vs WizTree vs TreeSize Free (2026): Which Windows Disk Space Analyzer Wins?",
     tags: ["Windows", "Comparison", "Disk Analyzer"],
     excerpt:
-      "Comparing the best Windows 10 & 11 disk space analyzers in 2026. See how Scan My Disk's 8 visual maps, 3-pass duplicate finder, and $6.99 lifetime license stack up against WinDirStat, WizTree, and TreeSize.",
+      "Comparing WinDirStat, WizTree, and TreeSize Free on Windows 11: scan speed, open-source status, portable builds, deletion safety, and the best modern alternative.",
     body: analyzersBody,
   },
   {

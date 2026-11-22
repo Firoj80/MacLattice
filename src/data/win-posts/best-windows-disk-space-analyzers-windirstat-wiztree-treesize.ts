@@ -1,1 +1,137 @@
-export const analyzersBody = "When your Windows 10 or Windows 11 drive runs low on space, Microsoft's built-in [Storage Sense and Disk Cleanup utilities](https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows) only show high-level category bars (\"Installed apps\", \"Temporary files\", \"Other\"). To see which exact folder or forgotten 30-GB file is eating your SSD, you need a dedicated disk space analyzer.\n\nFor years, Windows power users have relied on classic utilities like [WinDirStat](https://windirstat.net/), WizTree, and TreeSize. While each of those tools excels at raw directory listing or treemap rendering, most were designed purely to show file sizes—leaving you to install separate tools for uninstalling leftover AppData junk, finding byte-identical duplicates, cleaning developer caches (node_modules, Gradle, Docker VHDX), or monitoring live CPU/RAM usage.\n\nHere is an objective, side-by-side comparison of the top Windows disk space analyzers in 2026 and how [Scan My Disk](/) brings 8 visual maps and built-in cleanup tools together under a single $6.99 lifetime license.\n\n## Side-by-Side Comparison: Scan My Disk vs. WinDirStat vs. WizTree vs. TreeSize\n\n| Feature / Capability | Scan My Disk | WinDirStat | WizTree | TreeSize |\n| --- | --- | --- | --- | --- |\n| **Supported OS** | Windows 10 & 11 (64-bit) | Windows 7\u201311 | Windows 7\u201311 | Windows 7\u201311 |\n| **Visual Map Modes** | **8 Views** (Treemap, Sunburst, Flame, Bubbles, Mind Map, Folders, Top Sizes, Age Map) | 1 (Treemap only) | 2 (Tree list + Treemap) | 1 (Folder tree + size bar) |\n| **Built-In Duplicate Finder** | **Yes** (3-pass content hashing + Cleanup Queue) | No | No | No (paid tiers only) |\n| **App Uninstaller + Leftover Cleaner** | **Yes** (Scans `AppData` & `ProgramData` residuals) | No | No | No |\n| **Developer Cleanup Presets** | **Yes** (`node_modules`, Gradle, Visual Studio, Docker `VHDX`) | No | No | No |\n| **Scan Snapshots (Before/After Diff)** | **Yes** (Built-in snapshot comparison) | No | No | No |\n| **Live System Resource Monitor** | **Yes** (CPU, RAM, Network, Process footprints) | No | No | No |\n| **Scan Speed** | Fast (parallel directory walker) | Slow (single-threaded) | **Fastest** (NTFS MFT direct read) | Moderate |\n| **Pricing Model** | **$6.99 One-Time Lifetime License** (15-day refund guarantee) | Free (open-source) | Free for personal use | Free (limited features) |\n\n## Deep Dive Into Each Windows Disk Space Analyzer\n\n### 1. [Scan My Disk](/) — Best All-in-One Visual Analyzer & Safe Cleaner ($6.99 Lifetime)\n\n![Treemap view of a Windows scan in Scan My Disk](/blog/review/treemap.jpg)\n\n![Sunburst view of the same Windows scan](/blog/review/sunburst.jpg)\n\n![Flame view of the same Windows scan](/blog/review/flame.jpg)\n\n![Bubbles view of the same Windows scan](/blog/review/bubbles.jpg)\n\n![Mind Map view of the same Windows scan](/blog/review/mind-map.jpg)\n\n![Folders view of the same Windows scan](/blog/review/folders.jpg)\n\n![Top Sizes view of the largest files](/blog/review/top-sizes.jpg)\n\n![Age Map grouping files by last modified date](/blog/review/age-map.jpg)\n\n[Scan My Disk](/) was built for Windows 10 and Windows 11 users who want more than a static 1990s-style rectangle grid—and who refuse to pay $35/year for bloated subscription \"PC tune-up\" suites.\n\nInstead of locking you into a single visualization, Scan My Disk lets you inspect any scan across **8 interactive views**:\n\n- **Treemap & Sunburst**: Spot massive nested directories at a glance with rectangular blocks or concentric radial rings.\n- **Flame & Bubbles**: Trace deep folder hierarchies horizontally or surface outlier folders as nested circles.\n- **Age Map & Top Sizes**: Group files by last-modified date to find forgotten project folders untouched for over a year, or jump straight to the single largest files on your drive.\n- **Mind Map & Folders**: Navigate your filesystem as a weighted branching tree or clean folder cards.\n\nBeyond visualization, Scan My Disk includes a **3-Pass Content-Hashing Duplicate Finder**, an **App Uninstaller & Leftovers Cleaner** that hunts down orphaned `AppData` and ProgramData folders ([see our Delete Hidden Caches Guide](/blog/delete-hidden-caches)), **Pre-configured Developer Profiles** (`node_modules`, Visual Studio, Gradle, Docker VHDX), Scan Snapshots, and a Live System Monitor. Every deletion goes safely through the native Windows **Recycle Bin**, and all processing runs 100% locally offline. You can download the installer and get a lifetime key on the [Scan My Disk License page](/buy) for $6.99 once.\n\n### 2. WinDirStat — Best Open-Source Classic\n\nWinDirStat (Windows Directory Statistics) is a legendary open-source utility that introduced generations of Windows users to cushion treemaps.\n\n- **Strengths**: 100% free and open-source; color-codes file extensions in a classic treemap panel synced with a collapsible directory tree.\n- **Limitations**: Offers only one visual map style (Treemap), lacks a built-in duplicate content hasher, does not scan for uninstalled app leftovers in `AppData`, and has no built-in developer cache presets or snapshot diffs.\n\n### 3. [WizTree](https://diskanalyzer.com/) — Best for Raw NTFS MFT Speed\n\n[WizTree](https://diskanalyzer.com/) is well known for reading the NTFS Master File Table (MFT) directly from local drives to produce fast directory listings and treemaps.\n\n- **Strengths**: Extremely fast initial NTFS scan speed; free for personal use with commercial licensing options.\n- **Limitations**: Visual options are limited to a standard tree list and rectangular treemap. It does not include radial Sunburst, Flame, Bubble, Mind Map, or Age Map views, nor does it include an integrated Windows App Uninstaller for `AppData` leftovers or pre-configured developer cleanup profiles.\n\n### 4. [TreeSize](https://www.jam-software.com/treesize) — Best for Enterprise Server & IT Admins\n\nDeveloped by JAM Software, [TreeSize](https://www.jam-software.com/treesize) comes in Free, Personal, and Professional editions geared toward system administrators managing network shares and Windows Servers.\n\n- **Strengths**: Strong Active Directory, network drive, and command-line reporting features in the paid Professional tier.\n- **Limitations**: TreeSize Free omits duplicate file detection and advanced charting, while unlocking full duplicate search and snapshot comparisons requires upgrading to higher-priced Personal or Professional licenses.\n\n## Which Windows Disk Analyzer Should You Choose?\n\n- **Choose **[WinDirStat](https://windirstat.net/)** or **[WizTree](https://diskanalyzer.com/) if you only want a single rectangular treemap to look at file sizes and prefer to handle duplicate hashing, developer cache cleanup, and `AppData` leftover removal manually via PowerShell.\n- **Choose **[TreeSize](https://www.jam-software.com/treesize) if you are an enterprise sysadmin auditing remote Windows Server network shares.\n- **Choose **[Scan My Disk](/) if you want **8 modern interactive visual maps** (including Sunburst, Flame, Bubbles, and Age Map), a **3-pass duplicate finder**, an **AppData leftover uninstaller**, **developer cleanup presets**, and a **live system monitor** for a single **$6.99 lifetime payment** ([get Scan My Disk here](/buy)). Visit the [Scan My Disk Blog](/blog) for more storage deep dives.\n\n## Frequently Asked Questions (FAQ)\n\n### Does Scan My Disk require a yearly subscription?\n\nNo. [Scan My Disk](/) costs **$6.99 once** for a lifetime license valid on 1 PC at a time (and you can easily deactivate your license on an old machine to move it to a new PC), backed by a 15-day refund guarantee.\n\n### Why are multiple visualization modes better than a single treemap?\n\nWhile a Treemap is great for spotting single massive files like .iso or `.vhdx` images, a **Sunburst** or **Flame** chart makes it much easier to see when a deep folder hierarchy contains thousands of tiny files (such as node_modules or AppData shader caches) that collectively consume 20 GB. Similarly, an Age Map immediately reveals old folders you haven't touched in over a year.\n\n### Is Scan My Disk safe to use on Windows 10 and Windows 11?\n\nYes. Scan My Disk runs 100% locally offline without uploading filenames or telemetry to any server, and it never deletes files behind your back—every item you stage in the Cleanup Queue is sent to the native Windows Recycle Bin first.\n";
+export const analyzersBody = `![WinDirStat vs WizTree vs TreeSize Free Disk Space Analyzers](/blog/review/treemap.jpg)
+
+If your Windows 11 C: drive is suddenly in the red, three classic names show up in every forum thread: **WinDirStat**, **WizTree**, and **TreeSize Free**.
+
+All three will show you what’s eating your storage — **but they are not equal in scan speed, licensing, UI polish, or deletion safety.** More importantly, finding a 40 GB folder is only half the job. Actually **deleting files safely** without permanently wiping something important is where most classic tools fall short.
+
+Here is the honest 2026 breakdown of **WinDirStat vs. WizTree vs. TreeSize Free** — plus how a modern all-in-one analyzer like **[ScanMyDisk](/windows)** fixes the biggest gap all three leave behind.
+
+---
+
+## Quick Verdict (TL;DR)
+
+* **Fastest raw NTFS scan:** **WizTree** (reads the NTFS Master File Table directly; free for personal use only, closed-source).
+* **Best pure open-source classic:** **WinDirStat** (100% free & GPL open-source; revived with faster v2.x builds, though the UI still looks like Windows XP).
+* **Best clean Explorer-style folder list:** **TreeSize Free** (clean folder tree, no treemap clutter, but duplicates & advanced tools require paid TreeSize Pro).
+* **Best modern UI + safest deletion workflow:** **[ScanMyDisk](/windows)** (8 interactive views including Treemap & Sunburst, built-in **Duplicate Finder**, **App Uninstaller with Leftover Cleanup**, **Snapshot Comparison**, and a **Cleanup Queue** that routes deletions safely to the Recycle Bin — 100% offline, one-time lifetime license).
+
+---
+
+## Side-by-Side Comparison Table (2026)
+
+| Feature | WinDirStat | WizTree | TreeSize Free | **ScanMyDisk** |
+| :--- | :--- | :--- | :--- | :--- |
+| **Scan Speed (1 TB NTFS SSD)** | Moderate (improved in v2.x, still slower than MFT tools) | **Blazing Fast** (2–5 sec via NTFS MFT) | **Fast** (MFT when run as Admin) | **Fast** (native multithreaded Windows scan) |
+| **Visualizations** | 1 (Classic Cushion Treemap) | 1 (Classic Treemap) | Basic (Tree list + simple chart) | **8 Interactive Views** (Treemap, Sunburst, Bar, etc.) |
+| **Safe Deletion Protection** | Basic (Easy to hit Permanent Delete) | Basic (Easy to hit Permanent Delete) | Basic (Explorer delete) | **Cleanup Queue → Recycle Bin** (Review before deleting) |
+| **Built-in Duplicate Finder** | No | No | Paid Pro Only | **Yes** (Content-Hash matching) |
+| **App Uninstaller + Leftovers** | No | No | No | **Yes** (Sweeps \`AppData\` & \`ProgramData\` leftovers) |
+| **Snapshot Comparison** | No | CSV export only | Paid Pro Only | **Yes** (Compare disk before & after cleanup) |
+| **Portable Version** | Yes | Yes | Yes | Lightweight Windows installer (100% offline) |
+| **Open Source?** | **Yes** (GPL v2) | No (Closed-source) | No (Closed-source) | No (100% Offline, zero telemetry) |
+| **Pricing** | Free | Free (Personal) / Paid (Commercial) | Free (Personal) / Paid Pro | **One-Time Lifetime License** (No subscription) |
+
+---
+
+## 1. WinDirStat — The Open-Source Legend
+
+For two decades, **WinDirStat** has been the default recommendation for Windows users. After years without updates, the project saw renewed v2.x releases that added multi-threaded scanning and better high-DPI support.
+
+**Where WinDirStat shines:**
+* **100% free and open-source** (safe for both personal and commercial work machines without licensing headaches).
+* **Zero bloat or upsells** — and completely legit when downloaded from the official source.
+* **Color-coded file-type treemap** makes giant \`.mp4\`, \`.iso\`, or \`.vhdx\` files stand out visually.
+
+**Where WinDirStat falls short:**
+* **Slower than MFT-based scanners** on drives with millions of small files (like \`node_modules\` or Windows system directories).
+* **Dated interface** that feels cramped on modern 4K monitors.
+* **No built-in cleanup safety net:** WinDirStat puts *"Delete (no way to undelete!)"* right next to *"Delete (to Recycle Bin)"*. One misclick inside \`AppData\` or \`ProgramData\` and your files are permanently gone.
+
+**How to delete safely instead:** If you like WinDirStat's visual treemap but want a modern Windows 11 interface that protects you from permanent-delete mistakes, **[ScanMyDisk](/windows)** gives you a crisp interactive Treemap *and* Sunburst map backed by a **Cleanup Queue** that stages every deletion and sends it to the Recycle Bin first.
+
+---
+
+## 2. WizTree — The Raw Speed King
+
+**WizTree** became famous by doing one clever trick: instead of walking every folder through standard Windows APIs, it reads the **NTFS Master File Table (MFT)** directly. That lets it map a 1 TB SSD in just a few seconds.
+
+**Where WizTree shines:**
+* **Unbeatable NTFS scan speed** (often 3–5 seconds for an entire drive).
+* **Portable build available** (great for IT admins carrying a USB toolkit).
+* **File search tab** lets you sort every single file on your drive from largest to smallest.
+
+**Where WizTree falls short:**
+* **Not open-source, and not free for work/commercial PCs** — businesses must buy a commercial license.
+* **Utilitarian Win32 UI:** The dense grid and flat treemap work fine for sysadmins, but feel dated compared to modern Windows 11 apps (or macOS tools like DaisyDisk).
+* **Strictly a viewer, not a safe cleaner:** Once WizTree shows you 60 GB of clutter, you're on your own. There is no duplicate finder, no leftover app uninstaller, no before/after snapshot view, and no staged review queue before deleting.
+
+**How to delete safely instead:** When you're clearing sensitive directories like \`C:\\ProgramData\`, \`AppData\\Local\`, or developer caches, speed isn't what saves you from breaking Windows — **safe deletion workflow is.** With **[ScanMyDisk](/windows)**, you can inspect large folders across 8 views, queue files into the **Cleanup Queue**, double-check total space to be reclaimed, and route everything to the Recycle Bin in one controlled pass.
+
+---
+
+## 3. TreeSize Free — Clean Folder List for Minimalists
+
+Built by JAM Software, **TreeSize Free** skips the loud rainbow treemaps by default and focuses on a clean, Windows-Explorer-style expandable directory tree.
+
+**Where TreeSize Free shines:**
+* **Cleanest default folder list** of the three classics — zero learning curve.
+* **Fast MFT scanning** when launched as Administrator, plus a portable ZIP option.
+* **Right-click context menu integration** directly inside File Explorer.
+
+**Where TreeSize Free falls short:**
+* **Best features are locked behind TreeSize Professional:** Duplicate file search, disk space snapshots/comparisons, deep filtering, and advanced cleanup charts all require upgrading to the expensive Pro license.
+* **Limited visual exploration:** If you prefer visual charts (like Sunburst rings or interactive treemaps) to spot hidden nested bloat at a glance, the Free version feels barebones.
+
+**How to delete safely instead:** Rather than paying an enterprise subscription price for TreeSize Pro just to get duplicate detection and snapshots, **[ScanMyDisk](/windows)** bundles **Content-Hash Duplicate Finding**, **Snapshot Comparison**, **App Uninstaller + Leftover Cleanup**, and **Recycle-Bin Cleanup Queue** into a single affordable one-time lifetime license.
+
+---
+
+## The Missing Piece in All Three Tools: *What Happens When You Actually Click Delete?*
+
+Here is the trap almost every Windows user hits with WinDirStat, WizTree, and TreeSize:
+
+You scan your \`C:\` drive, spot a massive folder inside \`AppData\`, \`ProgramData\`, or \`Users\`, and start hitting Delete one folder at a time. That leads to three headaches:
+1. **Accidental permanent deletes** (especially with WinDirStat/WizTree's direct-delete shortcuts).
+2. **Missed duplicates** — treemaps show *big* folders, not 40 copies of the same 500 MB video or ZIP archive scattered across different folders.
+3. **Half-uninstalled apps** — deleting a folder manually leaves broken uninstallers and registry junk behind, while Windows' built-in uninstaller leaves gigabytes behind in \`AppData\` and \`ProgramData\`.
+
+### How to Inspect and Delete Safely with ScanMyDisk
+
+![Scan My Disk Sunburst view and 8 interactive visualizations](/blog/review/sunburst.jpg)
+
+**[ScanMyDisk](/windows)** was built specifically for Windows 10 & 11 users who want **DaisyDisk-level visual clarity** *plus* real cleanup tools — without subscriptions or cloud telemetry:
+
+1. **See your drive clearly (8 interactive views):** Switch seamlessly between **Treemap**, **Sunburst** (like DaisyDisk for Windows), and structured list views to pinpoint huge folders in seconds.
+2. **Stage before you delete (Cleanup Queue):** Add files and folders to the **Cleanup Queue** as you browse. Review the full list and total GBs before committing — and every item routes safely to the **Windows Recycle Bin** so nothing is ever lost by mistake.
+3. **Clean uninstalled apps properly:** Use ScanMyDisk’s **App Uninstaller** to remove heavy programs *and* sweep out their hidden leftovers in \`AppData\` and \`ProgramData\`.
+4. **Eliminate exact duplicates:** Run the **Content-Hash Duplicate Finder** to catch byte-for-byte duplicate files that treemap-only tools like WizTree and WinDirStat completely miss.
+5. **Track your progress:** Compare **Disk Snapshots** before and after cleanup to verify exactly what changed on your drive.
+6. **100% Offline & One-Time License:** No accounts, no telemetry, no recurring monthly fees.
+
+**[Download ScanMyDisk for Windows 10 & 11 →](/windows)**
+
+---
+
+## Which One Should You Pick?
+
+* Pick **WinDirStat** if you strictly require a **free, open-source (GPL)** tool for a locked-down corporate machine.
+* Pick **WizTree** if your only goal is a **3-second raw NTFS scan** on a personal PC and you don't mind an older UI or handling deletions manually.
+* Pick **TreeSize Free** if you only want a **simple text tree** with no treemaps and don't need duplicate search or snapshots.
+* Pick **[ScanMyDisk](/windows)** if you want a **modern Windows 11 visual analyzer** (8 views including Sunburst & Treemap) that actually helps you **delete safely** with a Recycle-Bin Cleanup Queue, Duplicate Finder, Snapshots, and App Leftover Uninstaller — all for a one-time lifetime price.
+
+---
+
+## Frequently Asked Questions
+
+### Is WizTree open source?
+No. WizTree is closed-source freeware that is free for personal use, while commercial/business users must purchase a paid license. If you specifically need open-source software, WinDirStat is GPL open-source.
+
+### Is WinDirStat legit and safe?
+Yes, WinDirStat is completely legitimate and has been trusted by Windows users and IT admins for over 20 years. Just be careful when deleting files inside it — avoid using the permanent *"Delete (no way to undelete!)"* option on system folders.
+
+### Which disk space analyzer has a portable version?
+WinDirStat, WizTree, and TreeSize Free all offer portable ZIP builds. If you're looking for a clean, offline daily-driver disk cleaner on your own Windows 10/11 PC with visual charts, duplicate detection, and Recycle-Bin cleanup protection, **[ScanMyDisk](/windows)** installs cleanly in seconds with zero background bloat or telemetry.
+
+### What is the best WinDirStat alternative with a modern Windows 11 GUI?
+If you want a modern, high-DPI Windows 11 interface — similar to DaisyDisk on macOS — **[ScanMyDisk](/windows)** offers 8 interactive visualizations (including Sunburst and Treemap), built-in duplicate finding, app leftover removal, and a Recycle-Bin Cleanup Queue for a one-time license.
+`;

@@ -1,13 +1,23 @@
 export const BLOG_SEO: Record<string, { description: string; title?: string }> = {
+  "appdata-local-locallow-safe-to-delete-windows-11": {
+    title: "AppData\\Local & LocalLow: What's Safe to Delete in Windows 11",
+    description:
+      "AppData eating 50–100 GB of your C: drive? See which AppData\\Local and LocalLow folders are safe to delete (Temp, CrashDumps, D3DSCache, Packages) and clean safely.",
+  },
+  "what-is-programdata-windows-11-safe-to-delete": {
+    title: "What Is C:\\ProgramData (%ProgramData%) & What's Safe to Delete?",
+    description:
+      "Is C:\\ProgramData eating your C: drive? Learn what %ProgramData% does in Windows 10 & 11, which subfolders are safe to clean (Package Cache, USOPrivate, Search), and what never to delete.",
+  },
   "scan-my-disk-windows-disk-space-analyzer": {
     title: "Scan My Disk Review: $6.99 Windows Disk Space Analyzer (2026)",
     description:
       "A hands-on look at Scan My Disk, a $6.99 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
   },
   "best-windows-disk-space-analyzers-windirstat-wiztree-treesize": {
-    title: "Best Windows Disk Space Analyzers (2026): Scan My Disk vs WinDirStat, WizTree & TreeSize",
+    title: "WinDirStat vs WizTree vs TreeSize (2026): Speed & Safety Test",
     description:
-      "Comparing the best Windows 10 & 11 disk space analyzers in 2026. See how Scan My Disk's 8 visual maps, 3-pass duplicate finder, and $6.99 lifetime license stack up against WinDirStat, WizTree, and TreeSize.",
+      "Comparing WinDirStat, WizTree, and TreeSize Free on Windows 11: scan speed, open-source status, portable builds, deletion safety, and the best modern alternative.",
   },
   "clean-appdata-programdata-leftovers-windows": {
     title: "How to Safely Clean AppData & ProgramData Leftovers on Windows 10/11 (2026)",

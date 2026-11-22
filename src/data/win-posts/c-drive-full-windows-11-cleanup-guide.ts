@@ -80,6 +80,9 @@ Every time you uninstall an app, Windows removes the main program but leaves beh
 
 After years of installing and uninstalling software, these can hold 10–20 GB of orphaned folders.
 
+> **Is C:\ProgramData taking up 10–50 GB of your C: drive?**  
+> Don't delete it blindly — many subfolders inside \`%ProgramData%\` power Windows Update, Store apps, and Visual Studio. Follow our [C:\ProgramData cleanup & safety guide](/blog/what-is-programdata-windows-11-safe-to-delete) to safely shrink bloated caches like Package Cache, Windows Search, and old GPU/Adobe installers.
+
 **How to find them:** Scan My Disk's **App Uninstaller & Leftover Cleaner** cross-references every folder in AppData and ProgramData against currently installed applications and flags folders belonging to apps that are no longer installed. See our guide: [Clean AppData and ProgramData Leftovers](/blog/clean-appdata-programdata-leftovers-windows).
 
 ---
