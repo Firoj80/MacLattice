@@ -2,12 +2,12 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   "appdata-local-locallow-safe-to-delete-windows-11": {
     title: "AppData\\Local & LocalLow: What's Safe to Delete in Windows 11",
     description:
-      "AppData eating 50–100 GB of your C: drive? See which AppData\\Local and LocalLow folders are safe to delete (Temp, CrashDumps, D3DSCache, Packages) and clean safely.",
+      "AppData eating 50–100 GB on C:? See which AppData\\Local and LocalLow folders are safe to delete (Temp, CrashDumps, D3DSCache, Packages) and clean safely.",
   },
   "what-is-programdata-windows-11-safe-to-delete": {
     title: "What Is C:\\ProgramData (%ProgramData%) & What's Safe to Delete?",
     description:
-      "Is C:\\ProgramData eating your C: drive? Learn what %ProgramData% does in Windows 10 & 11, which subfolders are safe to clean (Package Cache, USOPrivate, Search), and what never to delete.",
+      "Is C:\\ProgramData eating drive space? Learn what %ProgramData% does in Windows 11, which subfolders are safe to clean, and what you must never delete.",
   },
   "scan-my-disk-windows-disk-space-analyzer": {
     title: "Scan My Disk Review: $6.99 Windows Disk Space Analyzer (2026)",
@@ -17,7 +17,7 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   "best-windows-disk-space-analyzers-windirstat-wiztree-treesize": {
     title: "WinDirStat vs WizTree vs TreeSize (2026): Speed & Safety Test",
     description:
-      "Comparing WinDirStat, WizTree, and TreeSize Free on Windows 11: scan speed, open-source status, portable builds, deletion safety, and the best modern alternative.",
+      "Compare WinDirStat, WizTree, and TreeSize Free on Windows 11: scan speed, open-source status, deletion safety, and the best modern alternative.",
   },
   "clean-appdata-programdata-leftovers-windows": {
     title: "How to Safely Clean AppData & ProgramData Leftovers on Windows 10/11 (2026)",
