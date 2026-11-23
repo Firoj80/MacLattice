@@ -600,7 +600,7 @@ function Guides() {
     {
       kicker: "CleanMyMac Alternative",
       title: "CleanMyMac for Windows",
-      body: "Disk visualizer, duplicate finding and app leftovers for $6.99 lifetime.",
+      body: "Disk visualizer, duplicate finding and app leftovers for $14.99 lifetime.",
       slug: "cleanmymac-alternative-windows",
     },
     {

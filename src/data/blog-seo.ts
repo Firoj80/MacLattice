@@ -10,9 +10,9 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
       "Is C:\\ProgramData eating your C: drive? Learn what %ProgramData% does in Windows 10 & 11, which subfolders are safe to clean (Package Cache, USOPrivate, Search), and what never to delete.",
   },
   "scan-my-disk-windows-disk-space-analyzer": {
-    title: "Scan My Disk Review: $6.99 Windows Disk Space Analyzer (2026)",
+    title: "Scan My Disk Review: $14.99 Windows Disk Space Analyzer (2026)",
     description:
-      "A hands-on look at Scan My Disk, a $6.99 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
+      "A hands-on look at Scan My Disk, a $14.99 lifetime Windows disk analyzer with 8 views, duplicate finder, snapshots and a cleanup queue.",
   },
   "best-windows-disk-space-analyzers-windirstat-wiztree-treesize": {
     title: "WinDirStat vs WizTree vs TreeSize (2026): Speed & Safety Test",
@@ -22,7 +22,7 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   "clean-appdata-programdata-leftovers-windows": {
     title: "How to Safely Clean AppData & ProgramData Leftovers on Windows 10/11 (2026)",
     description:
-      "Running out of C: drive space? Learn which folders inside AppData and ProgramData are safe to delete on Windows 10 & 11, and how Scan My Disk removes leftover app junk for $6.99.",
+      "Running out of C: drive space? Learn which folders inside AppData and ProgramData are safe to delete on Windows 10 & 11, and how Scan My Disk removes leftover app junk for $14.99.",
   },
   "shrink-docker-wsl2-ext4-vhdx-windows": {
     title: "Why Docker Desktop & WSL2 Eat 100GB+ on Windows (How to Shrink ext4.vhdx)",
@@ -40,14 +40,14 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
       "Don't trust filename-only duplicate cleaners. Learn how 3-pass content hashing finds true byte-for-byte duplicate files on Windows 10 & 11 and how Scan My Disk removes them safely.",
   },
   "windirstat-alternative-windows-11": {
-    title: "WinDirStat Alternative for Windows 11: 8 Fast Visual Maps & $6.99 Lifetime (2026)",
+    title: "WinDirStat Alternative for Windows 11: 8 Fast Visual Maps & $14.99 Lifetime (2026)",
     description:
-      "WinDirStat still works on Windows 11 but it shows its age. Compare the best alternatives: Scan My Disk (8 views, $6.99), WizTree (MFT speed, free), TreeSize Free, and SpaceSniffer.",
+      "WinDirStat still works on Windows 11 but it shows its age. Compare the best alternatives: Scan My Disk (8 views, $14.99), WizTree (MFT speed, free), TreeSize Free, and SpaceSniffer.",
   },
   "cleanmymac-alternative-windows": {
-    title: "CleanMyMac Alternative for Windows 11: 8 Visual Maps & $6.99 Lifetime (2026)",
+    title: "CleanMyMac Alternative for Windows 11: 8 Visual Maps & $14.99 Lifetime (2026)",
     description:
-      "No Windows version of CleanMyMac exists. Scan My Disk covers disk visualization, duplicate finding, app leftover cleaning & system monitor for $6.99 one-time vs $35/year.",
+      "No Windows version of CleanMyMac exists. Scan My Disk covers disk visualization, duplicate finding, app leftover cleaning & system monitor for $14.99 one-time vs $35/year.",
   },
   "c-drive-full-windows-11-cleanup-guide": {
     title: "C: Drive Full for No Reason on Windows 11? How to Safely Find Hidden Space (2026)",
@@ -55,32 +55,32 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
       "Your C: drive is 95% full but you can't see why. Discover the 10 biggest hidden storage drains on Windows 10 & 11—from hibernation files to WSL2 vhdx—and how to reclaim 20–80 GB.",
   },
   "find-duplicate-video-files-windows-11": {
-    title: "Find Duplicate Video Files on Windows 11: 3-Pass Hashing & $6.99 Lifetime (2026)",
+    title: "Find Duplicate Video Files on Windows 11: 3-Pass Hashing & $14.99 Lifetime (2026)",
     description:
       "Video files chew through SSDs faster than anything else. Learn why filename duplicate cleaners fail, how 3-pass content hashing works, and how to recover 50GB+ safely.",
   },
   "free-up-disk-space-pc-gaming-steam-windows": {
-    title: "Free Up SSD Space on Windows for PC Gaming: Steam, Shaders & $6.99 Tool (2026)",
+    title: "Free Up SSD Space on Windows for PC Gaming: Steam, Shaders & $14.99 Tool (2026)",
     description:
       "Running out of SSD space for new games? Learn where hidden gaming bloat hides—from orphaned Steam workshop mods to DirectX shader caches—and how to reclaim 50–150GB.",
   },
   "spacesniffer-alternative-windows-11": {
-    title: "SpaceSniffer Alternative for Windows 11: 8 Visual Maps & $6.99 Lifetime (2026)",
+    title: "SpaceSniffer Alternative for Windows 11: 8 Visual Maps & $14.99 Lifetime (2026)",
     description:
-      "SpaceSniffer hasn't been updated since 2016. Discover modern Windows 11 alternatives with dark mode, radial sunbursts, and 3-pass duplicate detection for $6.99.",
+      "SpaceSniffer hasn't been updated since 2016. Discover modern Windows 11 alternatives with dark mode, radial sunbursts, and 3-pass duplicate detection for $14.99.",
   },
   "daisydisk-for-windows-alternative": {
-    title: "DaisyDisk for Windows 11: Sunburst Maps & $6.99 Lifetime Alternative (2026)",
+    title: "DaisyDisk for Windows 11: Sunburst Maps & $14.99 Lifetime Alternative (2026)",
     description:
-      "Looking for DaisyDisk on Windows? Scan My Disk brings beautiful interactive sunburst disk visualization and 3-pass duplicate detection to Windows 10 & 11 for $6.99.",
+      "Looking for DaisyDisk on Windows? Scan My Disk brings beautiful interactive sunburst disk visualization and 3-pass duplicate detection to Windows 10 & 11 for $14.99.",
   },
   "daisydisk-alternatives": {
     description:
-      "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $6.99 and available on Windows. macOS is coming soon.",
+      "GrandPerspective, OmniDiskSweeper, and Disk Inventory X are free DaisyDisk alternatives on Mac. Scan My Disk is $14.99 and available on Windows. macOS is coming soon.",
   },
   "grandperspective-vs-scanmydisk": {
     description:
-      "GrandPerspective is a free Mac disk visualizer. Scan My Disk is not a free Mac app. It is $6.99 for Windows today, and the Mac version is coming soon.",
+      "GrandPerspective is a free Mac disk visualizer. Scan My Disk is not a free Mac app. It is $14.99 for Windows today, and the Mac version is coming soon.",
   },
   "other-volumes-container": {
     description:
@@ -120,7 +120,7 @@ export const BLOG_SEO: Record<string, { description: string; title?: string }> =
   },
   "cleanmymac-alternative": {
     description:
-      "Not everyone wants a yearly cleanup subscription. Scan My Disk is a $6.99 one-time Windows app. The macOS version is coming soon.",
+      "Not everyone wants a yearly cleanup subscription. Scan My Disk is a $14.99 one-time Windows app. The macOS version is coming soon.",
   },
   "delete-duplicates-mac": {
     description:

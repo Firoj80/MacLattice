@@ -106,7 +106,7 @@ I built it this way because the scariest thing a disk tool can do is delete some
 
 ## Price, privacy, and limits
 
-- Price: $6.99 for a lifetime licence, no subscription, no account
+- Price: $14.99 for a lifetime licence, no subscription, no account
 - Platform: Windows 10 and 11, 64-bit only
 - Privacy: scanning, hashing, and duplicate matching all run locally, and file names never leave your PC
 - Licence: one PC at a time. Deactivate on the old machine to move it, with a 14-day offline grace period

@@ -1,6 +1,6 @@
 // Standard USD pricing. Currency localization disabled per store policy.
 export type LocalPrice = { currency: string; early: string; regular: string; localized: boolean };
-export const USD_PRICE: LocalPrice = { currency: "USD", early: "$6.99", regular: "$9.99", localized: false };
+export const USD_PRICE: LocalPrice = { currency: "USD", early: "$14.99", regular: "$19.99", localized: false };
 
 export function currencyForCountry(_country?: string): string | undefined {
   return "USD";

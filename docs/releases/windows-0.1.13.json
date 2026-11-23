@@ -1,0 +1,16 @@
+{
+  "Version": "0.1.13",
+  "ReleasedAt": "2026-11-23",
+  "Summary": "Persistent Cleanup Profiles for developers, video editors, and system maintenance. 1-click batch cleanup with zero hard deletion.",
+  "Added": [
+    "Persistent Cleanup Profiles: Tailored cleanup presets for Software Developers (node_modules, bin/obj, package caches, Android/Gradle), Video Editors (DaVinci/Premiere render caches, untouched media), and General Maintenance.",
+    "Custom Profile Creator: Build custom cleanup suites with 9 selectable target categories, minimum age and size thresholds, and exclusion lists."
+  ],
+  "Improved": [
+    "1-Click batch staging from profiles directly into Cleanup Queue with full byte accounting.",
+    "Persistent profile storage at %LocalAppData%\\ScanMyDisk\\cleanup-profiles.json."
+  ],
+  "Fixed": [
+    "Fixed temporary file matching to cover .tmp and .chk crash dump variations."
+  ]
+}

@@ -126,10 +126,10 @@ export function softwareJsonLd() {
         operatingSystem: operatingSystems(),
         offers: {
           "@type": "Offer",
-          price: "6.99",
+          price: "14.99",
           priceCurrency: "USD",
           priceValidUntil: "2026-12-31",
-          description: "One-time lifetime licence for $6.99",
+          description: "One-time lifetime licence for $14.99",
         },
         description: PRODUCT_DESCRIPTION,
         screenshot: ogImage(),

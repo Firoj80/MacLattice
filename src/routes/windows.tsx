@@ -128,7 +128,7 @@ function WindowsPage() {
             <p className="mb-2 text-xs font-semibold tracking-wider text-sky-400 uppercase">Comparison</p>
             <h2 className="text-3xl font-bold text-white sm:text-4xl">How ScanMyDisk compares to alternatives</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-white/70">
-              Classic tools like WinDirStat and WizTree show raw file sizes. ScanMyDisk combines 8 interactive map modes, duplicate content hashing, and developer cache cleanup under a one-time $6.99 license.
+              Classic tools like WinDirStat and WizTree show raw file sizes. ScanMyDisk combines 8 interactive map modes, duplicate content hashing, and developer cache cleanup under a one-time $14.99 license.
             </p>
           </div>
 
