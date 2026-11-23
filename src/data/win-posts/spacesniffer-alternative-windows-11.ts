@@ -18,7 +18,7 @@ This guide compares the best SpaceSniffer alternatives for Windows 10 & 11 in 20
 
 ## The Best SpaceSniffer Alternatives in 2026
 
-### 1. [Scan My Disk](/) — Best Modern Visual Alternative ($14.99 Lifetime)
+### 1. [Scan My Disk](/) — Best Modern Visual Alternative ($6.99 Lifetime)
 
 ![Treemap view of a Windows scan in Scan My Disk](/blog/review/treemap.jpg)
 
@@ -48,9 +48,9 @@ Unlike SpaceSniffer, Scan My Disk includes an entire safe cleanup suite:
 | Developer Cache Presets | **Yes** | ❌ None |
 | Safe Recycle Bin Staging | **Yes** (Cleanup Queue) | ❌ Direct delete |
 | System Resource Monitor | **Yes** (CPU, RAM, Disk) | ❌ None |
-| Price | **$14.99 Lifetime** | Free |
+| Price | **$6.99 Lifetime** | Free |
 
-[**Get Scan My Disk for Windows ($14.99 Lifetime) →**](/buy)
+[**Get Scan My Disk for Windows ($6.99 Lifetime) →**](/buy)
 
 ---
 
@@ -78,7 +78,7 @@ WinDirStat is the open-source grandfather of Windows disk visualizers.
 Yes, SpaceSniffer can run on Windows 11, but you may experience scaling issues on 4K monitors and slow scan times on large NVMe drives because it hasn't been updated since 2016.
 
 ### Is there a modern portable disk visualizer for Windows?
-Scan My Disk runs lightweight and 100% offline with no background telemetry or cloud dependencies. For a one-time $14.99 lifetime license, you get 8 interactive views and a built-in duplicate finder.
+Scan My Disk runs lightweight and 100% offline with no background telemetry or cloud dependencies. For a one-time $6.99 lifetime license, you get 8 interactive views and a built-in duplicate finder.
 
 ### How do I safely delete files found by disk visualizers?
 Never delete files directly using \`Shift + Delete\`. Use Scan My Disk's Cleanup Queue, which routes all deletions safely to the Windows Recycle Bin so you can restore them if needed.

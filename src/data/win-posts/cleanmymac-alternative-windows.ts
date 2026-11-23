@@ -17,11 +17,11 @@ On Windows, most of these live in separate tools—or they should live in one pl
 
 ## Best CleanMyMac Alternative for Windows in 2026
 
-### [Scan My Disk](/) — Covers Jobs 1–5 for $14.99 Lifetime
+### [Scan My Disk](/) — Covers Jobs 1–5 for $6.99 Lifetime
 
 ![Treemap view in Scan My Disk for Windows](/blog/review/treemap.jpg)
 
-[Scan My Disk](/) is a Windows disk space analyzer that covers the most important CleanMyMac jobs—minus the malware scanner—for a one-time $14.99 payment:
+[Scan My Disk](/) is a Windows disk space analyzer that covers the most important CleanMyMac jobs—minus the malware scanner—for a one-time $6.99 payment:
 
 **Job 1 — Disk visualization:** Scan My Disk has **8 interactive view modes**: Treemap, Sunburst, Flame, Bubbles, Mind Map, Folders, Top Sizes, and Age Map. CleanMyMac shows a simple pie chart; Scan My Disk shows the full folder hierarchy in every layout.
 
@@ -41,7 +41,7 @@ On Windows, most of these live in separate tools—or they should live in one pl
 | App uninstaller + leftover scanner | ✅ | ✅ |
 | Live system monitor | ✅ | ✅ |
 | Malware / adware scanner | ❌ | ✅ |
-| Price | **\$14.99 one-time** | \$34.95/year |
+| Price | **\$6.99 one-time** | \$34.95/year |
 | Platform | Windows 10 & 11 | macOS |
 | Works offline | ✅ | Partial |
 
@@ -80,11 +80,11 @@ Avast Cleanup Premium (\$29.99–\$49.99/year) is a full CleanMyMac-style subscr
 
 ### Is there a CleanMyMac for Windows?
 
-There is no official Windows version of CleanMyMac. The closest equivalent that covers visualization, cache cleanup, duplicate finding, app leftover cleaning, and a system monitor in one app is [Scan My Disk](/) for \$14.99 one-time. For malware scanning, Windows Defender (built-in and free) handles that job.
+There is no official Windows version of CleanMyMac. The closest equivalent that covers visualization, cache cleanup, duplicate finding, app leftover cleaning, and a system monitor in one app is [Scan My Disk](/) for \$6.99 one-time. For malware scanning, Windows Defender (built-in and free) handles that job.
 
 ### What is a good free CleanMyMac alternative for Windows?
 
-For disk visualization: [WizTree](https://diskanalyzer.com/) (free). For cache cleanup: Windows' own **Storage Sense** (Settings → System → Storage → Storage Sense). For duplicate detection: [dupeGuru](https://dupeguru.voltaicideas.net/) (free, open-source). For app uninstalling: Revo Uninstaller Free. These are four separate apps; Scan My Disk covers all four in one \$14.99 download.
+For disk visualization: [WizTree](https://diskanalyzer.com/) (free). For cache cleanup: Windows' own **Storage Sense** (Settings → System → Storage → Storage Sense). For duplicate detection: [dupeGuru](https://dupeguru.voltaicideas.net/) (free, open-source). For app uninstalling: Revo Uninstaller Free. These are four separate apps; Scan My Disk covers all four in one \$6.99 download.
 
 ### Does CleanMyMac work on Windows?
 

@@ -22,7 +22,7 @@ export function useLocalPricing() {
 export function PricingNote() {
   return (
     <p className="mt-3 text-center text-xs leading-relaxed text-muted">
-      Prices in USD ($14.99). One-time payment. Taxes confirmed at checkout.
+      Prices in USD ($6.99). One-time payment. Taxes confirmed at checkout.
     </p>
   );
 }

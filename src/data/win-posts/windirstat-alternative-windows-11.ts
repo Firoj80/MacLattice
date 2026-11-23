@@ -14,7 +14,7 @@ WinDirStat is free, open-source, and genuinely useful—nobody is saying otherwi
 
 ## Best WinDirStat Alternatives for Windows 11 in 2026
 
-### 1. [Scan My Disk](/) — Best All-in-One Alternative ($14.99 Lifetime)
+### 1. [Scan My Disk](/) — Best All-in-One Alternative ($6.99 Lifetime)
 
 ![Treemap view of a Windows scan in Scan My Disk](/blog/review/treemap.jpg)
 
@@ -40,11 +40,11 @@ Beyond visualization, Scan My Disk includes everything WinDirStat lacks:
 | Developer presets (node_modules, Gradle, Docker VHDX) | ✅ | ❌ |
 | Scan snapshots (before/after diff) | ✅ | ❌ |
 | Live system resource monitor | ✅ | ❌ |
-| Price | **$14.99 one-time** | Free |
+| Price | **$6.99 one-time** | Free |
 | Windows 10 & 11 (64-bit) | ✅ | ✅ |
 | Offline / no telemetry | ✅ | ✅ |
 
-**Who it's for:** Anyone who wants to replace WinDirStat with a faster, more visual, cleanup-ready tool that handles duplicates and developer caches—and is happy to pay a one-time $14.99 for it.
+**Who it's for:** Anyone who wants to replace WinDirStat with a faster, more visual, cleanup-ready tool that handles duplicates and developer caches—and is happy to pay a one-time $6.99 for it.
 
 [Get Scan My Disk →](/buy)
 
@@ -104,11 +104,11 @@ Always download WinDirStat from [windirstat.net](https://windirstat.net/) or the
 
 ### Does Scan My Disk replace WinDirStat on Windows 11?
 
-Yes. Scan My Disk runs natively on Windows 10 and Windows 11 (64-bit), handles everything WinDirStat does, and adds 7 extra view modes, a duplicate finder, a cleanup queue, and developer cache presets. The [license costs $14.99 once](/buy)—no subscription.
+Yes. Scan My Disk runs natively on Windows 10 and Windows 11 (64-bit), handles everything WinDirStat does, and adds 7 extra view modes, a duplicate finder, a cleanup queue, and developer cache presets. The [license costs $6.99 once](/buy)—no subscription.
 
 ### Is there a free WinDirStat alternative with duplicate detection?
 
-The closest free option is WizTree for size analysis, but it has no duplicate detection. Scan My Disk includes a 3-pass content-hashing duplicate finder for $14.99. There is no free Windows tool that combines both fast scanning, multiple visualizations, and content-based duplicate detection in a single app.
+The closest free option is WizTree for size analysis, but it has no duplicate detection. Scan My Disk includes a 3-pass content-hashing duplicate finder for $6.99. There is no free Windows tool that combines both fast scanning, multiple visualizations, and content-based duplicate detection in a single app.
 
 ### Does WinDirStat work on Windows 11?
 
